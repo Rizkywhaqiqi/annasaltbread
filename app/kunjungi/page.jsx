@@ -19,7 +19,7 @@ export default function Page() {
           <em>{"ANA."}</em>
         </h1>
         <p>{"Mampir sebentar. Bawa pulang cerita kecil."}</p>
-        <svg viewbox="0 0 72 72" aria-hidden="true" className="flower">
+        <svg viewBox="0 0 72 72" aria-hidden="true" className="flower">
           <g fill="none" stroke="currentColor" strokeWidth="2.4">
             <circle cx="36" cy="36" r="7"></circle>
             <path d="M29 23C14 3 41-2 41 20c13-18 31 1 12 12 25-2 20 25-1 17 15 18-9 31-15 9-5 23-30 10-15-8-22 8-26-19-3-20-20-10-3-30 10-7Z"></path>
@@ -56,7 +56,7 @@ export default function Page() {
             rel="noopener noreferrer"
           >
             {"Buka petunjuk arah"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
           </a>
@@ -74,7 +74,7 @@ export default function Page() {
               rel="noopener noreferrer"
             >
               {"Tanya Ana di Instagram"}
-              <svg viewbox="0 0 24 24" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6"></path>
               </svg>
             </a>

@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
+import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import { BRAND, PRODUCTS } from "@/lib/content";
-function Products({ items }) {
+function Products({ items, cutouts = false }) {
   const [selected, setSelected] = useState(null);
   const dialog = useRef(null);
   const trigger = useRef(null);
@@ -28,7 +29,7 @@ function Products({ items }) {
         {items.map((p) => (
           <article
             key={p.id}
-            className="product-card"
+            className={cutouts ? "product-card cutout-product" : "product-card"}
             data-category={p.category}
           >
             <button
@@ -41,14 +42,27 @@ function Products({ items }) {
               }}
             >
               <Image
-                src={"/images/" + p.image + ".webp"}
+                src={
+                  cutouts
+                    ? "/graphics/" +
+                      {
+                        cream: "cream",
+                        chocolate: "chocolate",
+                        savory: "savory",
+                      }[p.id] +
+                      "-cutout.png"
+                    : "/images/" + p.image + ".webp"
+                }
                 alt={p.alt}
                 width={1100}
-                height={1375}
+                height={cutouts ? 733 : 1375}
                 sizes="(max-width: 720px) 90vw, 45vw"
               />
               <span className="photo-open">
-                Lihat lebih dekat <span>↗</span>
+                Lihat lebih dekat{" "}
+                <span>
+                  <Arrow />
+                </span>
               </span>
             </button>
             <div className="product-caption">
@@ -108,7 +122,7 @@ function Products({ items }) {
                 rel="noopener noreferrer"
                 className="button pink-button"
               >
-                Tanya pilihan ini ke Ana ↗
+                Tanya pilihan ini ke Ana <Arrow />
               </a>
             </div>
           </div>
@@ -120,7 +134,7 @@ function Products({ items }) {
 export function ProductGrid() {
   return (
     <div className="home-products">
-      <Products items={PRODUCTS.slice(0, 3)} />
+      <Products items={PRODUCTS.slice(0, 3)} cutouts />
     </div>
   );
 }

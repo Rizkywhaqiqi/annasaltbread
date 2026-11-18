@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 export default function Footer() {
   return (
     <>
@@ -9,8 +10,13 @@ export default function Footer() {
             className="footer-logo"
             aria-label="Beranda Ana Salt Bread"
           >
-            {"ana"}
-            <span>{"✿"}</span>
+            <Image
+              src="/graphics/ana-wordmark.svg"
+              alt=""
+              width={330}
+              height={150}
+              unoptimized
+            />
           </Link>
           <div>
             <span className="tiny">{"A LITTLE MORE ANA"}</span>
@@ -29,7 +35,7 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               {"@anasaltbread"}
-              <svg viewbox="0 0 24 24" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6"></path>
               </svg>
             </a>

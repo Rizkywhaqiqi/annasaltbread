@@ -1,194 +1,158 @@
 import Link from "next/link";
+import { Arrow } from "@/components/icons";
 import Image from "next/image";
-import { ProductGrid, MenuProducts } from "@/components/products";
+import Hero, { Spark } from "@/components/hero";
+import { ProductGrid } from "@/components/products";
 export const metadata = {
   title: "Ana Salt Bread — A little bread, a little love.",
   description:
     "Salt bread, pilihan rasa, dan momen kecil bersama Ana Salt Bread di Sorrento Junction, Tangerang.",
   alternates: { canonical: "/" },
 };
+function Marquee() {
+  return (
+    <div className="bloom-marquee" aria-hidden="true">
+      <div className="bloom-track">
+        {[0, 1].map((n) => (
+          <div className="bloom-group" key={n}>
+            <span>A LITTLE BREAD</span>
+            <i>✳</i>
+            <span>A LITTLE LOVE</span>
+            <i>✳</i>
+            <span>BAKE & BLOOM</span>
+            <i>✳</i>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 export default function Page() {
   return (
     <>
-      <section className="home-hero">
-        <div className="hero-top">
-          <p className="tiny">{"SALT BREAD FOR YOUR LITTLE EVERYDAY JOYS"}</p>
-          <span className="hero-handwritten">{"a little love, baked in."}</span>
-        </div>
-        <div className="hero-title">
-          <h1>
-            {"A LITTLE BREAD."}
+      <Hero />
+      <Marquee />
+      <section className="little-story">
+        <div className="story-margin">
+          <span className="eyebrow">01 / THE LITTLE THINGS</span>
+          <span className="hand-note">
+            life happens.
             <br />
-            <span>
-              {"A LITTLE "}
-              <i>{"LOVE."}</i>
-            </span>
-          </h1>
-          <svg viewbox="0 0 72 72" aria-hidden="true" className="flower">
-            <g fill="none" stroke="currentColor" strokeWidth="2.4">
-              <circle cx="36" cy="36" r="7"></circle>
-              <path d="M29 23C14 3 41-2 41 20c13-18 31 1 12 12 25-2 20 25-1 17 15 18-9 31-15 9-5 23-30 10-15-8-22 8-26-19-3-20-20-10-3-30 10-7Z"></path>
-            </g>
-          </svg>
-        </div>
-        <div className="hero-photos">
-          <figure className="hero-photo photo-one">
-            <Image
-              src="/images/ana-savory.webp"
-              alt="Salt bread Ana dengan pilihan topping gurih"
-              width={1100}
-              height={1375}
-              fetchPriority="high"
-              sizes="(max-width: 720px) 90vw, 45vw"
-            />
-            <figcaption>{"a little savoury."}</figcaption>
-          </figure>
-          <figure className="hero-photo photo-two">
-            <Image
-              src="/images/ana-cream.webp"
-              alt="Salt bread Ana dengan isian krim"
-              width={1100}
-              height={1375}
-              fetchPriority="high"
-              sizes="(max-width: 720px) 90vw, 45vw"
-            />
-            <figcaption>{"always room for Ana."}</figcaption>
-          </figure>
-          <figure className="hero-photo photo-three">
-            <Image
-              src="/images/ana-chocolate.webp"
-              alt="Salt bread berlapis cokelat dari Ana"
-              width={1100}
-              height={1375}
-              loading="eager"
-              sizes="(max-width: 720px) 90vw, 45vw"
-            />
-            <figcaption>{"a little sweet."}</figcaption>
-          </figure>
-          <Link className="round-cta" href="/menu">
-            <span>
-              {"PILIH"}
-              <br />
-              {"FAVORITMU"}
-            </span>
-            <svg viewbox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </Link>
-        </div>
-        <div className="hero-bottom">
-          <p>
-            {"Sepotong roti."}
-            <br />
-            {"Alasan kecil untuk tersenyum."}
-          </p>
-          <Link className="text-link" href="/menu">
-            {"Kenali pilihan rasa"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </Link>
-        </div>
-      </section>
-      <div className="ribbon" aria-hidden="true">
-        <div>
-          {"BAKE & BLOOM "}
-          <span>{"✿"}</span>
-          {" A LITTLE BREAD, A LITTLE LOVE "}
-          <span>{"✿"}</span>
-          {" SALT BREAD & LITTLE MOMENTS "}
-          <span>{"✿"}</span>
-          {" BAKE & BLOOM "}
-          <span>{"✿"}</span>
-        </div>
-      </div>
-      <section className="home-story section">
-        <span className="tiny">{"HELLO, WE’RE ANA."}</span>
-        <h2>
-          {"ADA CERITA KECIL"}
-          <br />
-          {"DI SETIAP "}
-          <em>{"JEDA."}</em>
-        </h2>
-        <div className="home-story-bottom">
-          <span className="outline-flower">
-            <svg viewbox="0 0 72 72" aria-hidden="true" className="flower">
-              <g fill="none" stroke="currentColor" strokeWidth="2.4">
-                <circle cx="36" cy="36" r="7"></circle>
-                <path d="M29 23C14 3 41-2 41 20c13-18 31 1 12 12 25-2 20 25-1 17 15 18-9 31-15 9-5 23-30 10-15-8-22 8-26-19-3-20-20-10-3-30 10-7Z"></path>
-              </g>
-            </svg>
+            take a little break.
           </span>
-          <p>
-            {
-              "Dari sepotong salt bread hingga obrolan yang tak terasa panjang. Ana mengajakmu menikmati hal-hal sederhana, satu momen kecil dalam satu waktu."
-            }
-          </p>
-          <Link href="/tentang" className="button outline">
-            {"Cerita Ana"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </Link>
+          <Spark />
         </div>
-      </section>
-      <section className="home-menu section">
-        <div className="section-heading">
-          <div>
-            <span className="tiny">{"FIND YOUR LITTLE FAVOURITE"}</span>
-            <h2>
-              {"MANIS? GURIH?"}
-              <br />
-              <em>{"YES, PLEASE."}</em>
-            </h2>
-          </div>
-          <Link className="text-link" href="/menu">
-            {"Jelajahi pilihan rasa"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </Link>
-        </div>
-        <ProductGrid></ProductGrid>
-      </section>
-      <section className="visit-teaser">
-        <div className="visit-copy">
-          <span className="tiny">{"YOUR NEXT LITTLE STOP"}</span>
+        <div className="story-message" data-reveal>
           <h2>
-            {"MEET YOU"}
+            HARI BOLEH RAMAI.
             <br />
-            {"AT "}
-            <em>{"ANA."}</em>
+            JEDAMU BOLEH
+            <br />
+            <em>sesimpel ini.</em>
+          </h2>
+          <div className="story-message-bottom">
+            <p>
+              Sepotong salt bread. Obrolan yang mengalir. Atau waktu untuk diri
+              sendiri. Di Ana, selalu ada ruang untuk hal-hal kecil yang bikin
+              harimu terasa lebih baik.
+            </p>
+            <Link href="/tentang" className="sketch-link">
+              Sedikit cerita Ana{" "}
+              <span>
+                <Arrow />
+              </span>
+              <svg viewBox="0 0 200 14" aria-hidden="true">
+                <path d="M2 9C55 0 132 4 198 8M24 13c47-5 108-6 159-3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+        <Image
+          className="story-bloom"
+          src="/graphics/ana-flower.svg"
+          width={150}
+          height={150}
+          alt=""
+          unoptimized
+        />
+      </section>
+      <section className="flavour-section">
+        <div className="flavour-heading" data-reveal>
+          <span className="eyebrow">02 / FOLLOW YOUR CRAVINGS</span>
+          <h2>
+            PICK YOUR
+            <br />
+            <em>little crush.</em>
           </h2>
           <p>
-            {"Temukan kami di Sorrento Junction, Tangerang."}
+            Tim manis, tim gurih,
             <br />
-            {"Jadikan Ana bagian dari jeda berikutnya."}
+            atau tim “satu lagi, deh”?
           </p>
-          <Link href="/kunjungi" className="button dark">
-            {"Mampir ke Ana"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
+          <Spark />
+        </div>
+        <ProductGrid />
+        <div className="flavour-bottom">
+          <span className="hand-note">can’t choose? we get it.</span>
+          <Link href="/menu" className="button dark">
+            Kenali semua pilihan{" "}
+            <span>
+              <Arrow />
+            </span>
           </Link>
         </div>
-        <figure>
+      </section>
+      <section className="ana-postcard">
+        <div className="postcard-photo" data-reveal>
           <Image
             src="/images/ana-selection.webp"
-            alt="Pilihan salt bread Ana tersusun di atas nampan kayu"
+            alt="Ragam salt bread Ana di atas nampan kayu"
             width={1100}
             height={1375}
-            loading="lazy"
-            sizes="(max-width: 720px) 90vw, 45vw"
+            sizes="(max-width:720px) 90vw, 45vw"
           />
-          <span className="photo-stamp">
-            {"COME"}
+          <span className="tape tape-one" aria-hidden="true" />
+          <span className="tape tape-two" aria-hidden="true" />
+          <span className="postcard-caption">a very good kind of company.</span>
+        </div>
+        <div className="postcard-copy" data-reveal>
+          <span className="eyebrow">03 / YOUR NEXT LITTLE STOP</span>
+          <h2>
+            SEE YOU
             <br />
-            {"SAY HELLO"}
+            AT <em>Ana.</em>
+          </h2>
+          <p>
+            Sorrento Junction, Tangerang.
             <br />
-            {"✿"}
+            Datang sendiri atau ajak orang kesayangan.
+            <br />
+            Kami tunggu jeda kecilmu berikutnya.
+          </p>
+          <Link href="/kunjungi" className="sketch-link">
+            Yuk, mampir{" "}
+            <span>
+              <Arrow />
+            </span>
+            <svg viewBox="0 0 200 14" aria-hidden="true">
+              <path d="M2 8c61-6 137-5 196 0" />
+            </svg>
+          </Link>
+          <span className="postcard-stamp">
+            <Image
+              src="/graphics/ana-flower.svg"
+              alt=""
+              width={150}
+              height={150}
+              unoptimized
+            />
+            <span>
+              WITH LOVE,
+              <br />
+              FROM ANA.
+            </span>
           </span>
-        </figure>
+        </div>
       </section>
     </>
   );

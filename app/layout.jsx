@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import MotionStudio from "@/components/motion-studio";
 export const metadata = {
   metadataBase: new URL("https://annasaltbread.vercel.app"),
   title: "Ana Salt Bread",
@@ -24,7 +25,7 @@ export const metadata = {
 export const viewport = { themeColor: "#f3aabe" };
 export default function RootLayout({ children }) {
   return (
-    <html lang="id">
+    <html lang="id" data-scroll-behavior="smooth">
       <body>
         <a className="skip-link" href="#main">
           Langsung ke konten
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <MotionStudio />
       </body>
     </html>
   );

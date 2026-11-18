@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 export default function Header() {
@@ -40,9 +41,14 @@ export default function Header() {
           href="/"
           aria-label="Ana Salt Bread, beranda"
         >
-          {"ana"}
-          <span className="logo-flower">{"✿"}</span>
-          <small>{"SALT BREAD"}</small>
+          <Image
+            className="ana-official-logo"
+            src="/graphics/ana-wordmark.svg"
+            alt=""
+            width={165}
+            height={75}
+            unoptimized
+          />
         </Link>
         <nav aria-label="Navigasi utama">
           <Link
@@ -81,7 +87,7 @@ export default function Header() {
           rel="noopener noreferrer"
         >
           {"Order now"}
-          <svg viewbox="0 0 24 24" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"></path>
           </svg>
         </a>
@@ -106,8 +112,14 @@ export default function Header() {
       >
         <div className="mobile-head">
           <span className="wordmark">
-            {"ana"}
-            <span>{"✿"}</span>
+            <Image
+              className="ana-official-logo"
+              src="/graphics/ana-wordmark.svg"
+              alt="Ana Salt Bread"
+              width={165}
+              height={75}
+              unoptimized
+            />
           </span>
           <button
             type="button"
@@ -125,7 +137,7 @@ export default function Header() {
             aria-current={path === "/" ? "page" : undefined}
           >
             {"Beranda"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
           </Link>
@@ -135,7 +147,7 @@ export default function Header() {
             aria-current={path === "/tentang" ? "page" : undefined}
           >
             {"Tentang Ana"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
           </Link>
@@ -145,7 +157,7 @@ export default function Header() {
             aria-current={path === "/menu" ? "page" : undefined}
           >
             {"Pilihan rasa"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
           </Link>
@@ -155,7 +167,7 @@ export default function Header() {
             aria-current={path === "/kunjungi" ? "page" : undefined}
           >
             {"Kunjungi kami"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
           </Link>
@@ -165,7 +177,7 @@ export default function Header() {
             aria-current={path === "/kontak" ? "page" : undefined}
           >
             {"Kontak"}
-            <svg viewbox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
           </Link>
@@ -177,7 +189,7 @@ export default function Header() {
           rel="noopener noreferrer"
         >
           {"Order via Instagram"}
-          <svg viewbox="0 0 24 24" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"></path>
           </svg>
         </a>
