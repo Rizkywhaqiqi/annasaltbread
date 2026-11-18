@@ -3014,3 +3014,28 @@ html[data-motion="off"] .hero-hello {
   scale: 1;
   translate: 0 0;
 }
+.bakery-seal {
+  right: 12%;
+  top: -8px;
+  bottom: auto;
+  width: 114px;
+  height: 114px;
+}
+@media (max-width: 1050px) {
+  .bakery-seal {
+    width: 100px;
+    height: 100px;
+    right: 12%;
+    top: 0;
+    bottom: auto;
+  }
+}
+@media (max-width: 720px) {
+  .bakery-seal {
+    width: 88px;
+    height: 88px;
+    right: 7%;
+    bottom: 3px;
+    top: auto;
+  }
+}

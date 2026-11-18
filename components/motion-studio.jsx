@@ -74,7 +74,7 @@ export default function MotionStudio() {
         })
       }
     >
-      <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span> Motion{" "}
+      <span aria-hidden="true">{paused ? ">" : "||"}</span> Motion{" "}
       {paused ? "off" : "on"}
     </button>
   );
