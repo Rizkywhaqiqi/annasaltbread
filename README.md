@@ -29,7 +29,7 @@ React client components manage sweet/savory filters, product photo dialogs, and 
 
 ## Visual design
 
-The site uses a restrained cream and brown palette, serif headings, neutral product descriptions, and the supplied Ana logo. Decorative slogans, stickers, doodles, marquee and continuous floating animations have been removed. Motion is limited to subtle pointer perspective, hover feedback, and short scroll reveals, with a footer control and reduced-motion support.
+The site uses a restrained cream and brown palette, serif headings, neutral product descriptions, and the supplied Ana logo. Promotional slogans remain removed. Expressive full-width composition, floating breads, CSS 3D tilt, scroll parallax, a brand/location ribbon and scroll reveals are restored. All floral decoration uses the supplied official Ana flower mark. A footer animation control and reduced-motion support cover continuous movement.
 
 The three transparent PNG product cutouts are in `public/graphics`. Original photography remains in menu details. Logo masks preserve the supplied artwork.
 

@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./brand-motion.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 export const metadata = {

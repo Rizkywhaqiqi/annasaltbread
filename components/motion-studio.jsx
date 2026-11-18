@@ -35,11 +35,11 @@ export default function MotionStudio() {
           if (e.isIntersecting) {
             const a = e.target.animate(
               [
-                { opacity: 0, transform: "translateY(12px)" },
+                { opacity: 0, transform: "translateY(26px)" },
                 { opacity: 1, transform: "translateY(0)" },
               ],
               {
-                duration: 450,
+                duration: 700,
                 easing: "cubic-bezier(.2,.8,.2,1)",
                 fill: "none",
               },
