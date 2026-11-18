@@ -1,0 +1,13 @@
+import {PRODUCTS} from '/content.mjs';
+const menu=document.querySelector('#mobile-nav');const toggle=document.querySelector('.menu-toggle');let scrollBefore='';
+const lock=()=>{scrollBefore=document.body.style.overflow;document.body.style.overflow='hidden'};
+const unlock=()=>{document.body.style.overflow=scrollBefore};
+toggle?.addEventListener('click',()=>{menu.showModal();toggle.setAttribute('aria-expanded','true');lock()});
+menu?.querySelector('.menu-close')?.addEventListener('click',()=>menu.close());
+menu?.addEventListener('close',()=>{toggle?.setAttribute('aria-expanded','false');unlock();toggle?.focus()});
+menu?.addEventListener('click',e=>{if(e.target===menu){const r=menu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)menu.close()}});
+for(const button of document.querySelectorAll('[data-filter]'))button.addEventListener('click',()=>{const category=button.dataset.filter;let count=0;for(const p of document.querySelectorAll('[data-category]')){p.hidden=category!=='Semua'&&p.dataset.category!==category;if(!p.hidden)count++}for(const other of document.querySelectorAll('[data-filter]')){const selected=other===button;other.classList.toggle('active',selected);other.setAttribute('aria-pressed',String(selected))}document.querySelector('#filter-count').textContent=`${count} PILIHAN UNTUK DIKENALI`});
+const photo=document.querySelector('.photo-dialog');let photoTrigger=null;
+for(const button of document.querySelectorAll('[data-photo]'))button.addEventListener('click',()=>{const p=PRODUCTS.find(p=>p.id===button.dataset.photo);if(!p)return;const image=photo.querySelector('#dialog-image');image.src='/images/'+p.image+'.webp';image.alt=p.alt;photo.querySelector('#dialog-title').textContent=p.name;photo.querySelector('#dialog-copy').textContent=p.description+' Konfirmasi ketersediaan dan harga langsung ke Ana.';photoTrigger=button;photo.showModal();lock()});
+photo?.querySelector('.photo-close')?.addEventListener('click',()=>photo.close());photo?.addEventListener('close',()=>{unlock();photoTrigger?.focus()});photo?.addEventListener('click',e=>{if(e.target===photo){const r=photo.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)photo.close()}});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){document.documentElement.classList.add('js-motion');const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}},{threshold:.07});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
