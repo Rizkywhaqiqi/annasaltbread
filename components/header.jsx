@@ -1,0 +1,188 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+export default function Header() {
+  const path = usePathname();
+  const dialog = useRef(null);
+  const toggle = useRef(null);
+  const [open, setOpen] = useState(false);
+  const openMenu = () => {
+    dialog.current.showModal();
+    setOpen(true);
+  };
+  const closeMenu = () => dialog.current?.close();
+  const onClose = () => {
+    setOpen(false);
+    toggle.current?.focus();
+  };
+  useEffect(() => {
+    dialog.current?.close();
+    setOpen(false);
+  }, [path]);
+  useEffect(() => {
+    if (!open) return;
+    const before = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = before;
+    };
+  }, [open]);
+  return (
+    <>
+      <div className="announcement">
+        <span>{"We start blooming today."}</span>
+        <span>{"SALT BREAD & LITTLE MOMENTS"}</span>
+      </div>
+      <header className="site-header">
+        <Link
+          className="wordmark"
+          href="/"
+          aria-label="Ana Salt Bread, beranda"
+        >
+          {"ana"}
+          <span className="logo-flower">{"✿"}</span>
+          <small>{"SALT BREAD"}</small>
+        </Link>
+        <nav aria-label="Navigasi utama">
+          <Link
+            onClick={closeMenu}
+            href="/tentang"
+            aria-current={path === "/tentang" ? "page" : undefined}
+          >
+            {"Tentang Ana"}
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/menu"
+            aria-current={path === "/menu" ? "page" : undefined}
+          >
+            {"Pilihan rasa"}
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/kunjungi"
+            aria-current={path === "/kunjungi" ? "page" : undefined}
+          >
+            {"Kunjungi kami"}
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/kontak"
+            aria-current={path === "/kontak" ? "page" : undefined}
+          >
+            {"Kontak"}
+          </Link>
+        </nav>
+        <a
+          className="header-order"
+          href="https://www.instagram.com/anasaltbread/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {"Order now"}
+          <svg viewbox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"></path>
+          </svg>
+        </a>
+        <button
+          type="button"
+          ref={toggle}
+          className="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-controls="mobile-nav"
+          aria-expanded={open}
+          onClick={openMenu}
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+      <dialog
+        ref={dialog}
+        onClose={onClose}
+        id="mobile-nav"
+        className="mobile-nav"
+      >
+        <div className="mobile-head">
+          <span className="wordmark">
+            {"ana"}
+            <span>{"✿"}</span>
+          </span>
+          <button
+            type="button"
+            className="menu-close"
+            onClick={closeMenu}
+            aria-label="Tutup menu"
+          >
+            {"✕"}
+          </button>
+        </div>
+        <nav aria-label="Navigasi mobile">
+          <Link
+            onClick={closeMenu}
+            href="/"
+            aria-current={path === "/" ? "page" : undefined}
+          >
+            {"Beranda"}
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/tentang"
+            aria-current={path === "/tentang" ? "page" : undefined}
+          >
+            {"Tentang Ana"}
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/menu"
+            aria-current={path === "/menu" ? "page" : undefined}
+          >
+            {"Pilihan rasa"}
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/kunjungi"
+            aria-current={path === "/kunjungi" ? "page" : undefined}
+          >
+            {"Kunjungi kami"}
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </Link>
+          <Link
+            onClick={closeMenu}
+            href="/kontak"
+            aria-current={path === "/kontak" ? "page" : undefined}
+          >
+            {"Kontak"}
+            <svg viewbox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </Link>
+        </nav>
+        <a
+          className="button dark"
+          href="https://www.instagram.com/anasaltbread/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {"Order via Instagram"}
+          <svg viewbox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"></path>
+          </svg>
+        </a>
+        <p>{"A little bread. A little love."}</p>
+      </dialog>
+    </>
+  );
+}

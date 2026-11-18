@@ -1,6 +1,0 @@
-import {mkdir,rm,cp,writeFile,readFile} from 'node:fs/promises';
-import {renderPage} from '../src/pages.mjs';
-import {PAGES} from '../src/content.mjs';
-await rm('dist',{recursive:true,force:true});await mkdir('dist',{recursive:true});await cp('public','dist',{recursive:true});for(const p of PAGES)await writeFile(p.path==='/'?'dist/index.html':`dist${p.path}.html`,renderPage(p.path));await writeFile('dist/404.html',renderPage('/404'));for(const p of ['styles.css','app.js','content.mjs'])await cp('src/'+p,'dist/'+p);await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+PAGES.map(p=>`<url><loc>https://annasaltbread.vercel.app${p.path}</loc></url>`).join('')+'</urlset>\n');await writeFile('dist/robots.txt','User-agent: *\nAllow: /\nSitemap: https://annasaltbread.vercel.app/sitemap.xml\n');
-for(const p of PAGES){const html=await readFile(p.path==='/'?'dist/index.html':`dist${p.path}.html`,'utf8');if((html.match(/<h1\b/g)||[]).length!==1)throw new Error('Expected one H1: '+p.path);for(const m of html.matchAll(/(?:href|src)="(\/[^"#?]*)"/g)){const link=m[1];if(PAGES.some(p=>p.path===link))continue;try{await readFile('dist'+link)}catch{throw new Error('Broken local asset: '+link)}}}
-console.log(`Built and checked ${PAGES.length} independent pages, shared assets, and 404.`);

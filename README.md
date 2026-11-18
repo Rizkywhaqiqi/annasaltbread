@@ -1,28 +1,28 @@
 # Ana Salt Bread
 
-Independent, responsive brand profile with separate Home, About, Menu, Visit, and Contact pages. Built with semantic HTML, CSS, and vanilla JavaScript, using a dependency-free Node.js build.
-
-## Assets and hosting
-
-The owner approved publication of the Ana product photos in this public repository and on Vercel. Optimized WebP files are included under `public/images/`. The open-source Anton font is self-hosted with its license.
+Independent brand profile built with Next.js 16 App Router and React 19. Separate routes: `/`, `/tentang`, `/menu`, `/kunjungi`, `/kontak`. Includes a custom 404, sitemap, robots, page metadata, Next Image optimization, and Next Link navigation.
 
 ## Develop
 
+Requires Node.js 22+.
+
 ```sh
-npm run build
+npm ci
 npm run dev
+npm run build
+npm start
 ```
 
-Requires Node.js 22+. Preview runs on port 4173 (or `PORT`). Build output is `dist`. On Vercel use `npm run build`, output directory `dist`, and the included clean URL configuration.
+Vercel detects the Next.js framework; use its default output settings.
 
-## Content
+## Content and assets
 
-Edit `src/content.mjs` for brand details, address, Instagram, and menu photo descriptions. Edit `src/pages.mjs` for page templates. CSS is in `src/styles.css`. Run the build after edits. Each page contains its own title, description, canonical URL, and semantic HTML. Build checks H1 count, internal links, and referenced assets.
+Brand and product data lives in `lib/content.js`. Page content lives in `app/**/page.jsx`, shared UI in `components`, and styles in `app/globals.css`.
 
-The visual direction adapts the owner's supplied DOE Donuts export: expressive typography, pink/cream color fields, and product-led compositions. DOE source code, proprietary fonts, photos, testimonials, offers, and copy are not republished. The uploaded export is not included in this repository.
+The owner approved publication of Ana photography from Drive in this public repository and on Vercel. The optimized WebP files and source notes are in `public/images`. Anton is self-hosted under `public/fonts` with its open-source license.
 
-Official Ana photography comes from the owner's Drive folder; see `public/images/SOURCES.md`. Photos are optimized to WebP. The wordmark and favicon are a typographic treatment pending a standalone approved logo asset. Product labels are descriptive photo categories, not a verified price list. No unverified prices, opening hours, inventory, or reviews are shown. Ordering is through the brand's Instagram account. No payment checkout, newsletter backend, or admin dashboard is included.
+The owner's DOE export informs the pink/cream palette and expressive typography. DOE code, photos, proprietary fonts, offers, and testimonials are not included. The Ana wordmark is a provisional typographic treatment. Product categories describe the supplied photos; prices and opening hours await confirmation. Ordering links to the official Instagram account.
 
-## Interaction
+## Interactions
 
-Menu filters work by sweet/savory category. Product photos open in a keyboard-accessible native dialog. The mobile navigation also uses a native dialog with Escape support, focus management, and scroll locking. Motion respects reduced-motion preferences. Every page remains readable without JavaScript.
+React client components manage sweet/savory filters, product photo dialogs, and mobile navigation. Native dialogs support Escape, focus restoration, and scroll locking. Images, navigation, and primary content remain server rendered. No admin dashboard or payment checkout is included.
