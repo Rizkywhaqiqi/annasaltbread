@@ -32,8 +32,8 @@ export default function Header() {
   return (
     <>
       <div className="announcement">
-        <span>{"We start blooming today."}</span>
-        <span>{"SALT BREAD & LITTLE MOMENTS"}</span>
+        <span>{"Sorrento Junction, Tangerang"}</span>
+        <span>{"ANA SALT BREAD"}</span>
       </div>
       <header className="site-header">
         <Link
@@ -56,21 +56,21 @@ export default function Header() {
             href="/tentang"
             aria-current={path === "/tentang" ? "page" : undefined}
           >
-            {"Tentang Ana"}
+            {"Tentang"}
           </Link>
           <Link
             onClick={closeMenu}
             href="/menu"
             aria-current={path === "/menu" ? "page" : undefined}
           >
-            {"Pilihan rasa"}
+            {"Menu"}
           </Link>
           <Link
             onClick={closeMenu}
             href="/kunjungi"
             aria-current={path === "/kunjungi" ? "page" : undefined}
           >
-            {"Kunjungi kami"}
+            {"Lokasi"}
           </Link>
           <Link
             onClick={closeMenu}
@@ -86,7 +86,7 @@ export default function Header() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {"Order now"}
+          {"Pesan"}
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"></path>
           </svg>
@@ -146,7 +146,7 @@ export default function Header() {
             href="/tentang"
             aria-current={path === "/tentang" ? "page" : undefined}
           >
-            {"Tentang Ana"}
+            {"Tentang"}
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
@@ -156,7 +156,7 @@ export default function Header() {
             href="/menu"
             aria-current={path === "/menu" ? "page" : undefined}
           >
-            {"Pilihan rasa"}
+            {"Menu"}
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
@@ -166,7 +166,7 @@ export default function Header() {
             href="/kunjungi"
             aria-current={path === "/kunjungi" ? "page" : undefined}
           >
-            {"Kunjungi kami"}
+            {"Lokasi"}
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
@@ -188,12 +188,12 @@ export default function Header() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {"Order via Instagram"}
+          {"Pesan melalui Instagram"}
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"></path>
           </svg>
         </a>
-        <p>{"A little bread. A little love."}</p>
+        <p>{"Ana Salt Bread"}</p>
       </dialog>
     </>
   );

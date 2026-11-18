@@ -1,15 +1,11 @@
 import Link from "next/link";
 export default function NotFound() {
   return (
-    <section className="page-banner pink not-found">
-      <span className="tiny">404 / A LITTLE DETOUR</span>
-      <h1>
-        SEPERTINYA
-        <br />
-        BEDA <em>ALAMAT.</em>
-      </h1>
-      <Link href="/" className="button dark">
-        Kembali ke beranda ↗
+    <section className="page-banner not-found">
+      <span className="eyebrow">404</span>
+      <h1>Halaman tidak ditemukan</h1>
+      <Link href="/" className="text-link">
+        Kembali ke beranda
       </Link>
     </section>
   );

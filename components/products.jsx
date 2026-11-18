@@ -110,7 +110,7 @@ function Products({ items, cutouts = false }) {
               sizes="(max-width: 720px) 90vw, 45vw"
             />
             <div>
-              <span className="tiny">A LITTLE CLOSER</span>
+              <span className="tiny">DETAIL PRODUK</span>
               <h2>{selected.name}</h2>
               <p>
                 {selected.description} Konfirmasi ketersediaan dan harga
@@ -122,7 +122,7 @@ function Products({ items, cutouts = false }) {
                 rel="noopener noreferrer"
                 className="button pink-button"
               >
-                Tanya pilihan ini ke Ana <Arrow />
+                Tanyakan ketersediaan <Arrow />
               </a>
             </div>
           </div>
@@ -160,7 +160,7 @@ export function MenuProducts() {
           ))}
         </div>
         <span className="tiny" aria-live="polite">
-          {items.length} PILIHAN UNTUK DIKENALI
+          {items.length} PILIHAN
         </span>
       </div>
       <div className="full-menu">

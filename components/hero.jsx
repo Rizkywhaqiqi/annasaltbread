@@ -1,45 +1,12 @@
 "use client";
 import Image from "next/image";
-import { Arrow } from "@/components/icons";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
-export function Spark({ className = "" }) {
-  return (
-    <svg
-      className={"doodle-spark " + className}
-      viewBox="0 0 60 60"
-      aria-hidden="true"
-    >
-      <path d="M30 3c0 18-9 27-27 27 18 0 27 9 27 27 0-18 9-27 27-27C39 30 30 21 30 3Z" />
-    </svg>
-  );
-}
+import { Arrow } from "@/components/icons";
 export default function Hero() {
   const scene = useRef(null);
   const frame = useRef(0);
   useEffect(() => () => cancelAnimationFrame(frame.current), []);
-  useEffect(() => {
-    let scrollFrame = 0;
-    const update = () => {
-      if (
-        document.documentElement.dataset.motion === "off" ||
-        matchMedia("(prefers-reduced-motion:reduce)").matches
-      )
-        return;
-      cancelAnimationFrame(scrollFrame);
-      scrollFrame = requestAnimationFrame(() => {
-        if (!scene.current) return;
-        const r = scene.current.getBoundingClientRect();
-        const amount = Math.min(1, Math.max(0, -r.top / r.height));
-        scene.current.style.setProperty("--scroll-shift", `${amount * 70}px`);
-      });
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", update);
-      cancelAnimationFrame(scrollFrame);
-    };
-  }, []);
   function move(e) {
     if (
       !matchMedia("(pointer:fine) and (prefers-reduced-motion:no-preference)")
@@ -52,143 +19,86 @@ export default function Hero() {
     const y = (e.clientY - r.top) / r.height - 0.5;
     cancelAnimationFrame(frame.current);
     frame.current = requestAnimationFrame(() => {
-      scene.current?.style.setProperty("--mx", `${x * 25}px`);
-      scene.current?.style.setProperty("--my", `${y * 20}px`);
-      scene.current?.style.setProperty("--rx", `${-y * 9}deg`);
-      scene.current?.style.setProperty("--ry", `${x * 11}deg`);
+      scene.current?.style.setProperty("--mx", `${x * 10}px`);
+      scene.current?.style.setProperty("--my", `${y * 8}px`);
+      scene.current?.style.setProperty("--rx", `${-y * 3}deg`);
+      scene.current?.style.setProperty("--ry", `${x * 4}deg`);
     });
   }
   function reset() {
     cancelAnimationFrame(frame.current);
-    scene.current?.style.setProperty("--mx", "0px");
-    scene.current?.style.setProperty("--my", "0px");
-    scene.current?.style.setProperty("--rx", "0deg");
-    scene.current?.style.setProperty("--ry", "0deg");
+    for (const key of ["--mx", "--my", "--rx", "--ry"])
+      scene.current?.style.removeProperty(key);
   }
   return (
-    <section
-      className="bakery-hero"
-      ref={scene}
-      onPointerMove={move}
-      onPointerLeave={reset}
-      aria-label="Selamat datang di Ana"
-    >
-      <div className="bakery-hero-top">
-        <span className="eyebrow">SALT BREAD, COFFEE & LITTLE MOMENTS</span>
-        <span className="hand-note">a little love, baked in.</span>
-      </div>
-      <div className="hero-editorial">
+    <section className="profile-hero">
+      <div className="profile-intro" data-reveal>
+        <span className="eyebrow">SORRENTO JUNCTION · TANGERANG</span>
         <h1>
-          ROTI KECIL.
+          Ana
           <br />
-          <em>big feelings.</em>
+          Salt Bread
         </h1>
-        <div className="hero-hello">
+        <p>Salt bread dengan pilihan isian manis dan topping gurih.</p>
+        <div className="profile-actions">
+          <Link className="button dark" href="/menu">
+            Lihat menu <Arrow />
+          </Link>
+          <Link className="text-link" href="/kunjungi">
+            Lokasi outlet <Arrow />
+          </Link>
+        </div>
+      </div>
+      <div
+        className="profile-products"
+        ref={scene}
+        onPointerMove={move}
+        onPointerLeave={reset}
+      >
+        <div className="product-backdrop" aria-hidden="true" />
+        <Link
+          className="profile-bread profile-savory"
+          href="/menu"
+          aria-label="Lihat salt bread gurih"
+        >
           <Image
-            src="/graphics/ana-flower.svg"
-            alt=""
-            width={150}
-            height={150}
-            unoptimized
+            src="/graphics/savory-cutout.png"
+            width={900}
+            height={600}
+            sizes="(max-width:720px) 55vw, 25vw"
+            alt="Salt bread dengan saus dan daun bawang"
+            loading="eager"
           />
-          <span className="hand-note">oh, hi there!</span>
-          <p>
-            Kenalan dengan Ana.
-            <br />
-            Teman untuk jeda kecilmu.
-          </p>
-        </div>
-      </div>
-      <div className="bread-playground">
-        <div className="bread-outline" aria-hidden="true">
-          BAKE & BLOOM
-        </div>
-        <Spark className="spark-one" />
-        <Spark className="spark-two" />
-        <span className="crumb crumb-a" aria-hidden="true" />
-        <span className="crumb crumb-b" aria-hidden="true" />
-        <span className="crumb crumb-c" aria-hidden="true" />
-        <div className="bread-orbit orbit-savory">
-          <Link
-            href="/menu"
-            className="floating-bread bread-savory"
-            aria-label="Jelajahi salt bread gurih"
-          >
-            <Image
-              src="/graphics/savory-cutout.png"
-              alt="Salt bread Ana dengan saus dan taburan daun bawang, tanpa latar"
-              width={900}
-              height={600}
-              sizes="(max-width:720px) 60vw, 35vw"
-              loading="eager"
-              fetchPriority="high"
-            />
-            <span className="bread-caption">a little savoury</span>
-          </Link>
-        </div>
-        <div className="bread-orbit orbit-cream">
-          <Link
-            href="/menu"
-            className="floating-bread bread-cream"
-            aria-label="Jelajahi salt bread isian krim"
-          >
-            <Image
-              src="/graphics/cream-cutout.png"
-              alt="Salt bread Ana dengan isian krim putih, tanpa latar"
-              width={900}
-              height={600}
-              sizes="(max-width:720px) 75vw, 42vw"
-              loading="eager"
-              fetchPriority="high"
-            />
-            <span className="bread-caption">a little creamy</span>
-          </Link>
-        </div>
-        <div className="bread-orbit orbit-chocolate">
-          <Link
-            href="/menu"
-            className="floating-bread bread-chocolate"
-            aria-label="Jelajahi salt bread cokelat"
-          >
-            <Image
-              src="/graphics/chocolate-cutout.png"
-              alt="Salt bread Ana berlapis cokelat dan chocolate chips, tanpa latar"
-              loading="eager"
-              width={900}
-              height={600}
-              sizes="(max-width:720px) 55vw, 32vw"
-            />
-            <span className="bread-caption">a little sweet</span>
-          </Link>
-        </div>
-        <span className="hand-note playground-note">
-          pilih yang bikin
-          <br />
-          kamu senyum :)
-          <svg viewBox="0 0 100 60" aria-hidden="true">
-            <path d="M5 8C28 2 75 4 72 44M59 31l14 15 14-14" />
-          </svg>
-        </span>
-        <Link className="bakery-seal" href="/menu">
-          <span>
-            ADA YANG
-            <br />
-            BIKIN NGILER?
-          </span>
-          <b>
-            Lihat pilihan <Arrow />
-          </b>
         </Link>
-      </div>
-      <div className="hero-ground">
-        <span className="eyebrow">TANGERANG, WITH LOVE.</span>
-        <Link href="/kunjungi">
-          Mampir ke Ana{" "}
-          <span>
-            <Arrow />
-          </span>
+        <Link
+          className="profile-bread profile-cream"
+          href="/menu"
+          aria-label="Lihat salt bread isian krim"
+        >
+          <Image
+            src="/graphics/cream-cutout.png"
+            width={900}
+            height={600}
+            sizes="(max-width:720px) 75vw, 40vw"
+            alt="Salt bread dengan isian krim"
+            loading="eager"
+            fetchPriority="high"
+          />
         </Link>
-        <span className="scroll-note">SCROLL, THERE’S MORE ↓</span>
+        <Link
+          className="profile-bread profile-chocolate"
+          href="/menu"
+          aria-label="Lihat salt bread cokelat"
+        >
+          <Image
+            src="/graphics/chocolate-cutout.png"
+            width={900}
+            height={600}
+            sizes="(max-width:720px) 45vw, 23vw"
+            alt="Salt bread berlapis cokelat"
+            loading="eager"
+          />
+        </Link>
       </div>
     </section>
   );

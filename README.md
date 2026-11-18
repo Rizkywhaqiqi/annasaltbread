@@ -27,9 +27,11 @@ The owner's DOE export informs the pink/cream palette and expressive typography.
 
 React client components manage sweet/savory filters, product photo dialogs, and mobile navigation. Native dialogs support Escape, focus restoration, and scroll locking. Images, navigation, and primary content remain server rendered. No admin dashboard or payment checkout is included.
 
-## Ana illustrated redesign
+## Visual design
 
-The homepage now uses a cream/pink bakery art direction, official uploaded Ana wordmark and flower mascot, original SVG doodles, floating transparent bread cutouts, perspective pointer tilt, scroll parallax, scroll reveals, an animated marquee, and a session-persisted Motion on/off control. Reduced-motion preferences disable movement. These are photographic assets on CSS 3D layers, not rotatable 3D meshes. Three PNG files live in `public/graphics` (under 400 KB combined before Next Image optimization). Logo SVG masks embed the exact uploaded raster artwork, without replacing the lettering or flower design with a generated approximation.
+The site uses a restrained cream and brown palette, serif headings, neutral product descriptions, and the supplied Ana logo. Decorative slogans, stickers, doodles, marquee and continuous floating animations have been removed. Motion is limited to subtle pointer perspective, hover feedback, and short scroll reveals, with a footer control and reduced-motion support.
+
+The three transparent PNG product cutouts are in `public/graphics`. Original photography remains in menu details. Logo masks preserve the supplied artwork.
 
 ### Asset generation notes
 

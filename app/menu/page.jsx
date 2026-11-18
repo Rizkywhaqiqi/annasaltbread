@@ -1,50 +1,32 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ProductGrid, MenuProducts } from "@/components/products";
+import { MenuProducts } from "@/components/products";
+import { BRAND } from "@/lib/content";
+import { Arrow } from "@/components/icons";
 export const metadata = {
-  title: "Pilihan rasa — Ana Salt Bread",
-  description:
-    "Jelajahi foto salt bread Ana, dari isian krim dan lapisan cokelat hingga pilihan topping gurih.",
+  title: "Menu — Ana Salt Bread",
+  description: "Pilihan salt bread manis dan gurih dari Ana Salt Bread.",
   alternates: { canonical: "/menu" },
 };
 export default function Page() {
   return (
     <>
-      <section className="page-banner cream">
-        <span className="tiny">{"FIND YOUR LITTLE FAVOURITE"}</span>
-        <h1>
-          {"SELALU ADA"}
-          <br />
-          {"RUANG UNTUK "}
-          <em>{"ANA."}</em>
-        </h1>
+      <section className="page-banner">
+        <span className="eyebrow">ANA SALT BREAD</span>
+        <h1>Menu</h1>
         <p>
-          {"Kenali pilihan salt bread dari foto-foto Ana."}
-          <br />
-          {
-            "Untuk menu lengkap, harga, dan ketersediaan hari ini, tanya langsung ke kami."
-          }
+          Pilihan isian manis dan topping gurih. Hubungi kami untuk harga dan
+          ketersediaan.
         </p>
       </section>
-      <MenuProducts></MenuProducts>
+      <MenuProducts />
       <section className="small-cta">
-        <div>
-          <span className="tiny">{"HAVE A LITTLE CRAVING?"}</span>
-          <h2>
-            {"SUDAH PUNYA "}
-            <em>{"PILIHAN?"}</em>
-          </h2>
-        </div>
+        <h2>Pemesanan</h2>
         <a
-          className="button dark"
-          href="https://www.instagram.com/anasaltbread/"
+          href={BRAND.instagram}
           target="_blank"
           rel="noopener noreferrer"
+          className="button dark"
         >
-          {"Tanya & pesan ke Ana"}
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"></path>
-          </svg>
+          Hubungi Ana <Arrow />
         </a>
       </section>
     </>

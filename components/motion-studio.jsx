@@ -35,11 +35,11 @@ export default function MotionStudio() {
           if (e.isIntersecting) {
             const a = e.target.animate(
               [
-                { opacity: 0, transform: "translateY(28px)" },
+                { opacity: 0, transform: "translateY(12px)" },
                 { opacity: 1, transform: "translateY(0)" },
               ],
               {
-                duration: 750,
+                duration: 450,
                 easing: "cubic-bezier(.2,.8,.2,1)",
                 fill: "none",
               },
@@ -74,8 +74,8 @@ export default function MotionStudio() {
         })
       }
     >
-      <span aria-hidden="true">{paused ? ">" : "||"}</span> Motion{" "}
-      {paused ? "off" : "on"}
+      <span aria-hidden="true">{paused ? ">" : "||"}</span> Animasi{" "}
+      {paused ? "nonaktif" : "aktif"}
     </button>
   );
 }

@@ -1,79 +1,54 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ProductGrid, MenuProducts } from "@/components/products";
+import { BRAND } from "@/lib/content";
+import { Arrow } from "@/components/icons";
 export const metadata = {
-  title: "Say hello — Ana Salt Bread",
-  description:
-    "Hubungi Instagram resmi Ana Salt Bread untuk pertanyaan, ketersediaan menu, dan pemesanan.",
+  title: "Kontak — Ana Salt Bread",
+  description: "Hubungi Ana Salt Bread untuk informasi menu dan pemesanan.",
   alternates: { canonical: "/kontak" },
 };
 export default function Page() {
   return (
     <>
       <section className="contact-hero">
-        <div>
-          <span className="tiny">{"COME SAY HELLO"}</span>
-          <h1>
-            {"A LITTLE"}
-            <br />
-            {"HELLO GOES"}
-            <br />
-            {"A "}
-            <em>{"LONG WAY."}</em>
-          </h1>
+        <div data-reveal>
+          <span className="eyebrow">ANA SALT BREAD</span>
+          <h1>Kontak</h1>
           <p>
-            {"Pertanyaan tentang menu, ketersediaan, atau pemesanan?"}
-            <br />
-            {"Ceritakan ke Ana lewat Instagram resmi."}
+            Untuk informasi menu, ketersediaan, dan pemesanan, hubungi Instagram
+            resmi Ana.
           </p>
           <a
             className="button dark"
-            href="https://www.instagram.com/anasaltbread/"
+            href={BRAND.instagram}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {"Hubungi @anasaltbread"}
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
+            @anasaltbread <Arrow />
           </a>
         </div>
         <figure>
           <Image
             src="/images/ana-moment.webp"
-            alt="Sepotong salt bread Ana dengan isian krim di atas piring hitam"
+            alt="Salt bread Ana dengan isian krim"
             width={1100}
             height={1375}
-            fetchPriority="high"
-            sizes="(max-width: 720px) 90vw, 45vw"
+            sizes="(max-width:720px) 90vw, 40vw"
           />
-          <span className="contact-doodle">
-            {"let’s talk"}
-            <br />
-            {"about bread."}
-          </span>
         </figure>
       </section>
       <section className="contact-options section">
-        <a
-          href="https://www.instagram.com/anasaltbread/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className="tiny">{"01 / TANYA & PESAN"}</span>
-          <h2>{"INSTAGRAM"}</h2>
-          <p>{"@anasaltbread"}</p>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"></path>
-          </svg>
+        <a href={BRAND.instagram} target="_blank" rel="noopener noreferrer">
+          <span className="eyebrow">PEMESANAN</span>
+          <h2>Instagram</h2>
+          <p>@anasaltbread</p>
+          <Arrow />
         </a>
         <Link href="/kunjungi">
-          <span className="tiny">{"02 / MAMPIR LANGSUNG"}</span>
-          <h2>{"KUNJUNGI ANA"}</h2>
-          <p>{"Sorrento Junction, Tangerang"}</p>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"></path>
-          </svg>
+          <span className="eyebrow">LOKASI</span>
+          <h2>Outlet Ana</h2>
+          <p>Sorrento Junction, Tangerang</p>
+          <Arrow />
         </Link>
       </section>
     </>
