@@ -2,9 +2,9 @@
 
 Independent, responsive brand profile with separate Home, About, Menu, Visit, and Contact pages. Built with semantic HTML, CSS, and vanilla JavaScript, using a dependency-free Node.js build.
 
-## Publication status
+## Assets and hosting
 
-The seven Ana product WebP photos are prepared and tested locally but excluded from this public repository pending explicit permission to publish the Drive assets. Copy the approved files listed in `public/images/SOURCES.md` into `public/images/` before building. Production deployment is pending that approval. The open-source Anton font is included with its license.
+The owner approved publication of the Ana product photos in this public repository and on Vercel. Optimized WebP files are included under `public/images/`. The open-source Anton font is self-hosted with its license.
 
 ## Develop
 
