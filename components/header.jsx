@@ -72,12 +72,61 @@ export default function Header() {
   }, [path]);
   useEffect(() => {
     let frame = 0;
+    // Resolve each section's painted background once per route/resize, not per scroll.
+    function surface(el) {
+      while (el) {
+        const color = getComputedStyle(el).backgroundColor;
+        const values = color.match(/[\d.]+/g)?.map(Number);
+        if (values && (values.length === 3 || values[3] >= 0.95))
+          return values.slice(0, 3);
+        el = el.parentElement;
+      }
+      return [250, 248, 244];
+    }
+    let regions = [];
+    const collect = () => {
+      regions = [
+        ...document.querySelectorAll(
+          "#main section, #main .brand-ribbon, #main .catalog-intro, .site-footer",
+        ),
+      ].map((el) => ({ el, rgb: surface(el) }));
+    };
+    collect();
+    let lastColor = "";
     const update = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         if (!header.current) return;
         header.current.dataset.scrolled = scrollY > 64 ? "true" : "false";
+        const line = header.current.getBoundingClientRect().bottom + 1;
         const max = document.documentElement.scrollHeight - innerHeight;
+        // Short footers cannot reach the header; adopt their palette at scroll end.
+        const footer =
+          max > 0 && scrollY >= max - 2
+            ? regions.find(({ el }) => el.matches(".site-footer"))
+            : null;
+        const region =
+          footer ??
+          regions.findLast(({ el }) => {
+            const rect = el.getBoundingClientRect();
+            return rect.top <= line && rect.bottom > line;
+          });
+        const rgb = region?.rgb ?? surface(document.querySelector("#main"));
+        const color = rgb.join(", ");
+        if (color !== lastColor) {
+          lastColor = color;
+          const linear = rgb.map((v) => {
+            v /= 255;
+            return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+          });
+          const luminance =
+            linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
+          header.current.style.setProperty(
+            "--nav-surface",
+            `rgba(${color}, 0.97)`,
+          );
+          header.current.dataset.tone = luminance < 0.18 ? "dark" : "light";
+        }
         header.current.style.setProperty(
           "--reading",
           String(max > 0 ? Math.min(1, scrollY / max) : 0),
@@ -86,11 +135,19 @@ export default function Header() {
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    const resize = () => {
+      collect();
+      update();
+    };
+    const ro = new ResizeObserver(update);
+    const main = document.querySelector("#main");
+    if (main) ro.observe(main);
+    window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("resize", resize);
+      ro.disconnect();
     };
   }, [path]);
   function openMenu() {

@@ -1,4 +1,10 @@
 .site-header.live-header {
+  --nav-ink: #3f2a23;
+  --nav-line: #3f2a2325;
+  --nav-marker: #eab3c0;
+  --nav-capsule: #ffffff55;
+  --nav-button: #3f2a23;
+  --nav-button-ink: #faf3e7;
   width: 100%;
   margin-inline: auto;
   top: 0;
@@ -7,14 +13,19 @@
     border-radius 0.45s,
     top 0.45s,
     box-shadow 0.45s,
-    padding 0.45s;
-  background: #faf8f4f2;
+    padding 0.45s,
+    background-color 0.45s,
+    color 0.45s,
+    border-color 0.45s;
+  background: var(--nav-surface, #faf3e7f7);
+  color: var(--nav-ink);
+  border-color: var(--nav-line);
   isolation: isolate;
 }
 .live-header[data-scrolled="true"] {
   width: calc(100% - 40px);
   top: 12px;
-  border: 1px solid #3f2a2325;
+  border: 1px solid var(--nav-line);
   border-radius: 18px;
   box-shadow: 0 12px 35px #3f2a2314;
   padding-inline: 4%;
@@ -29,9 +40,12 @@
   position: relative;
   gap: 5px;
   padding: 5px;
-  border: 1px solid #3f2a2315;
+  border: 1px solid var(--nav-line);
   border-radius: 40px;
-  background: #fff8;
+  background: var(--nav-capsule);
+  transition:
+    background-color 0.45s,
+    border-color 0.45s;
 }
 .live-header > nav > a {
   position: relative;
@@ -59,7 +73,8 @@
   width: 0;
   height: 0;
   border-radius: 30px;
-  background: #eab3c0;
+  background: var(--nav-marker);
+  transition: background-color 0.45s;
   z-index: 0;
   opacity: 0;
   pointer-events: none;
@@ -76,7 +91,11 @@
   border-radius: 40px;
   min-height: 44px;
   padding: 11px 25px;
-  transition: background 0.25s;
+  background: var(--nav-button);
+  color: var(--nav-button-ink);
+  transition:
+    background 0.45s,
+    color 0.45s;
 }
 .live-header .header-order::before {
   content: "";
@@ -107,8 +126,9 @@
   display: block;
   width: 25px;
   height: 1px;
-  background: var(--ink);
+  background: var(--nav-ink);
   transition:
+    background-color 0.45s,
     width 0.3s,
     translate 0.3s;
 }
@@ -133,7 +153,9 @@
   left: 1%;
   width: 98%;
   height: 2px;
-  background: #b96b83;
+  background: var(--nav-ink);
+  opacity: 0.5;
+  transition: background-color 0.45s;
   transform: scaleX(var(--reading, 0));
   transform-origin: left;
   border-radius: 2px;
@@ -411,4 +433,31 @@
   .nav-overlay-links a:hover {
     padding-left: 0;
   }
+}
+
+/* Keep all controls legible when the navbar reaches the dark footer. */
+.live-header[data-tone="dark"] {
+  --nav-ink: #faf3e7;
+  --nav-line: #faf3e740;
+  --nav-marker: #775345;
+  --nav-capsule: #ffffff0d;
+  --nav-button: #faf3e7;
+  --nav-button-ink: #3f2a23;
+}
+.live-header .ana-official-logo {
+  transition: filter 0.45s;
+}
+.live-header[data-tone="dark"] .ana-official-logo {
+  filter: brightness(0) invert(1);
+}
+.live-header .menu-toggle {
+  color: var(--nav-ink);
+  transition: color 0.45s;
+}
+.live-header .header-order:hover {
+  color: #fff;
+}
+.live-header a:focus-visible,
+.live-header button:focus-visible {
+  outline-color: var(--nav-ink);
 }
