@@ -40,3 +40,11 @@ Bread PNGs were edited with the built-in image generation tool using the origina
 ## Menu reference
 
 The owner-supplied imdonut.nyc menu export informs a centered introduction, category headings, generous spacing, centered product groups, and a front/hover photo transition. Ana data, branding, and photos are used throughout; competitor product names, claims, prices, assets, fonts and code are not included. The fourth product retains its original photo because no isolated cutout is available.
+
+## Motion and runtime audit
+
+GSAP ScrollTrigger now manages route-scoped reveals, image parallax, and hover feedback with context cleanup. Reveal state avoids replay flashes when the animation preference changes. Browser storage access is guarded. The shared footer control respects reduced-motion preferences.
+
+Three.js is dynamically loaded for a decorative procedural flower, with a capped pixel ratio, visibility-controlled rendering, resize handling, resource disposal, and an official-logo fallback for missing WebGL or reduced motion. The 3D ornament is a floral interpretation; official logo artwork remains unchanged. Product cutouts remain photographic CSS layers.
+
+Validation: Next.js production build; browser navigation through all five pages; no horizontal overflow at the desktop test viewport; animation pause/resume. The cloud browser has WebGL disabled, so the fallback was exercised and actual WebGL rendering remains unverified on hardware-enabled browsers.

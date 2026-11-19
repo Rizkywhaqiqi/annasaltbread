@@ -2,6 +2,7 @@ import "./globals.css";
 import "./brand-motion.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import PageBloom from "@/components/page-bloom";
 export const metadata = {
   metadataBase: new URL("https://annasaltbread.vercel.app"),
   title: "Ana Salt Bread",
@@ -31,7 +32,10 @@ export default function RootLayout({ children }) {
           Langsung ke konten
         </a>
         <Header />
-        <main id="main">{children}</main>
+        <main id="main">
+          <PageBloom />
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
