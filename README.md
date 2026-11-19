@@ -21,34 +21,16 @@ Brand and product data lives in `lib/content.js`. Page content lives in `app/**/
 
 The owner approved publication of Ana photography from Drive in this public repository and on Vercel. The optimized WebP files and source notes are in `public/images`. Anton is self-hosted under `public/fonts` with its open-source license.
 
-The owner's DOE export informs the pink/cream palette and expressive typography. DOE code, photos, proprietary fonts, offers, and testimonials are not included. The supplied official Ana wordmark and flower artwork are used. Product categories describe the supplied photos; prices and opening hours await confirmation. Ordering links to the official Instagram account.
+The owner's DOE export informs the pink/cream palette and expressive typography. DOE code, photos, proprietary fonts, offers, and testimonials are not included. The Ana wordmark is a provisional typographic treatment. Product categories describe the supplied photos; prices and opening hours await confirmation. Ordering links to the official Instagram account.
 
 ## Interactions
 
-React client components manage product photo dialogs and shared navigation. The navbar uses a GSAP hover/focus indicator, a floating scroll state with reading progress, and an animated full-screen navigation panel on desktop and mobile. Its surface follows the background of the section beneath it, resolving transparent sections through their ancestors. Logo, text, marker, and controls adapt to dark surfaces; the footer palette is adopted at scroll end. Palette reads are cached per route/resize, scroll updates are frame-limited, and layout changes are observed. The menu groups products into Manis and Gurih sections with anchor navigation. Native dialogs support Escape, focus restoration, and scroll locking. Images, navigation, and primary content remain server rendered. No admin dashboard or payment checkout is included.
+React client components manage sweet/savory filters, product photo dialogs, and mobile navigation. Native dialogs support Escape, focus restoration, and scroll locking. Images, navigation, and primary content remain server rendered. No admin dashboard or payment checkout is included.
 
-## Visual design
+## Ana illustrated redesign
 
-The site uses a restrained cream and brown palette, serif headings, neutral product descriptions, and the supplied Ana logo. Promotional slogans remain removed. Expressive full-width composition, floating breads, CSS 3D tilt, scroll parallax, a brand/location ribbon and scroll reveals are restored. All floral decoration uses the supplied official Ana flower mark. A footer animation control and reduced-motion support cover continuous movement.
-
-The three transparent PNG product cutouts are in `public/graphics`. Original photography remains in menu details. Logo masks preserve the supplied artwork.
+The homepage now uses a cream/pink bakery art direction, official uploaded Ana wordmark and flower mascot, original SVG doodles, floating transparent bread cutouts, perspective pointer tilt, scroll parallax, scroll reveals, an animated marquee, and a session-persisted Motion on/off control. Reduced-motion preferences disable movement. These are photographic assets on CSS 3D layers, not rotatable 3D meshes. Three PNG files live in `public/graphics` (under 400 KB combined before Next Image optimization). Logo SVG masks embed the exact uploaded raster artwork, without replacing the lettering or flower design with a generated approximation.
 
 ### Asset generation notes
 
 Bread PNGs were edited with the built-in image generation tool using the original Ana photos as edit targets. Prompts: isolate only the single foreground cream-filled bread / foreground savory bread with sauce and scallion / central chocolate-chip-covered bread, remove tray, surrounding breads and background, preserve silhouette, toppings, photographic texture and three-quarter angle, center with transparent padding, and output a transparent PNG. The edited cutouts are decorative; the original photos remain in the menu and product dialogs. The attempted generated wordmark was not used; the owner's exact supplied logo is displayed through a background-removing luminance mask.
-
-## Menu reference
-
-The owner-supplied imdonut.nyc menu export informs a centered introduction, category headings, generous spacing, centered product groups, and a front/hover photo transition. Ana data, branding, and photos are used throughout; competitor product names, claims, prices, assets, fonts and code are not included. The fourth product retains its original photo because no isolated cutout is available.
-
-## Motion and runtime audit
-
-GSAP ScrollTrigger now manages route-scoped reveals, image parallax, and hover feedback with context cleanup. Reveal state avoids replay flashes when the animation preference changes. Browser storage access is guarded. The shared footer control respects reduced-motion preferences.
-
-Three.js is dynamically loaded for a decorative procedural flower, with a capped pixel ratio, visibility-controlled rendering, resize handling, resource disposal, and an official-logo fallback for missing WebGL or reduced motion. The 3D ornament is a floral interpretation; official logo artwork remains unchanged. Product cutouts remain photographic CSS layers.
-
-Validation: Next.js production build; browser navigation through all five pages; no horizontal overflow at the desktop test viewport; animation pause/resume. The cloud browser has WebGL disabled, so the fallback was exercised and actual WebGL rendering remains unverified on hardware-enabled browsers.
-
-## Food catalogue typography
-
-Menu headings and product names use the self-hosted Anton display face with berry accents. Descriptive product labels explicitly include Salt Bread; short filling/topping descriptions and Instagram ordering calls to action make the food offering clear. Category grouping, motion, product cutouts and original-photo dialogs are retained. Labels describe supplied photography and do not claim to be official flavour names.

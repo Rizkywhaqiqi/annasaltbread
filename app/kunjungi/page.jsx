@@ -10,10 +10,21 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      <section className="page-banner">
-        <span className="eyebrow">ANA SALT BREAD</span>
-        <h1>Lokasi outlet</h1>
-        <p>Ruko Sorrento Junction, Tangerang.</p>
+      <section className="page-banner pink">
+        <span className="tiny">{"YOUR NEXT LITTLE STOP"}</span>
+        <h1>
+          {"SAMPAI"}
+          <br />
+          {"BERTEMU DI "}
+          <em>{"ANA."}</em>
+        </h1>
+        <p>{"Mampir sebentar. Bawa pulang cerita kecil."}</p>
+        <svg viewBox="0 0 72 72" aria-hidden="true" className="flower">
+          <g fill="none" stroke="currentColor" strokeWidth="2.4">
+            <circle cx="36" cy="36" r="7"></circle>
+            <path d="M29 23C14 3 41-2 41 20c13-18 31 1 12 12 25-2 20 25-1 17 15 18-9 31-15 9-5 23-30 10-15-8-22 8-26-19-3-20-20-10-3-30 10-7Z"></path>
+          </g>
+        </svg>
       </section>
       <section className="location-grid section">
         <figure>
@@ -28,7 +39,11 @@ export default function Page() {
         </figure>
         <div>
           <span className="tiny">{"SORRENTO JUNCTION / TANGERANG"}</span>
-          <h2>Sorrento Junction</h2>
+          <h2>
+            {"ANA"}
+            <br />
+            <em>{"SALT BREAD."}</em>
+          </h2>
           <address>
             {
               "Jl. Ir. H. Soekarno No. 8, Ruko Sorrento Junction, Curug Sangereng, Kecamatan Kelapa Dua, Kabupaten Tangerang, Banten 15810"
@@ -46,7 +61,7 @@ export default function Page() {
             </svg>
           </a>
           <div className="location-note">
-            <span className="tiny">{"JAM OPERASIONAL"}</span>
+            <span className="tiny">{"BEFORE YOU DROP BY"}</span>
             <p>
               {
                 "Cek jam buka dan ketersediaan menu melalui Instagram sebelum berkunjung."
@@ -67,8 +82,11 @@ export default function Page() {
         </div>
       </section>
       <section className="faq section">
-        <span className="tiny">{"INFORMASI"}</span>
-        <h2>Pertanyaan umum</h2>
+        <span className="tiny">{"A FEW LITTLE QUESTIONS"}</span>
+        <h2>
+          {"SEBELUM "}
+          <em>{"MAMPIR."}</em>
+        </h2>
         <details>
           <summary>
             {"Di mana lokasi Ana?"}

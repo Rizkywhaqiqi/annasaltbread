@@ -3,13 +3,7 @@ import Image from "next/image";
 import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import { BRAND, PRODUCTS } from "@/lib/content";
-function Products({ items, cutouts = false, catalog = false }) {
-  const ProductHeading = catalog ? "h3" : "h2";
-  const cutoutFiles = {
-    cream: "cream",
-    chocolate: "chocolate",
-    savory: "savory",
-  };
+function Products({ items, cutouts = false }) {
   const [selected, setSelected] = useState(null);
   const dialog = useRef(null);
   const trigger = useRef(null);
@@ -31,7 +25,7 @@ function Products({ items, cutouts = false, catalog = false }) {
   }
   return (
     <>
-      <div className={catalog ? "product-grid catalog-grid" : "product-grid"}>
+      <div className="product-grid">
         {items.map((p) => (
           <article
             key={p.id}
@@ -48,28 +42,22 @@ function Products({ items, cutouts = false, catalog = false }) {
               }}
             >
               <Image
-                className="product-front"
                 src={
-                  cutouts && cutoutFiles[p.id]
-                    ? "/graphics/" + cutoutFiles[p.id] + "-cutout.png"
+                  cutouts
+                    ? "/graphics/" +
+                      {
+                        cream: "cream",
+                        chocolate: "chocolate",
+                        savory: "savory",
+                      }[p.id] +
+                      "-cutout.png"
                     : "/images/" + p.image + ".webp"
                 }
                 alt={p.alt}
                 width={1100}
-                height={cutouts && cutoutFiles[p.id] ? 733 : 1375}
+                height={cutouts ? 733 : 1375}
                 sizes="(max-width: 720px) 90vw, 45vw"
               />
-              {catalog && cutoutFiles[p.id] && (
-                <Image
-                  className="product-hover"
-                  src={"/images/" + p.image + ".webp"}
-                  alt=""
-                  aria-hidden="true"
-                  width={1100}
-                  height={1375}
-                  sizes="(max-width:720px) 90vw,33vw"
-                />
-              )}
               <span className="photo-open">
                 Lihat lebih dekat{" "}
                 <span>
@@ -78,8 +66,10 @@ function Products({ items, cutouts = false, catalog = false }) {
               </span>
             </button>
             <div className="product-caption">
-              {!catalog && <span className="tiny">{p.category}</span>}
-              <ProductHeading>{p.name}</ProductHeading>
+              <span className="tiny">
+                0{PRODUCTS.indexOf(p) + 1} / {p.category}
+              </span>
+              <h2>{p.name}</h2>
               <p>{p.description}</p>
             </div>
           </article>
@@ -120,7 +110,7 @@ function Products({ items, cutouts = false, catalog = false }) {
               sizes="(max-width: 720px) 90vw, 45vw"
             />
             <div>
-              <span className="tiny">MENU ANA</span>
+              <span className="tiny">A LITTLE CLOSER</span>
               <h2>{selected.name}</h2>
               <p>
                 {selected.description} Konfirmasi ketersediaan dan harga
@@ -132,7 +122,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                 rel="noopener noreferrer"
                 className="button pink-button"
               >
-                Pesan melalui Instagram <Arrow />
+                Tanya pilihan ini ke Ana <Arrow />
               </a>
             </div>
           </div>
@@ -149,29 +139,37 @@ export function ProductGrid() {
   );
 }
 export function MenuProducts() {
+  const [filter, setFilter] = useState("Semua");
+  const items = PRODUCTS.filter(
+    (p) => filter === "Semua" || p.category === filter,
+  );
   return (
-    <div className="catalog-content">
-      {["Manis", "Gurih"].map((category) => (
-        <section
-          key={category}
-          id={"menu-" + category.toLowerCase()}
-          className="catalog-category"
-          aria-labelledby={"heading-" + category.toLowerCase()}
-        >
-          <h2 id={"heading-" + category.toLowerCase()}>
-            {category === "Manis" ? "Isian manis" : "Topping gurih"}
-          </h2>
-          <Products
-            items={PRODUCTS.filter((p) => p.category === category)}
-            cutouts
-            catalog
-          />
-        </section>
-      ))}
-      <p className="catalog-note">
-        Harga, ketersediaan, dan informasi alergen dapat ditanyakan melalui
-        Instagram resmi Ana.
+    <section className="menu-section section">
+      <div className="menu-toolbar">
+        <div className="filters" role="group" aria-label="Filter pilihan rasa">
+          {["Semua", "Manis", "Gurih"].map((f) => (
+            <button
+              key={f}
+              type="button"
+              className={filter === f ? "active" : ""}
+              aria-pressed={filter === f}
+              onClick={() => setFilter(f)}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+        <span className="tiny" aria-live="polite">
+          {items.length} PILIHAN UNTUK DIKENALI
+        </span>
+      </div>
+      <div className="full-menu">
+        <Products items={items} />
+      </div>
+      <p className="menu-note">
+        Foto merupakan sajian Ana. Pilihan rasa dan ketersediaan dapat berubah;
+        konfirmasi menu serta informasi alergen sebelum memesan.
       </p>
-    </div>
+    </section>
   );
 }

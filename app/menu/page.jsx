@@ -1,42 +1,52 @@
-import { MenuProducts } from "@/components/products";
-import { BRAND } from "@/lib/content";
-import BrandFlower from "@/components/brand-flower";
-import "./menu.css";
+import Link from "next/link";
+import Image from "next/image";
+import { ProductGrid, MenuProducts } from "@/components/products";
 export const metadata = {
-  title: "Menu — Ana Salt Bread",
-  description: "Pilihan salt bread manis dan gurih dari Ana Salt Bread.",
+  title: "Pilihan rasa — Ana Salt Bread",
+  description:
+    "Jelajahi foto salt bread Ana, dari isian krim dan lapisan cokelat hingga pilihan topping gurih.",
   alternates: { canonical: "/menu" },
 };
 export default function Page() {
   return (
-    <div className="ana-catalog">
-      <header className="catalog-intro">
-        <BrandFlower />
-        <h1>Menu Salt Bread</h1>
+    <>
+      <section className="page-banner cream">
+        <span className="tiny">{"FIND YOUR LITTLE FAVOURITE"}</span>
+        <h1>
+          {"SELALU ADA"}
+          <br />
+          {"RUANG UNTUK "}
+          <em>{"ANA."}</em>
+        </h1>
         <p>
-          Isian manis atau topping gurih. Pilih salt bread untuk teman ngemilmu.
+          {"Kenali pilihan salt bread dari foto-foto Ana."}
+          <br />
+          {
+            "Untuk menu lengkap, harga, dan ketersediaan hari ini, tanya langsung ke kami."
+          }
         </p>
-        <nav aria-label="Kategori menu">
-          <a href="#menu-manis">Manis</a>
-          <a href="#menu-gurih">Gurih</a>
-        </nav>
-      </header>
-      <MenuProducts />
-      <section className="catalog-order">
-        <h2>Sudah pilih rasanya?</h2>
-        <p>
-          Pesan salt bread melalui Instagram Ana. Tanyakan harga dan menu yang
-          tersedia.
-        </p>
+      </section>
+      <MenuProducts></MenuProducts>
+      <section className="small-cta">
+        <div>
+          <span className="tiny">{"HAVE A LITTLE CRAVING?"}</span>
+          <h2>
+            {"SUDAH PUNYA "}
+            <em>{"PILIHAN?"}</em>
+          </h2>
+        </div>
         <a
-          href={BRAND.instagram}
           className="button dark"
+          href="https://www.instagram.com/anasaltbread/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Pesan salt bread
+          {"Tanya & pesan ke Ana"}
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"></path>
+          </svg>
         </a>
       </section>
-    </div>
+    </>
   );
 }

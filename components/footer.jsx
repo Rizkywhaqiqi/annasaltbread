@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import MotionStudio from "@/components/motion-studio";
 export default function Footer() {
   return (
     <>
@@ -20,16 +19,16 @@ export default function Footer() {
             />
           </Link>
           <div>
-            <span className="tiny">{"NAVIGASI"}</span>
+            <span className="tiny">{"A LITTLE MORE ANA"}</span>
             <nav aria-label="Navigasi footer">
-              <Link href="/tentang">{"Tentang"}</Link>
-              <Link href="/menu">{"Menu"}</Link>
-              <Link href="/kunjungi">{"Lokasi"}</Link>
+              <Link href="/tentang">{"Tentang Ana"}</Link>
+              <Link href="/menu">{"Pilihan rasa"}</Link>
+              <Link href="/kunjungi">{"Kunjungi kami"}</Link>
               <Link href="/kontak">{"Kontak"}</Link>
             </nav>
           </div>
           <div className="footer-social">
-            <span className="tiny">{"KONTAK"}</span>
+            <span className="tiny">{"COME SAY HELLO"}</span>
             <a
               href="https://www.instagram.com/anasaltbread/"
               target="_blank"
@@ -41,16 +40,16 @@ export default function Footer() {
               </svg>
             </a>
             <p>
-              Ruko Sorrento Junction,
+              {"Salt bread, coffee,"}
               <br />
-              Tangerang, Banten.
+              {"and little moments."}
             </p>
           </div>
         </div>
         <div className="footer-bottom">
           <span>{"© 2026 Ana Salt Bread"}</span>
-          <MotionStudio />
-          <Link href="/kunjungi">{"Sorrento Junction · Tangerang"}</Link>
+          <span>{"We start blooming today."}</span>
+          <Link href="/kunjungi">{"Sorrento Junction · Tangerang ↗"}</Link>
         </div>
       </footer>
     </>
