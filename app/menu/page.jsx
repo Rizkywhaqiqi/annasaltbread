@@ -12,8 +12,10 @@ export default function Page() {
     <div className="ana-catalog">
       <header className="catalog-intro">
         <BrandFlower />
-        <h1>Menu</h1>
-        <p>Pilihan salt bread dengan isian manis dan topping gurih.</p>
+        <h1>Menu Salt Bread</h1>
+        <p>
+          Isian manis atau topping gurih. Pilih salt bread untuk teman ngemilmu.
+        </p>
         <nav aria-label="Kategori menu">
           <a href="#menu-manis">Manis</a>
           <a href="#menu-gurih">Gurih</a>
@@ -21,15 +23,18 @@ export default function Page() {
       </header>
       <MenuProducts />
       <section className="catalog-order">
-        <h2>Pemesanan</h2>
-        <p>Hubungi Ana untuk informasi harga dan ketersediaan.</p>
+        <h2>Sudah pilih rasanya?</h2>
+        <p>
+          Pesan salt bread melalui Instagram Ana. Tanyakan harga dan menu yang
+          tersedia.
+        </p>
         <a
           href={BRAND.instagram}
           className="button dark"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hubungi Ana
+          Pesan salt bread
         </a>
       </section>
     </div>

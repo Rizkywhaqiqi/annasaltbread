@@ -129,9 +129,9 @@ export default function Hero() {
       </div>
       <div className="brand-hero-bottom">
         <p>
-          Salt bread dengan pilihan
+          Salt bread manis dan gurih.
           <br />
-          isian manis dan topping gurih.
+          Pilih rasanya, pesan langsung ke Ana.
         </p>
         <div className="brand-actions">
           <Link href="/menu" className="button dark">

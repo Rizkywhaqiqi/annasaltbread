@@ -59,10 +59,10 @@ export default function Page() {
         <div className="profile-section-heading" data-reveal>
           <div>
             <span className="eyebrow">MENU</span>
-            <h2>Pilihan salt bread</h2>
+            <h2>Menu salt bread</h2>
           </div>
           <Link href="/menu" className="text-link">
-            Lihat semua <Arrow />
+            Lihat semua menu <Arrow />
           </Link>
         </div>
         <ProductGrid />

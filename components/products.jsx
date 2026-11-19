@@ -120,7 +120,7 @@ function Products({ items, cutouts = false, catalog = false }) {
               sizes="(max-width: 720px) 90vw, 45vw"
             />
             <div>
-              <span className="tiny">DETAIL PRODUK</span>
+              <span className="tiny">MENU ANA</span>
               <h2>{selected.name}</h2>
               <p>
                 {selected.description} Konfirmasi ketersediaan dan harga
@@ -132,7 +132,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                 rel="noopener noreferrer"
                 className="button pink-button"
               >
-                Tanyakan ketersediaan <Arrow />
+                Pesan melalui Instagram <Arrow />
               </a>
             </div>
           </div>
@@ -158,7 +158,9 @@ export function MenuProducts() {
           className="catalog-category"
           aria-labelledby={"heading-" + category.toLowerCase()}
         >
-          <h2 id={"heading-" + category.toLowerCase()}>{category}</h2>
+          <h2 id={"heading-" + category.toLowerCase()}>
+            {category === "Manis" ? "Isian manis" : "Topping gurih"}
+          </h2>
           <Products
             items={PRODUCTS.filter((p) => p.category === category)}
             cutouts

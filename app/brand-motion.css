@@ -878,3 +878,34 @@ html[data-motion="off"] .brand-orbit {
     font-size: 14px;
   }
 }
+
+/* Product names lead the food catalogue, with the brand's condensed display face. */
+.brand-menu .product-caption h2 {
+  font:
+    400 clamp(24px, 2.2vw, 32px)/1.2 Anton,
+    Arial,
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #822c48;
+  max-width: none;
+}
+.brand-menu .product-caption p {
+  font-size: 15px;
+  line-height: 1.65;
+}
+.brand-menu .product-caption > .tiny {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.photo-dialog .photo-dialog-inner h2 {
+  font:
+    400 clamp(28px, 3vw, 42px)/1.15 Anton,
+    Arial,
+    sans-serif;
+  text-transform: uppercase;
+  color: #9b3457;
+  letter-spacing: -0.01em;
+}

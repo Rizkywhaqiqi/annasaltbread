@@ -14,10 +14,13 @@
   transform-origin: 50% 90%;
 }
 .catalog-intro h1 {
-  font-family: var(--sans);
-  font-size: clamp(44px, 5vw, 64px);
-  font-weight: 500;
-  letter-spacing: -0.05em;
+  font-family: Anton, Arial, sans-serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 400;
+  line-height: 1.08;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  color: #9b3457;
 }
 .catalog-intro > p {
   font-size: 16px;
@@ -44,7 +47,7 @@
 }
 .catalog-content {
   padding: 0 5% 58px;
-  max-width: 1600px;
+  max-width: 1240px;
   margin: auto;
 }
 .catalog-category {
@@ -52,29 +55,30 @@
   scroll-margin-top: 100px;
 }
 .catalog-category > h2 {
-  text-align: center;
-  font-family: var(--sans);
-  font-size: 34px;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  color: #ab526b;
+  text-align: left;
+  font-family: Anton, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(30px, 3vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #9b3457;
   margin-bottom: 42px;
 }
 .catalog-grid {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 60px 3%;
   margin-top: 0;
 }
 .catalog-grid > .product-card {
-  flex: 0 1 calc((100% - 6%) / 3);
+  flex: 0 1 calc((100% - 3%) / 2);
   min-width: 0;
-  text-align: center;
+  text-align: left;
 }
 .catalog-grid .product-image {
   aspect-ratio: 1;
-  background: transparent;
+  background: #f0c7d4;
   border-radius: 0;
   overflow: hidden;
   padding: 12px;
@@ -127,20 +131,22 @@
   display: none;
 }
 .catalog-grid .product-caption {
-  padding: 24px 10px 0;
+  padding: 20px 0 0;
 }
 .catalog-grid .product-caption h3 {
-  font-family: var(--sans);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
+  font-family: Anton, Arial, sans-serif;
+  font-size: clamp(24px, 2.1vw, 30px);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #9b3457;
 }
 .catalog-grid .product-caption p {
   font-size: 14px;
   line-height: 1.85;
   max-width: 300px;
-  margin: 12px auto 0;
+  margin: 10px 0 0;
   color: var(--muted);
 }
 .catalog-note {
@@ -158,7 +164,12 @@
   background: #f7f0e9;
 }
 .catalog-order h2 {
-  font-size: 34px;
+  font:
+    400 clamp(32px, 3.5vw, 48px)/1.15 Anton,
+    Arial,
+    sans-serif;
+  text-transform: uppercase;
+  color: #9b3457;
 }
 .catalog-order p {
   font-size: 16px;
@@ -243,7 +254,7 @@
     padding-top: 18px;
   }
   .catalog-grid .product-caption h3 {
-    font-size: 20px;
+    font-size: 26px;
   }
   .catalog-grid .product-caption p {
     font-size: 14px;
@@ -288,5 +299,22 @@
     transition: none !important;
     transform: none !important;
     scale: 1 !important;
+  }
+}
+
+.catalog-grid .product-card[data-category="Gurih"] .product-image {
+  background: #dce2cc;
+}
+.catalog-grid .product-card:nth-child(2) .product-image {
+  background: #eab3c0;
+}
+@media (max-width: 720px) {
+  .catalog-category > h2 {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .catalog-grid .product-caption {
+    max-width: 360px;
+    margin-inline: auto;
   }
 }

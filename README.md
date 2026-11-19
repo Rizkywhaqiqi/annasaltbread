@@ -48,3 +48,7 @@ GSAP ScrollTrigger now manages route-scoped reveals, image parallax, and hover f
 Three.js is dynamically loaded for a decorative procedural flower, with a capped pixel ratio, visibility-controlled rendering, resize handling, resource disposal, and an official-logo fallback for missing WebGL or reduced motion. The 3D ornament is a floral interpretation; official logo artwork remains unchanged. Product cutouts remain photographic CSS layers.
 
 Validation: Next.js production build; browser navigation through all five pages; no horizontal overflow at the desktop test viewport; animation pause/resume. The cloud browser has WebGL disabled, so the fallback was exercised and actual WebGL rendering remains unverified on hardware-enabled browsers.
+
+## Food catalogue typography
+
+Menu headings and product names use the self-hosted Anton display face with berry accents. Descriptive product labels explicitly include Salt Bread; short filling/topping descriptions and Instagram ordering calls to action make the food offering clear. Category grouping, motion, product cutouts and original-photo dialogs are retained. Labels describe supplied photography and do not claim to be official flavour names.
