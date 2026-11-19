@@ -25,7 +25,7 @@ The owner's DOE export informs the pink/cream palette and expressive typography.
 
 ## Interactions
 
-React client components manage product photo dialogs and mobile navigation. The menu groups products into Manis and Gurih sections with anchor navigation. Native dialogs support Escape, focus restoration, and scroll locking. Images, navigation, and primary content remain server rendered. No admin dashboard or payment checkout is included.
+React client components manage product photo dialogs and shared navigation. The navbar uses a GSAP hover/focus indicator, a floating scroll state with reading progress, and an animated full-screen navigation panel on desktop and mobile. The menu groups products into Manis and Gurih sections with anchor navigation. Native dialogs support Escape, focus restoration, and scroll locking. Images, navigation, and primary content remain server rendered. No admin dashboard or payment checkout is included.
 
 ## Visual design
 

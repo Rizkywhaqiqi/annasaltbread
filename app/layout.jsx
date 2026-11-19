@@ -1,5 +1,6 @@
 import "./globals.css";
 import "./brand-motion.css";
+import "./navigation.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PageBloom from "@/components/page-bloom";
