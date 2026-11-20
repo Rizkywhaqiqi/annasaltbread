@@ -340,8 +340,6 @@ export default function Header() {
               <BrandFlower />
               <p>Ana Salt Bread</p>
               <span>
-                Sorrento Junction
-                <br />
                 Tangerang, Banten
               </span>
               <a

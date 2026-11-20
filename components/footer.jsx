@@ -1,4 +1,5 @@
-import { BRAND } from "@/lib/content";
+import { BRAND, OUTLETS } from "@/lib/content";
+import { BRAND_SUPPORTING_LINE, BRAND_TAGLINE } from "@/lib/brand-copy";
 import Link from "next/link";
 import Image from "next/image";
 import MotionStudio from "@/components/motion-studio";
@@ -29,6 +30,11 @@ export default function Footer() {
               <Link href="/kontak">{"Kontak"}</Link>
             </nav>
           </div>
+          <div className="footer-tagline">
+            <span className="tiny">{"ANA SALT BREAD"}</span>
+            <p className="footer-brand-tagline">{BRAND_TAGLINE}</p>
+            <p className="footer-brand-support">{BRAND_SUPPORTING_LINE}</p>
+          </div>
           <div className="footer-social">
             <span className="tiny">{"KONTAK"}</span>
             <a
@@ -45,16 +51,15 @@ export default function Footer() {
               Pesan online
             </a>
             <p>
-              Ruko Sorrento Junction,
-              <br />
-              Tangerang, Banten.
+              {OUTLETS.length} cabang di Tangerang, Jakarta, Pontianak, dan
+              Balikpapan. Alamat lengkap ada di halaman lokasi.
             </p>
           </div>
         </div>
         <div className="footer-bottom">
           <span>{"© 2026 Ana Salt Bread"}</span>
           <MotionStudio />
-          <Link href="/kunjungi">{"Sorrento Junction · Tangerang"}</Link>
+          <Link href="/kunjungi">{"5 cabang · petunjuk arah"}</Link>
         </div>
       </footer>
     </>

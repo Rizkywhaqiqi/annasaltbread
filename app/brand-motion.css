@@ -29,7 +29,7 @@
 .brand-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 25px;
 }
 .brand-top .eyebrow {
@@ -492,9 +492,6 @@
   }
   .brand-top > .eyebrow {
     font-size: 7px;
-    max-width: 180px;
-  }
-  .brand-top > .eyebrow:last-child {
     text-align: right;
     max-width: 110px;
   }

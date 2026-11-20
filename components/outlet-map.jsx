@@ -4,14 +4,14 @@ export default function OutletMap() {
   return (
     <figure className="outlet-map">
       <iframe
-        title="Peta Ana Salt Bread Gading Serpong, Sorrento Junction"
+        title="Peta 5 cabang Ana Salt Bread"
         src={BRAND.mapEmbed}
         loading="lazy"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       />
       <figcaption>
-        Sorrento Junction ·{" "}
+        {"Peta semua cabang · "}
         <a href={BRAND.maps} target="_blank" rel="noopener noreferrer">
           Buka di Google Maps
         </a>

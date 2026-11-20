@@ -1,5 +1,5 @@
 import "./home.css";
-import { BRAND } from "@/lib/content";
+import { BRAND, DEFAULT_OUTLET, OUTLETS } from "@/lib/content";
 import SectionBread from "@/components/section-bread";
 import BreadCutout from "@/components/bread-cutout";
 import OutletMap from "@/components/outlet-map";
@@ -13,7 +13,7 @@ import { ProductGrid } from "@/components/products";
 export const metadata = {
   title: "Ana Salt Bread — Menu dan lokasi outlet",
   description:
-    "Pilihan salt bread, informasi outlet, dan pemesanan Ana Salt Bread di Sorrento Junction, Tangerang.",
+    "Pilihan salt bread, informasi 5 cabang, dan pemesanan Ana Salt Bread.",
   alternates: { canonical: "/" },
 };
 function BrandRibbon() {
@@ -79,7 +79,7 @@ export default function Page() {
             manis dan gurih.
           </h2>
           <div className="brand-about-copy">
-            <p>Ana Salt Bread, Sorrento Junction, Tangerang.</p>
+            <p>Ana Salt Bread, Tangerang.</p>
             <Link href="/tentang" className="text-link">
               Tentang Ana <Arrow />
             </Link>
@@ -146,23 +146,18 @@ export default function Page() {
         <div className="home-outlet-copy" data-reveal>
           <span className="eyebrow">KUNJUNGI ANA</span>
           <h2 id="home-outlet-title">
-            Temui Ana di
+            Temui Ana di 5
             <br />
-            Sorrento Junction.
+            cabang.
           </h2>
           <div className="home-outlet-address">
-            <span className="eyebrow">ALAMAT OUTLET</span>
-            <address>
-              Jl. Ir. H. Soekarno No. 8<br />
-              Curug Sangereng, Kelapa Dua
-              <br />
-              Kabupaten Tangerang, Banten 15810
-            </address>
+            <span className="eyebrow">CABANG</span>
+            <address>{OUTLETS.map((o) => o.name).join(" · ")}</address>
           </div>
           <p className="outlet-hours">{BRAND.hours}</p>
           <div className="home-outlet-actions">
             <a
-              href={BRAND.maps}
+              href={DEFAULT_OUTLET.maps}
               target="_blank"
               rel="noopener noreferrer"
               className="button dark"
@@ -170,7 +165,7 @@ export default function Page() {
               Buka petunjuk arah
             </a>
             <Link href="/kunjungi" className="text-link">
-              Detail outlet
+              Semua cabang
             </Link>
           </div>
         </div>

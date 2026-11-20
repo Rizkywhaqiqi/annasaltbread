@@ -1,9 +1,9 @@
-import { BRAND } from "@/lib/content";
+import { BRAND, DEFAULT_OUTLET, OUTLETS } from "@/lib/content";
 import OutletMap from "@/components/outlet-map";
 export const metadata = {
-  title: "Kunjungi Ana — Sorrento Junction, Tangerang",
+  title: "Kunjungi Ana — 5 cabang",
   description:
-    "Temukan alamat Ana Salt Bread di Ruko Sorrento Junction dan buka petunjuk arah ke outlet.",
+    "Temukan alamat 5 cabang Ana Salt Bread dan buka petunjuk arah ke outlet terdekat.",
   alternates: { canonical: "/kunjungi" },
 };
 export default function Page() {
@@ -12,16 +12,46 @@ export default function Page() {
       <section className="page-banner">
         <span className="eyebrow">ANA SALT BREAD</span>
         <h1>Lokasi outlet</h1>
-        <p>Ruko Sorrento Junction, Tangerang.</p>
+        <p>Lima cabang Ana Salt Bread. Pilih outlet terdekat.</p>
+      </section>
+      <section className="outlet-list section" aria-labelledby="outlet-list-title">
+        <span className="tiny">{"DAFTAR CABANG"}</span>
+        <h2 id="outlet-list-title">5 cabang Ana</h2>
+        <ul>
+          {OUTLETS.map((outlet, index) => (
+            <li key={outlet.id}>
+              <span className="outlet-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3>{outlet.name}</h3>
+              <p className="outlet-area">{outlet.area}</p>
+              <address>{outlet.address}</address>
+              <a
+                href={outlet.maps}
+                className="text-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Petunjuk arah
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="outlet-phone">
+          Semua cabang · <a href="tel:+6281156002122">{BRAND.phone}</a>
+        </p>
       </section>
       <section className="location-grid section">
         <OutletMap />
         <div>
-          <span className="tiny">{"SORRENTO JUNCTION / TANGERANG"}</span>
-          <h2>Sorrento Junction</h2>
-          <address>{BRAND.address}</address>
+          <span className="tiny">{"GADING SERPONG / TANGERANG"}</span>
+          <h2>{DEFAULT_OUTLET.name}</h2>
+          <address>{DEFAULT_OUTLET.address}</address>
           <a
-            href={BRAND.maps}
+            href={DEFAULT_OUTLET.maps}
             className="button dark"
             target="_blank"
             rel="noopener noreferrer"
@@ -69,7 +99,7 @@ export default function Page() {
           </summary>
           <p>
             {
-              "Ana berada di Ruko Sorrento Junction, Jl. Ir. H. Soekarno No. 8, Curug Sangereng, Kelapa Dua, Kabupaten Tangerang. Gunakan tombol petunjuk arah untuk mencari rutenya."
+              "Ana punya 5 cabang: Gading Serpong, Green Lake City, Purnama dan Juanda (Pontianak), serta Balikpapan. Buka petunjuk arah pada cabang yang ingin dikunjungi."
             }
           </p>
         </details>

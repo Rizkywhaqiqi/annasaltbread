@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/icons";
+import {
+  BRAND_KEYWORDS,
+  BRAND_SUPPORTING_LINE,
+  BRAND_TAGLINE,
+} from "@/lib/brand-copy";
 export const metadata = {
   title: "Tentang — Ana Salt Bread",
-  description: "Informasi Ana Salt Bread di Sorrento Junction, Tangerang.",
+  description: "Informasi Ana Salt Bread di Tangerang.",
   alternates: { canonical: "/tentang" },
 };
 export default function Page() {
@@ -34,7 +39,14 @@ export default function Page() {
         </figure>
         <div data-reveal>
           <h2 className="brand-handwritten">Let your heart bloom.</h2>
-          <p>Salt bread manis dan gurih di Sorrento Junction, Tangerang.</p>
+          <p>Salt bread manis dan gurih di Tangerang.</p>
+          <p className="brand-narrative-line">
+            <strong>{BRAND_SUPPORTING_LINE}</strong>{" "}
+            {BRAND_TAGLINE}{" "}merangkum tiga esensi Ana Salt Bread: sensasi
+            kerenyahan gigitan pertama, kekayaan cita rasa mentega premium,
+            serta pengalaman menikmati roti artisan yang lebih modern dan
+            berkelas.
+          </p>
           <p>
             Pemesanan melalui ESB Order. Informasi lainnya melalui
             @anasaltbread.
@@ -43,6 +55,23 @@ export default function Page() {
             Lihat menu <Arrow />
           </Link>
         </div>
+      </section>
+      <section className="brand-keywords section" aria-labelledby="keywords-title">
+        <div className="brand-keywords-head" data-reveal>
+          <span className="eyebrow">KATA KUNCI BRAND</span>
+          <h2 id="keywords-title">Empat nilai di setiap roti.</h2>
+        </div>
+        <ul className="brand-keyword-list" data-reveal>
+          {BRAND_KEYWORDS.map((item, index) => (
+            <li key={item.name}>
+              <span className="brand-keyword-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3>{item.name}</h3>
+              <p>{item.copy}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );

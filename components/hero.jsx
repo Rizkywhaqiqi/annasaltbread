@@ -54,7 +54,6 @@ export default function Hero() {
       onPointerLeave={reset}
     >
       <div className="brand-top">
-        <span className="eyebrow">SORRENTO JUNCTION · TANGERANG</span>
         <span className="eyebrow">MENU · LOKASI · PEMESANAN</span>
       </div>
       <div className="brand-heading">

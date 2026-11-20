@@ -57,7 +57,7 @@ export default function Page() {
         <Link href="/kunjungi">
           <span className="eyebrow">LOKASI</span>
           <h2>Outlet Ana</h2>
-          <p>Sorrento Junction, Tangerang</p>
+          <p>5 cabang</p>
           <Arrow />
         </Link>
       </section>
