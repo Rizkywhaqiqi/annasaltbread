@@ -1,15 +1,35 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motionAllowed } from "@/lib/motion";
 import BrandFlower from "@/components/brand-flower";
 export default function BloomScene({ className = "" }) {
   const host = useRef(null);
+  const [canInitialize, setCanInitialize] = useState(false);
   useEffect(() => {
+    const media = matchMedia("(prefers-reduced-motion:reduce)");
+    const update = () => {
+      if (motionAllowed() && !navigator.connection?.saveData)
+        setCanInitialize(true);
+    };
+    const preference = new MutationObserver(update);
+    preference.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-motion"],
+    });
+    media.addEventListener("change", update);
+    update();
+    return () => {
+      preference.disconnect();
+      media.removeEventListener("change", update);
+    };
+  }, []);
+  useEffect(() => {
+    if (!canInitialize) return;
     const el = host.current;
     let dead = false,
       dispose = () => {},
       started = false;
     const media = matchMedia("(prefers-reduced-motion:reduce)");
-    if (media.matches || navigator.connection?.saveData) return;
     const observer = new IntersectionObserver(
       async (entries) => {
         if (started || !entries.some((e) => e.isIntersecting)) return;
@@ -96,8 +116,7 @@ export default function BloomScene({ className = "" }) {
             phase = 0,
             tx = 0.2,
             ty = -0.18;
-          const moving = () =>
-            document.documentElement.dataset.motion !== "off" && !media.matches;
+          const moving = () => motionAllowed();
           const draw = (now) => {
             raf = 0;
             if (dead || !visible || document.hidden) return;
@@ -206,7 +225,7 @@ export default function BloomScene({ className = "" }) {
       observer.disconnect();
       dispose();
     };
-  }, []);
+  }, [canInitialize]);
   return (
     <div ref={host} className={"bloom-scene " + className} aria-hidden="true">
       <BrandFlower />

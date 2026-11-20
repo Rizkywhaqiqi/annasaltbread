@@ -1,26 +1,31 @@
+import "./home.css";
+import { BRAND } from "@/lib/content";
+import SectionBread from "@/components/section-bread";
+import BreadCutout from "@/components/bread-cutout";
+import OutletMap from "@/components/outlet-map";
+import InstagramGallery from "@/components/instagram-gallery";
 import Link from "next/link";
-import { Arrow } from "@/components/icons";
 import Image from "next/image";
-import Hero, { Spark } from "@/components/hero";
+import Hero from "@/components/hero";
+import BrandFlower from "@/components/brand-flower";
+import { Arrow } from "@/components/icons";
 import { ProductGrid } from "@/components/products";
 export const metadata = {
-  title: "Ana Salt Bread — A little bread, a little love.",
+  title: "Ana Salt Bread — Menu dan lokasi outlet",
   description:
-    "Salt bread, pilihan rasa, dan momen kecil bersama Ana Salt Bread di Sorrento Junction, Tangerang.",
+    "Pilihan salt bread, informasi outlet, dan pemesanan Ana Salt Bread di Sorrento Junction, Tangerang.",
   alternates: { canonical: "/" },
 };
-function Marquee() {
+function BrandRibbon() {
+  const breads = Array.from({ length: 14 }, (_, index) => index);
   return (
-    <div className="bloom-marquee" aria-hidden="true">
-      <div className="bloom-track">
-        {[0, 1].map((n) => (
-          <div className="bloom-group" key={n}>
-            <span>A LITTLE BREAD</span>
-            <i>✳</i>
-            <span>A LITTLE LOVE</span>
-            <i>✳</i>
-            <span>BAKE & BLOOM</span>
-            <i>✳</i>
+    <div className="brand-ribbon" aria-hidden="true">
+      <div className="brand-ribbon-track">
+        {[0, 1].map((i) => (
+          <div className="brand-ribbon-group" key={i}>
+            {breads.map((bread) => (
+              <BreadCutout key={bread} index={bread} className="ribbon-bread" />
+            ))}
           </div>
         ))}
       </div>
@@ -31,129 +36,147 @@ export default function Page() {
   return (
     <>
       <Hero />
-      <Marquee />
-      <section className="little-story">
-        <div className="story-margin">
-          <span className="eyebrow">01 / THE LITTLE THINGS</span>
-          <span className="hand-note">
-            life happens.
+      <BrandRibbon />
+      <section
+        className="home-editorial"
+        aria-labelledby="home-editorial-title"
+      >
+        <div className="home-editorial-copy" data-reveal>
+          <span className="eyebrow">SALT BREAD ANA</span>
+          <h2 id="home-editorial-title">
+            Now serving
             <br />
-            take a little break.
-          </span>
-          <Spark />
-        </div>
-        <div className="story-message" data-reveal>
-          <h2>
-            HARI BOLEH RAMAI.
-            <br />
-            JEDAMU BOLEH
-            <br />
-            <em>sesimpel ini.</em>
+            warmth.
           </h2>
-          <div className="story-message-bottom">
-            <p>
-              Sepotong salt bread. Obrolan yang mengalir. Atau waktu untuk diri
-              sendiri. Di Ana, selalu ada ruang untuk hal-hal kecil yang bikin
-              harimu terasa lebih baik.
-            </p>
-            <Link href="/tentang" className="sketch-link">
-              Sedikit cerita Ana{" "}
-              <span>
-                <Arrow />
-              </span>
-              <svg viewBox="0 0 200 14" aria-hidden="true">
-                <path d="M2 9C55 0 132 4 198 8M24 13c47-5 108-6 159-3" />
-              </svg>
+          <p>Salt bread dengan isian manis dan topping gurih.</p>
+          <Link href="/menu" className="button dark">
+            Lihat menu
+          </Link>
+          <BrandFlower className="editorial-flower" />
+        </div>
+        <figure>
+          <div
+            className="bread-photo-layer"
+            data-scroll-bread
+            data-bread-side="right"
+          >
+            <Image
+              src="/images/ana-assortment.webp"
+              alt="Aneka salt bread Ana dengan lapisan cokelat dan topping gurih di atas nampan kayu"
+              width={1100}
+              height={1375}
+              sizes="(max-width:720px) 100vw,55vw"
+            />
+          </div>
+        </figure>
+      </section>
+      <section className="brand-about section">
+        <span className="eyebrow">TENTANG ANA</span>
+        <div data-reveal>
+          <h2>
+            Salt bread
+            <br />
+            manis dan gurih.
+          </h2>
+          <div className="brand-about-copy">
+            <p>Ana Salt Bread, Sorrento Junction, Tangerang.</p>
+            <Link href="/tentang" className="text-link">
+              Tentang Ana <Arrow />
             </Link>
           </div>
         </div>
-        <Image
-          className="story-bloom"
-          src="/graphics/ana-flower.svg"
-          width={150}
-          height={150}
-          alt=""
-          unoptimized
+        <SectionBread
+          variant="chocolate"
+          side="left"
+          className="about-section-bread"
         />
       </section>
-      <section className="flavour-section">
-        <div className="flavour-heading" data-reveal>
-          <span className="eyebrow">02 / FOLLOW YOUR CRAVINGS</span>
-          <h2>
-            PICK YOUR
-            <br />
-            <em>little crush.</em>
-          </h2>
-          <p>
-            Tim manis, tim gurih,
-            <br />
-            atau tim “satu lagi, deh”?
-          </p>
-          <Spark />
+      <section className="profile-menu section brand-menu">
+        <BrandFlower className="menu-flower" />
+        <div className="profile-section-heading" data-reveal>
+          <div>
+            <span className="eyebrow">MENU</span>
+            <h2>Menu salt bread</h2>
+          </div>
+          <Link href="/menu" className="text-link">
+            Lihat semua menu <Arrow />
+          </Link>
         </div>
         <ProductGrid />
-        <div className="flavour-bottom">
-          <span className="hand-note">can’t choose? we get it.</span>
-          <Link href="/menu" className="button dark">
-            Kenali semua pilihan{" "}
-            <span>
-              <Arrow />
-            </span>
-          </Link>
-        </div>
       </section>
-      <section className="ana-postcard">
-        <div className="postcard-photo" data-reveal>
-          <Image
-            src="/images/ana-selection.webp"
-            alt="Ragam salt bread Ana di atas nampan kayu"
-            width={1100}
-            height={1375}
-            sizes="(max-width:720px) 90vw, 45vw"
-          />
-          <span className="tape tape-one" aria-hidden="true" />
-          <span className="tape tape-two" aria-hidden="true" />
-          <span className="postcard-caption">a very good kind of company.</span>
-        </div>
-        <div className="postcard-copy" data-reveal>
-          <span className="eyebrow">03 / YOUR NEXT LITTLE STOP</span>
-          <h2>
-            SEE YOU
+      <section
+        className="home-order-feature"
+        aria-labelledby="home-order-title"
+      >
+        <div className="home-order-copy" data-reveal>
+          <span className="eyebrow">PESAN ONLINE</span>
+          <h2 id="home-order-title">
+            Order
             <br />
-            AT <em>Ana.</em>
+            online.
           </h2>
-          <p>
-            Sorrento Junction, Tangerang.
-            <br />
-            Datang sendiri atau ajak orang kesayangan.
-            <br />
-            Kami tunggu jeda kecilmu berikutnya.
-          </p>
-          <Link href="/kunjungi" className="sketch-link">
-            Yuk, mampir{" "}
-            <span>
-              <Arrow />
-            </span>
-            <svg viewBox="0 0 200 14" aria-hidden="true">
-              <path d="M2 8c61-6 137-5 196 0" />
-            </svg>
-          </Link>
-          <span className="postcard-stamp">
-            <Image
-              src="/graphics/ana-flower.svg"
-              alt=""
-              width={150}
-              height={150}
-              unoptimized
-            />
-            <span>
-              WITH LOVE,
-              <br />
-              FROM ANA.
-            </span>
-          </span>
+          <p>Menu dan harga tersedia di ESB Order.</p>
+          <a
+            href={BRAND.orderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button pink-button"
+          >
+            Pesan salt bread
+          </a>
+        </div>
+        <div
+          className="home-order-art"
+          aria-hidden="true"
+          data-scroll-bread
+          data-bread-side="right"
+        >
+          <BrandFlower />
+          <Image
+            src="/graphics/cream-cutout.png"
+            alt=""
+            width={900}
+            height={600}
+            sizes="(max-width:720px) 90vw,50vw"
+          />
+          <span>ANA SALT BREAD</span>
         </div>
       </section>
+      <section className="home-outlet" aria-labelledby="home-outlet-title">
+        <div className="home-outlet-copy" data-reveal>
+          <span className="eyebrow">KUNJUNGI ANA</span>
+          <h2 id="home-outlet-title">
+            Temui Ana di
+            <br />
+            Sorrento Junction.
+          </h2>
+          <div className="home-outlet-address">
+            <span className="eyebrow">ALAMAT OUTLET</span>
+            <address>
+              Jl. Ir. H. Soekarno No. 8<br />
+              Curug Sangereng, Kelapa Dua
+              <br />
+              Kabupaten Tangerang, Banten 15810
+            </address>
+          </div>
+          <p className="outlet-hours">{BRAND.hours}</p>
+          <div className="home-outlet-actions">
+            <a
+              href={BRAND.maps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button dark"
+            >
+              Buka petunjuk arah
+            </a>
+            <Link href="/kunjungi" className="text-link">
+              Detail outlet
+            </Link>
+          </div>
+        </div>
+        <OutletMap />
+      </section>
+      <InstagramGallery />
     </>
   );
 }

@@ -20,7 +20,7 @@
   line-height: 1.08;
   text-transform: uppercase;
   letter-spacing: -0.015em;
-  color: #9b3457;
+  color: #000000;
 }
 .catalog-intro > p {
   font-size: 16px;
@@ -61,7 +61,7 @@
   font-size: clamp(30px, 3vw, 44px);
   font-weight: 400;
   letter-spacing: -0.015em;
-  color: #9b3457;
+  color: #000000;
   margin-bottom: 42px;
 }
 .catalog-grid {
@@ -140,7 +140,7 @@
   text-transform: uppercase;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: #9b3457;
+  color: #000000;
 }
 .catalog-grid .product-caption p {
   font-size: 14px;
@@ -169,7 +169,7 @@
     Arial,
     sans-serif;
   text-transform: uppercase;
-  color: #9b3457;
+  color: #000000;
 }
 .catalog-order p {
   font-size: 16px;
@@ -292,10 +292,10 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .catalog-intro > .brand-flower {
+  html:not([data-motion="on"]) .catalog-intro > .brand-flower {
     animation: none;
   }
-  .catalog-grid .product-image img {
+  html:not([data-motion="on"]) .catalog-grid .product-image img {
     transition: none !important;
     transform: none !important;
     scale: 1 !important;
@@ -316,5 +316,138 @@
   .catalog-grid .product-caption {
     max-width: 360px;
     margin-inline: auto;
+  }
+}
+
+/* Desktop catalogue: twelve named products, one continuous grid. */
+.catalog-intro {
+  padding-top: 40px;
+}
+.catalog-intro > .brand-flower {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+}
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 44px 28px;
+  margin-top: 28px;
+}
+.catalog-grid > .product-card {
+  scroll-margin-top: 150px;
+}
+.catalog-grid .product-image {
+  padding: 18px;
+  border-radius: 0;
+}
+.catalog-grid .bread-scroll-layer {
+  display: grid;
+  align-items: center;
+}
+.catalog-grid .product-caption .tiny {
+  margin-top: 18px;
+}
+.catalog-grid .product-caption h3 {
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.15;
+  margin-top: 4px;
+}
+.catalog-grid .product-caption p {
+  line-height: 1.7;
+}
+.catalog-official-menu {
+  display: table;
+  margin: 24px auto 0;
+}
+@media (max-width: 720px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 16px;
+  }
+  .catalog-grid .product-image {
+    padding: 8px;
+  }
+  .catalog-intro nav {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+}
+
+.drinks-menu {
+  padding: 72px 6% 84px;
+  background: #f3e8dc;
+  scroll-margin-top: 100px;
+}
+.drinks-heading,
+.drinks-layout {
+  max-width: 1140px;
+  margin-inline: auto;
+}
+.drinks-heading h2 {
+  font:
+    400 clamp(42px, 5vw, 68px)/1.1 Anton,
+    Arial,
+    sans-serif;
+  text-transform: uppercase;
+  margin: 16px 0 40px;
+  color: #000000;
+}
+.drinks-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 8%;
+  align-items: start;
+}
+.drinks-poster {
+  display: block;
+  overflow: hidden;
+}
+.drinks-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.drinks-series + .drinks-series {
+  margin-top: 40px;
+}
+.drinks-series h3 {
+  font:
+    400 30px/1.2 Georgia,
+    serif;
+  margin: 0 0 18px;
+}
+.drink-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  border-bottom: 1px solid #3f2a2324;
+  padding: 14px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.drink-row dt {
+  min-width: 0;
+}
+.drink-row dd {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: #000000;
+}
+@media (max-width: 720px) {
+  .drinks-menu {
+    padding: 48px 6%;
+  }
+  .drinks-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .drinks-poster {
+    max-width: 420px;
+    margin: auto;
+  }
+  .drink-row {
+    font-size: 14px;
   }
 }

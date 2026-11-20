@@ -244,11 +244,11 @@
     padding 0.25s;
 }
 .nav-overlay-links a:hover {
-  color: #a4576e;
+  color: #000000;
   padding-left: 15px;
 }
 .nav-overlay-links a[aria-current] {
-  color: #a4576e;
+  color: #000000;
 }
 .nav-overlay-links i {
   width: 9px;
@@ -427,10 +427,10 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav-overlay-aside .brand-flower {
+  html:not([data-motion="on"]) .nav-overlay-aside .brand-flower {
     animation: none;
   }
-  .nav-overlay-links a:hover {
+  html:not([data-motion="on"]) .nav-overlay-links a:hover {
     padding-left: 0;
   }
 }
@@ -460,4 +460,220 @@
 .live-header a:focus-visible,
 .live-header button:focus-visible {
   outline-color: var(--nav-ink);
+}
+
+/* Flat, centered navigation: links stay visible as the brand changes size. */
+.nav-shell {
+  position: sticky;
+  top: 0;
+  height: 128px;
+  z-index: 30;
+  pointer-events: none;
+}
+.nav-shell .site-header.live-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 128px;
+  display: grid;
+  grid-template-columns: 1fr 240px 1fr;
+  column-gap: 45px;
+  padding: 0 5%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  pointer-events: auto;
+  background: var(--nav-surface, #faf3e7);
+  transition:
+    height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.45s,
+    color 0.45s;
+}
+.nav-shell .live-header[data-scrolled="true"] {
+  width: 100%;
+  top: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.nav-shell .live-header > .wordmark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition:
+    opacity 0.25s,
+    scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-shell .live-header > .wordmark:hover {
+  transform: none;
+}
+.nav-shell .live-header > .wordmark .ana-official-logo {
+  width: 240px;
+  height: 94px;
+}
+.nav-brand-subtitle {
+  font:
+    600 13px/1 Arial,
+    sans-serif;
+  letter-spacing: 0.16em;
+  margin-top: -13px;
+  padding-bottom: 15px;
+}
+.nav-shell .live-header > nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  margin: 0;
+}
+.nav-shell .live-header > nav[aria-label="Navigasi utama"] {
+  grid-column: 1;
+  justify-self: end;
+}
+.nav-shell .live-header > .nav-actions {
+  grid-column: 3;
+  justify-self: start;
+  gap: 30px;
+}
+.nav-shell .live-header > nav > a {
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  font:
+    600 15px/1.4 Arial,
+    sans-serif;
+  white-space: nowrap;
+  position: relative;
+}
+.nav-shell .live-header > nav > a::after {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.25s;
+}
+.nav-shell .live-header > nav > a:hover::after,
+.nav-shell .live-header > nav > a[aria-current]::after {
+  scale: 1 1;
+}
+.nav-shell .live-header .menu-toggle {
+  display: none;
+}
+.nav-shell .compact-brand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  scale: 0.65;
+  transition:
+    opacity 0.25s,
+    visibility 0.25s,
+    scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-shell .compact-brand .brand-flower {
+  width: 48px;
+  height: 48px;
+}
+.nav-shell .live-header[data-tone="dark"] .compact-brand .brand-flower {
+  filter: brightness(0) invert(1);
+}
+.nav-shell .live-header[data-compact="true"] {
+  height: 64px;
+}
+.nav-shell .live-header[data-compact="true"] > .wordmark {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  scale: 0.65;
+}
+.nav-shell .live-header[data-compact="true"] > .compact-brand {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  scale: 1;
+}
+@media (max-width: 900px) {
+  .nav-shell .site-header.live-header {
+    grid-template-columns: 1fr 190px 1fr;
+    column-gap: 25px;
+  }
+  .nav-shell .live-header > nav,
+  .nav-shell .live-header > .nav-actions {
+    gap: 22px;
+  }
+}
+@media (max-width: 720px) {
+  .nav-shell {
+    height: 100px;
+  }
+  .nav-shell .site-header.live-header {
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: 6%;
+  }
+  .nav-shell .live-header > nav[aria-label="Navigasi utama"],
+  .nav-shell .live-header .nav-secondary {
+    display: none;
+  }
+  .nav-shell .live-header > .wordmark .ana-official-logo {
+    width: 190px;
+    height: 78px;
+  }
+  .nav-brand-subtitle {
+    font-size: 10px;
+    margin-top: -10px;
+    padding-bottom: 10px;
+  }
+  .nav-shell .live-header .menu-toggle {
+    display: grid;
+  }
+  .nav-shell .live-header[data-compact="true"] {
+    height: 60px;
+  }
+  .nav-shell .compact-brand .brand-flower {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 721px) {
+  .nav-shell .site-header.live-header {
+    transition:
+      height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      grid-template-columns 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      column-gap 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.45s,
+      color 0.45s;
+  }
+  .nav-shell .site-header.live-header[data-compact="true"] {
+    grid-template-columns: 1fr 64px 1fr;
+    column-gap: 30px;
+  }
 }

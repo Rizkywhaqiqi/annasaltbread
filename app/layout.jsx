@@ -1,11 +1,13 @@
 import "./globals.css";
+import "./brand-motion.css";
+import "./navigation.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import MotionStudio from "@/components/motion-studio";
+import PageBloom from "@/components/page-bloom";
 export const metadata = {
   metadataBase: new URL("https://annasaltbread.vercel.app"),
   title: "Ana Salt Bread",
-  description: "Salt bread dan momen kecil bersama Ana.",
+  description: "Menu, lokasi outlet, dan pemesanan Ana Salt Bread.",
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -22,7 +24,7 @@ export const metadata = {
   twitter: { card: "summary_large_image" },
   icons: { icon: "/favicon.svg" },
 };
-export const viewport = { themeColor: "#f3aabe" };
+export const viewport = { themeColor: "#faf8f4" };
 export default function RootLayout({ children }) {
   return (
     <html lang="id" data-scroll-behavior="smooth">
@@ -31,9 +33,11 @@ export default function RootLayout({ children }) {
           Langsung ke konten
         </a>
         <Header />
-        <main id="main">{children}</main>
+        <main id="main">
+          <PageBloom />
+          {children}
+        </main>
         <Footer />
-        <MotionStudio />
       </body>
     </html>
   );

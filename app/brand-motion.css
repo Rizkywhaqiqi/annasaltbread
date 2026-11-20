@@ -80,7 +80,7 @@
   height: 390px;
   position: relative;
   perspective: 1100px;
-  transform-style: preserve-3d;
+  transform-style: flat;
   transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
   transition: transform 0.3s ease-out;
   margin-top: -10px;
@@ -102,7 +102,7 @@
 }
 .brand-orbit {
   position: absolute;
-  transform-style: preserve-3d;
+  transform-style: flat;
   transition: transform 0.25s ease-out;
   animation: brand-product-enter 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -110,8 +110,8 @@
   left: -1%;
   top: 62px;
   width: 38%;
-  transform: translate3d(calc(var(--mx) * -0.7), calc(var(--my) * -0.7), 15px)
-    rotateY(-9deg);
+  transform: translate3d(calc(var(--mx) * -0.7), calc(var(--my) * -0.7), 0)
+    rotate(-2deg);
   translate: 0 calc(var(--scroll-shift) * -0.6);
   animation-delay: 0.1s;
 }
@@ -120,7 +120,7 @@
   top: 0;
   width: 46%;
   z-index: 3;
-  transform: translate3d(var(--mx), var(--my), 65px) rotateX(4deg);
+  transform: translate3d(var(--mx), var(--my), 0);
   translate: 0 calc(var(--scroll-shift) * 0.4);
 }
 .brand-orbit.orbit-chocolate {
@@ -128,15 +128,15 @@
   top: 90px;
   width: 35%;
   z-index: 2;
-  transform: translate3d(calc(var(--mx) * -1.2), calc(var(--my) * -0.8), 25px)
-    rotateY(12deg);
+  transform: translate3d(calc(var(--mx) * -1.2), calc(var(--my) * -0.8), 0)
+    rotate(2deg);
   translate: 0 calc(var(--scroll-shift) * -0.8);
   animation-delay: 0.22s;
 }
 .brand-bread {
   --angle: -12deg;
   display: block;
-  transform-style: preserve-3d;
+  transform-style: flat;
   animation: brand-float 6.5s ease-in-out infinite;
 }
 .brand-bread img {
@@ -144,7 +144,7 @@
   width: 100%;
   height: auto;
   filter: drop-shadow(0 22px 12px #3f2a2325);
-  transform: translateZ(35px);
+  transform: none;
   transition:
     scale 0.45s,
     filter 0.45s;
@@ -194,31 +194,33 @@
   align-items: center;
 }
 .brand-ribbon {
-  background: #eab3c0;
+  background: #faf3e7;
   overflow: hidden;
-  border-block: 1px solid #3f2a2325;
-  padding: 12px 0;
+  padding: 30px 0;
 }
 .brand-ribbon-track {
   display: flex;
   width: max-content;
-  animation: brand-marquee 35s linear infinite;
+  animation: brand-marquee 30s linear infinite;
 }
 .brand-ribbon-group {
   display: flex;
   align-items: center;
-  gap: 45px;
-  padding-right: 45px;
+  justify-content: space-around;
+  min-width: 100vw;
+  gap: 38px;
+  padding-right: 38px;
   flex-shrink: 0;
-  font:
-    400 25px/1 Anton,
-    Arial,
-    sans-serif;
-  letter-spacing: 0.015em;
 }
-.brand-ribbon .brand-flower {
-  width: 39px;
-  height: 39px;
+.brand-ribbon .ribbon-bread {
+  display: block;
+  flex: 0 0 80px;
+  width: 80px;
+  height: 74px;
+  background-image: url("/graphics/ana-bread-assortment.webp");
+  background-size: 300% 432.239%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 5px 4px #3f2a2318);
 }
 .brand-about {
   position: relative;
@@ -524,7 +526,7 @@
     width: 58%;
     left: -6%;
     top: 10px;
-    transform: translateZ(10px) rotateY(-9deg);
+    transform: translateZ(10px) rotate(-2deg);
     translate: none;
   }
   .brand-orbit.orbit-cream {
@@ -538,7 +540,7 @@
     width: 50%;
     right: -5%;
     top: 7px;
-    transform: translateZ(20px) rotateY(12deg);
+    transform: translateZ(20px) rotate(2deg);
     translate: none;
   }
   .brand-bread.bread-savory {
@@ -583,16 +585,16 @@
     font-size: 11px;
   }
   .brand-ribbon {
-    padding-block: 9px;
+    padding-block: 22px;
   }
   .brand-ribbon-group {
-    font-size: 19px;
-    gap: 25px;
-    padding-right: 25px;
+    gap: 24px;
+    padding-right: 24px;
   }
-  .brand-ribbon .brand-flower {
-    width: 32px;
-    height: 32px;
+  .brand-ribbon .ribbon-bread {
+    flex-basis: 64px;
+    width: 64px;
+    height: 59.2px;
   }
   .brand-about {
     grid-template-columns: 1fr;
@@ -692,12 +694,12 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-stage,
-  .brand-orbit {
+  html:not([data-motion="on"]) .brand-stage,
+  html:not([data-motion="on"]) .brand-orbit {
     transform: none !important;
     translate: none !important;
   }
-  .brand-menu .product-image:hover img {
+  html:not([data-motion="on"]) .brand-menu .product-image:hover img {
     transform: none;
     scale: 1;
   }
@@ -773,7 +775,7 @@ html[data-motion="off"] .brand-orbit {
   border-radius: 6px;
 }
 .contact-options > a:hover {
-  color: #a4576e;
+  color: #000000;
 }
 .photo-dialog[open] {
   animation: dialog-appear 0.28s ease-out;
@@ -820,10 +822,10 @@ html[data-motion="off"] .brand-orbit {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bloom-scene canvas {
+  html:not([data-motion="on"]) .bloom-scene canvas {
     display: none;
   }
-  .bloom-scene.scene-ready > .brand-flower {
+  html:not([data-motion="on"]) .bloom-scene.scene-ready > .brand-flower {
     opacity: 1;
   }
 }
@@ -887,7 +889,7 @@ html[data-motion="off"] .brand-orbit {
     sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  color: #822c48;
+  color: #000000;
   max-width: none;
 }
 .brand-menu .product-caption p {
@@ -906,6 +908,221 @@ html[data-motion="off"] .brand-orbit {
     Arial,
     sans-serif;
   text-transform: uppercase;
-  color: #9b3457;
+  color: #000000;
   letter-spacing: -0.01em;
+}
+
+/* Independent bread layers prevent competing transforms with hover and floating motion. */
+.bread-scroll-layer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#main section:has([data-scroll-bread]) {
+  overflow: clip;
+}
+.product-image > .bread-scroll-layer {
+  isolation: isolate;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) [data-scroll-bread] {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+html[data-motion="off"] [data-scroll-bread] {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Flatten bread siblings before tilting the stage: no intersecting 3D planes. */
+.brand-stage {
+  isolation: isolate;
+}
+.brand-orbit {
+  isolation: isolate;
+}
+@media (min-width: 721px) {
+  .brand-heading h1 > span {
+    font-size: clamp(100px, min(11.2vw, 18svh), 180px);
+  }
+  .brand-heading h1 > em {
+    font-size: clamp(70px, min(8.6vw, 14svh), 140px);
+  }
+  .brand-stage {
+    height: 350px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .brand-orbit.orbit-savory {
+    width: 34%;
+    top: 50px;
+    left: 0;
+  }
+  .brand-orbit.orbit-cream {
+    width: 42%;
+    left: 28%;
+  }
+  .brand-orbit.orbit-chocolate {
+    width: 31%;
+    right: 0;
+    top: 70px;
+  }
+  .brand-actions .text-link {
+    font-weight: 600;
+  }
+}
+@media (min-width: 721px) and (max-height: 820px) {
+  .brand-hero {
+    padding-top: 18px;
+  }
+  .brand-heading {
+    margin-top: 16px;
+  }
+  .brand-heading h1 > span {
+    font-size: 112px;
+  }
+  .brand-heading h1 > em {
+    font-size: 90px;
+  }
+  .brand-stage {
+    height: 290px;
+    max-width: 950px;
+  }
+  .brand-hero-bottom {
+    padding-block: 18px;
+  }
+}
+/* Keep the same animation identity when pausing so its timeline is retained. */
+html[data-motion="off"] .brand-ribbon-track {
+  animation: brand-marquee 30s linear infinite !important;
+  animation-play-state: paused !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .brand-ribbon-track {
+    animation: brand-marquee 30s linear infinite !important;
+    animation-play-state: paused !important;
+  }
+}
+.bread-cutout {
+  display: block;
+  width: 100%;
+  aspect-ratio: 362 / 335;
+  background-image: url("/graphics/ana-bread-assortment.webp");
+  background-size: 300% 432.239%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 12px 11px #3f2a2312);
+}
+.product-image .bread-cutout {
+  transition:
+    scale 0.45s,
+    rotate 0.45s;
+}
+.product-image:hover .bread-cutout,
+.product-image:focus-visible .bread-cutout {
+  scale: 1.04;
+  rotate: -3deg;
+}
+.photo-dialog-art {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #faf3e7;
+}
+.photo-dialog-art .bread-cutout {
+  max-width: 430px;
+}
+.outlet-map {
+  width: 100%;
+  margin: 0;
+  background: #e8e8da;
+}
+.outlet-map iframe {
+  display: block;
+  width: 100%;
+  height: 480px;
+  border: 0;
+}
+.outlet-map figcaption {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  background: #faf3e7;
+}
+.outlet-map a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.home-outlet .outlet-map iframe {
+  height: 460px;
+}
+.outlet-hours {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.location-note .hours-value {
+  font-size: 22px;
+  color: var(--ink);
+  margin-block: 12px;
+}
+.location-note .hours-source {
+  font-size: 12px;
+  margin-block: 8px 20px;
+}
+@media (max-width: 720px) {
+  .outlet-map iframe,
+  .home-outlet .outlet-map iframe {
+    height: 340px;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.contact-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+html[data-motion="off"] .product-image .bread-cutout {
+  scale: 1;
+  rotate: 0deg;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .product-image .bread-cutout {
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+.bread-cutout-extra,
+.brand-ribbon .ribbon-bread.bread-cutout-extra {
+  background-image: url("/graphics/ana-extra-breads.webp");
+  background-size: 200% 100%;
+  clip-path: inset(2px);
+}
+.product-price {
+  display: block;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.photo-dialog .product-price {
+  font-size: 20px;
+  color: #000000;
+  margin-block: 16px;
 }

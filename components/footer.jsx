@@ -1,5 +1,7 @@
+import { BRAND } from "@/lib/content";
 import Link from "next/link";
 import Image from "next/image";
+import MotionStudio from "@/components/motion-studio";
 export default function Footer() {
   return (
     <>
@@ -11,7 +13,7 @@ export default function Footer() {
             aria-label="Beranda Ana Salt Bread"
           >
             <Image
-              src="/graphics/ana-wordmark.svg"
+              src="/graphics/ana-wordmark-white.svg"
               alt=""
               width={330}
               height={150}
@@ -19,16 +21,16 @@ export default function Footer() {
             />
           </Link>
           <div>
-            <span className="tiny">{"A LITTLE MORE ANA"}</span>
+            <span className="tiny">{"NAVIGASI"}</span>
             <nav aria-label="Navigasi footer">
-              <Link href="/tentang">{"Tentang Ana"}</Link>
-              <Link href="/menu">{"Pilihan rasa"}</Link>
-              <Link href="/kunjungi">{"Kunjungi kami"}</Link>
+              <Link href="/tentang">{"Tentang"}</Link>
+              <Link href="/menu">{"Menu"}</Link>
+              <Link href="/kunjungi">{"Lokasi"}</Link>
               <Link href="/kontak">{"Kontak"}</Link>
             </nav>
           </div>
           <div className="footer-social">
-            <span className="tiny">{"COME SAY HELLO"}</span>
+            <span className="tiny">{"KONTAK"}</span>
             <a
               href="https://www.instagram.com/anasaltbread/"
               target="_blank"
@@ -39,17 +41,20 @@ export default function Footer() {
                 <path d="M5 12h14M13 6l6 6-6 6"></path>
               </svg>
             </a>
+            <a href={BRAND.orderUrl} target="_blank" rel="noopener noreferrer">
+              Pesan online
+            </a>
             <p>
-              {"Salt bread, coffee,"}
+              Ruko Sorrento Junction,
               <br />
-              {"and little moments."}
+              Tangerang, Banten.
             </p>
           </div>
         </div>
         <div className="footer-bottom">
           <span>{"© 2026 Ana Salt Bread"}</span>
-          <span>{"We start blooming today."}</span>
-          <Link href="/kunjungi">{"Sorrento Junction · Tangerang ↗"}</Link>
+          <MotionStudio />
+          <Link href="/kunjungi">{"Sorrento Junction · Tangerang"}</Link>
         </div>
       </footer>
     </>

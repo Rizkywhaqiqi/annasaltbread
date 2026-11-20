@@ -1,52 +1,51 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ProductGrid, MenuProducts } from "@/components/products";
+import { MenuProducts } from "@/components/products";
+import { BRAND, MENU_CATEGORIES } from "@/lib/content";
+import DrinksMenu from "@/components/drinks-menu";
+import BrandFlower from "@/components/brand-flower";
+import "./menu.css";
 export const metadata = {
-  title: "Pilihan rasa — Ana Salt Bread",
-  description:
-    "Jelajahi foto salt bread Ana, dari isian krim dan lapisan cokelat hingga pilihan topping gurih.",
+  title: "Menu — Ana Salt Bread",
+  description: "Menu salt bread, kopi, dan minuman Ana beserta harga.",
   alternates: { canonical: "/menu" },
 };
 export default function Page() {
   return (
-    <>
-      <section className="page-banner cream">
-        <span className="tiny">{"FIND YOUR LITTLE FAVOURITE"}</span>
-        <h1>
-          {"SELALU ADA"}
-          <br />
-          {"RUANG UNTUK "}
-          <em>{"ANA."}</em>
-        </h1>
-        <p>
-          {"Kenali pilihan salt bread dari foto-foto Ana."}
-          <br />
-          {
-            "Untuk menu lengkap, harga, dan ketersediaan hari ini, tanya langsung ke kami."
-          }
-        </p>
-      </section>
-      <MenuProducts></MenuProducts>
-      <section className="small-cta">
-        <div>
-          <span className="tiny">{"HAVE A LITTLE CRAVING?"}</span>
-          <h2>
-            {"SUDAH PUNYA "}
-            <em>{"PILIHAN?"}</em>
-          </h2>
-        </div>
+    <div className="ana-catalog">
+      <header className="catalog-intro">
+        <BrandFlower />
+        <h1>Menu Ana</h1>
+        <p>Salt bread, kopi, dan minuman.</p>
+        <nav aria-label="Kategori menu">
+          {MENU_CATEGORIES.map((category) => (
+            <a href={"#menu-" + category.id} key={category.id}>
+              {category.label}
+            </a>
+          ))}
+          <a href="#menu-minuman">Minuman</a>
+        </nav>
+      </header>
+      <MenuProducts />
+      <DrinksMenu />
+      <section className="catalog-order">
+        <h2>Pemesanan</h2>
+        <p>Menu dan harga terbaru tersedia di ESB Order.</p>
         <a
+          href={BRAND.orderUrl}
           className="button dark"
-          href="https://www.instagram.com/anasaltbread/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {"Tanya & pesan ke Ana"}
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"></path>
-          </svg>
+          Pesan melalui ESB Order
+        </a>
+        <a
+          href="/images/ana-bread-menu.webp"
+          className="text-link catalog-official-menu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Menu roti Ana
         </a>
       </section>
-    </>
+    </div>
   );
 }

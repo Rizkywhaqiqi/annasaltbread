@@ -2,8 +2,15 @@
 import Image from "next/image";
 import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
-import { BRAND, PRODUCTS } from "@/lib/content";
-function Products({ items, cutouts = false }) {
+import BreadCutout from "@/components/bread-cutout";
+import { BRAND, PRODUCTS, formatPrice } from "@/lib/content";
+function Products({ items, cutouts = false, catalog = false }) {
+  const ProductHeading = catalog ? "h3" : "h2";
+  const cutoutFiles = {
+    cream: "cream",
+    chocolate: "chocolate",
+    savory: "savory",
+  };
   const [selected, setSelected] = useState(null);
   const dialog = useRef(null);
   const trigger = useRef(null);
@@ -25,10 +32,16 @@ function Products({ items, cutouts = false }) {
   }
   return (
     <>
-      <div className="product-grid">
-        {items.map((p) => (
+      <div className={catalog ? "product-grid catalog-grid" : "product-grid"}>
+        {items.map((p, index) => (
           <article
             key={p.id}
+            id={
+              catalog &&
+              items.findIndex((item) => item.group === p.group) === index
+                ? "menu-" + p.group
+                : undefined
+            }
             className={cutouts ? "product-card cutout-product" : "product-card"}
             data-category={p.category}
           >
@@ -41,35 +54,31 @@ function Products({ items, cutouts = false }) {
                 setSelected(p);
               }}
             >
-              <Image
-                src={
-                  cutouts
-                    ? "/graphics/" +
-                      {
-                        cream: "cream",
-                        chocolate: "chocolate",
-                        savory: "savory",
-                      }[p.id] +
-                      "-cutout.png"
-                    : "/images/" + p.image + ".webp"
+              <span
+                className="bread-scroll-layer"
+                data-scroll-bread
+                data-bread-side={
+                  p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
                 }
-                alt={p.alt}
-                width={1100}
-                height={cutouts ? 733 : 1375}
-                sizes="(max-width: 720px) 90vw, 45vw"
-              />
-              <span className="photo-open">
-                Lihat lebih dekat{" "}
-                <span>
-                  <Arrow />
-                </span>
+              >
+                {catalog ? (
+                  <BreadCutout index={p.sprite} alt={p.alt} />
+                ) : (
+                  <Image
+                    className="product-front"
+                    src={"/graphics/" + cutoutFiles[p.id] + "-cutout.png"}
+                    alt={p.alt}
+                    width={900}
+                    height={600}
+                    sizes="(max-width: 720px) 90vw, 30vw"
+                  />
+                )}
               </span>
             </button>
             <div className="product-caption">
-              <span className="tiny">
-                0{PRODUCTS.indexOf(p) + 1} / {p.category}
-              </span>
-              <h2>{p.name}</h2>
+              <span className="tiny">{p.category}</span>
+              <ProductHeading>{p.name}</ProductHeading>
+              <span className="product-price">{formatPrice(p.price)}</span>
               <p>{p.description}</p>
             </div>
           </article>
@@ -102,27 +111,21 @@ function Products({ items, cutouts = false }) {
         </button>
         {selected && (
           <div className="photo-dialog-inner">
-            <Image
-              src={"/images/" + selected.image + ".webp"}
-              alt={selected.alt}
-              width={1100}
-              height={1375}
-              sizes="(max-width: 720px) 90vw, 45vw"
-            />
+            <div className="photo-dialog-art">
+              <BreadCutout index={selected.sprite} alt={selected.alt} />
+            </div>
             <div>
-              <span className="tiny">A LITTLE CLOSER</span>
+              <span className="tiny">MENU ANA</span>
               <h2>{selected.name}</h2>
-              <p>
-                {selected.description} Konfirmasi ketersediaan dan harga
-                langsung ke Ana.
-              </p>
+              <p className="product-price">{formatPrice(selected.price)}</p>
+              <p>{selected.description}</p>
               <a
-                href={BRAND.instagram}
+                href={BRAND.orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button pink-button"
               >
-                Tanya pilihan ini ke Ana <Arrow />
+                Pesan melalui ESB Order <Arrow />
               </a>
             </div>
           </div>
@@ -134,42 +137,32 @@ function Products({ items, cutouts = false }) {
 export function ProductGrid() {
   return (
     <div className="home-products">
-      <Products items={PRODUCTS.slice(0, 3)} cutouts />
+      <Products
+        items={["cream", "chocolate", "savory"].map((id) =>
+          PRODUCTS.find((p) => p.id === id),
+        )}
+        cutouts
+      />
     </div>
   );
 }
 export function MenuProducts() {
-  const [filter, setFilter] = useState("Semua");
-  const items = PRODUCTS.filter(
-    (p) => filter === "Semua" || p.category === filter,
-  );
   return (
-    <section className="menu-section section">
-      <div className="menu-toolbar">
-        <div className="filters" role="group" aria-label="Filter pilihan rasa">
-          {["Semua", "Manis", "Gurih"].map((f) => (
-            <button
-              key={f}
-              type="button"
-              className={filter === f ? "active" : ""}
-              aria-pressed={filter === f}
-              onClick={() => setFilter(f)}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-        <span className="tiny" aria-live="polite">
-          {items.length} PILIHAN UNTUK DIKENALI
-        </span>
-      </div>
-      <div className="full-menu">
-        <Products items={items} />
-      </div>
-      <p className="menu-note">
-        Foto merupakan sajian Ana. Pilihan rasa dan ketersediaan dapat berubah;
-        konfirmasi menu serta informasi alergen sebelum memesan.
+    <div className="catalog-content">
+      <section
+        className="catalog-products"
+        aria-labelledby="catalog-products-title"
+      >
+        <h2 id="catalog-products-title" className="sr-only">
+          Pilihan salt bread Ana
+        </h2>
+        <Products items={PRODUCTS} cutouts catalog />
+      </section>
+      <p className="catalog-note">
+        Harga mengikuti menu Ana yang ditampilkan dan dapat berubah. Cek harga
+        akhir dan ketersediaan di ESB Order. Untuk informasi alergen, hubungi
+        Instagram resmi Ana.
       </p>
-    </section>
+    </div>
   );
 }
