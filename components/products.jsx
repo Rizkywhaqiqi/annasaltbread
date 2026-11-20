@@ -163,6 +163,7 @@ export function MenuProducts() {
     (a, b) => BEST_SELLERS.indexOf(a.id) - BEST_SELLERS.indexOf(b.id),
   );
   const bestSellers = ordered.slice(0, BEST_SELLERS.length);
+  const rest = PRODUCTS.filter((p) => !BEST_SELLERS.includes(p.id));
   return (
     <div className="catalog-content">
       <section
@@ -178,10 +179,19 @@ export function MenuProducts() {
         <Products items={bestSellers} cutouts catalog />
       </section>
       <section
-        className="catalog-products"
-        aria-label="Pilihan salt bread Ana"
+        className="catalog-products catalog-all-menu"
+        aria-labelledby="catalog-products-title"
       >
-        <Products items={PRODUCTS} cutouts catalog />
+        <h2
+          id="catalog-products-title"
+          className="catalog-best-sellers-title"
+        >
+          Menu lengkap
+        </h2>
+        <p className="catalog-best-sellers-note">
+          Semua pilihan salt bread Ana.
+        </p>
+        <Products items={rest} cutouts catalog />
       </section>
       <p className="catalog-note">
         Harga mengikuti menu Ana yang ditampilkan dan dapat berubah. Cek harga
