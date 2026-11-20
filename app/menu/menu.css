@@ -64,6 +64,27 @@
 .catalog-values {
   padding: 0 6% 58px;
 }
+.catalog-best-sellers {
+  padding-bottom: 46px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.catalog-best-sellers-title {
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: clamp(26px, 2.6vw, 34px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #000000;
+}
+.catalog-best-sellers-note {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.catalog-best-sellers .product-grid {
+  margin-top: 26px;
+}
 .catalog-values ul {
   list-style: none;
   display: grid;

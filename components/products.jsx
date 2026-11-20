@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import BreadCutout from "@/components/bread-cutout";
-import { BRAND, PRODUCTS, formatPrice } from "@/lib/content";
+import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
 function Products({ items, cutouts = false, catalog = false }) {
   const ProductHeading = catalog ? "h3" : "h2";
   const cutoutFiles = {
@@ -44,6 +44,7 @@ function Products({ items, cutouts = false, catalog = false }) {
             }
             className={cutouts ? "product-card cutout-product" : "product-card"}
             data-category={p.category}
+            data-best-seller={BEST_SELLERS.includes(p.id) || undefined}
           >
             <button
               type="button"
@@ -61,6 +62,9 @@ function Products({ items, cutouts = false, catalog = false }) {
                   p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
                 }
               >
+                {BEST_SELLERS.includes(p.id) && (
+                  <span className="best-seller-badge">Best seller</span>
+                )}
                 {catalog ? (
                   <BreadCutout index={p.sprite} alt={p.alt} />
                 ) : (
@@ -76,7 +80,11 @@ function Products({ items, cutouts = false, catalog = false }) {
               </span>
             </button>
             <div className="product-caption">
-              <span className="tiny">{p.category}</span>
+              <span className="tiny">
+                {BEST_SELLERS.includes(p.id)
+                  ? "Best seller · " + p.category
+                  : p.category}
+              </span>
               <ProductHeading>{p.name}</ProductHeading>
               <span className="product-price">{formatPrice(p.price)}</span>
               <p>{p.description}</p>
@@ -115,7 +123,11 @@ function Products({ items, cutouts = false, catalog = false }) {
               <BreadCutout index={selected.sprite} alt={selected.alt} />
             </div>
             <div>
-              <span className="tiny">MENU ANA</span>
+              <span className="tiny">
+                {BEST_SELLERS.includes(selected.id)
+                  ? "BEST SELLER · MENU ANA"
+                  : "MENU ANA"}
+              </span>
               <h2>{selected.name}</h2>
               <p className="product-price">{formatPrice(selected.price)}</p>
               <p>{selected.description}</p>
@@ -147,15 +159,28 @@ export function ProductGrid() {
   );
 }
 export function MenuProducts() {
+  const ordered = [...PRODUCTS].sort(
+    (a, b) => BEST_SELLERS.indexOf(a.id) - BEST_SELLERS.indexOf(b.id),
+  );
+  const bestSellers = ordered.slice(0, BEST_SELLERS.length);
   return (
     <div className="catalog-content">
       <section
-        className="catalog-products"
-        aria-labelledby="catalog-products-title"
+        className="catalog-products catalog-best-sellers"
+        aria-labelledby="catalog-best-sellers-title"
       >
-        <h2 id="catalog-products-title" className="sr-only">
-          Pilihan salt bread Ana
+        <h2 id="catalog-best-sellers-title" className="catalog-best-sellers-title">
+          Best seller
         </h2>
+        <p className="catalog-best-sellers-note">
+          Paling sering dipesan di Ana.
+        </p>
+        <Products items={bestSellers} cutouts catalog />
+      </section>
+      <section
+        className="catalog-products"
+        aria-label="Pilihan salt bread Ana"
+      >
         <Products items={PRODUCTS} cutouts catalog />
       </section>
       <p className="catalog-note">
