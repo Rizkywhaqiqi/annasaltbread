@@ -233,7 +233,6 @@ export default function Header() {
             inert={compact}
           >
             <Logo />
-            <span className="nav-brand-subtitle">SALT BREAD</span>
           </Link>
           <button
             type="button"
