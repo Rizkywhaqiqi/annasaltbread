@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRef, useEffect } from "react";
 import { Arrow } from "@/components/icons";
 import BrandFlower from "@/components/brand-flower";
-import BloomScene from "@/components/bloom-scene";
 export default function Hero() {
   const scene = useRef(null);
   const frame = useRef(0);
@@ -60,10 +59,12 @@ export default function Hero() {
       </div>
       <div className="brand-heading">
         <h1>
-          <span>ANA</span>
-          <em>Salt Bread</em>
+          <span className="hero-brand-lockup">
+            <span>ana</span>
+            <BrandFlower className="hero-title-flower" />
+          </span>
+          <em className="hero-brand-tagline">Crisp. Buttery. Elevated.</em>
         </h1>
-        <BloomScene className="hero-brand-flower" />
       </div>
       <div className="brand-stage">
         <span className="brand-outline" aria-hidden="true">
