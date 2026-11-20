@@ -9,7 +9,15 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      <section className="page-banner">
+      <section className="page-banner ana-story-banner">
+        <Image
+          src="/images/ana-assortment.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          preload
+          className="ana-story-backdrop"
+        />
         <span className="eyebrow">ANA SALT BREAD</span>
         <h1>Tentang Ana</h1>
         <p>Salt bread dengan pilihan isian dan topping.</p>

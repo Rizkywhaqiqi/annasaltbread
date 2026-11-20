@@ -1,0 +1,91 @@
+/* Warm photography, quiet detail, and small playful responses. */
+.ana-story-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #000000;
+  color: #fef3ea;
+}
+.ana-story-banner .ana-story-backdrop {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center 46%;
+}
+.ana-story-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, #000000e6, #00000099);
+}
+.ana-story-banner .eyebrow {
+  color: #f19d90;
+}
+.ana-story-banner > p {
+  color: #fef3ea;
+}
+.button {
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    translate 300ms ease;
+}
+.button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+.product-image {
+  outline-offset: 5px;
+}
+.product-image:focus-visible {
+  outline: 2px solid #000000;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    translate: 0 -2px;
+    background-color: #f19d90;
+    border-color: #000000;
+    color: #000000;
+  }
+  .home-order-copy .pink-button:hover {
+    background-color: #fef3ea;
+    border-color: #fef3ea;
+  }
+  .product-image .bread-cutout {
+    transition: rotate 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .product-image:hover .bread-cutout {
+    rotate: -3deg;
+  }
+  .editorial-flower,
+  .menu-flower,
+  .catalog-intro > .brand-flower {
+    transition: rotate 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .home-editorial-copy:hover .editorial-flower {
+    rotate: 5deg;
+  }
+  .brand-menu:hover .menu-flower,
+  .catalog-intro:hover > .brand-flower {
+    rotate: 12deg;
+  }
+}
+html[data-motion="off"] .button,
+html[data-motion="off"] .product-image .bread-cutout,
+html[data-motion="off"] .editorial-flower,
+html[data-motion="off"] .menu-flower,
+html[data-motion="off"] .catalog-intro > .brand-flower {
+  translate: none;
+  rotate: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .button,
+  html:not([data-motion="on"]) .product-image .bread-cutout,
+  html:not([data-motion="on"]) .editorial-flower,
+  html:not([data-motion="on"]) .menu-flower,
+  html:not([data-motion="on"]) .catalog-intro > .brand-flower {
+    translate: none;
+    rotate: none;
+  }
+}
