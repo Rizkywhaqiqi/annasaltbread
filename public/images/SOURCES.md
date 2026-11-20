@@ -1,5 +1,12 @@
 # Ana Salt Bread photography
 
+Visual Imagery additions from owner-supplied Brand Guidelines - Ana Saltbread.pdf, page 12:
+- ana-coffee-detail.jpg: native JPEG image object 99 (701 x 876).
+- ana-cheddar-detail.jpg: native JPEG image object 100 (935 x 1168).
+- ana-cream-detail.jpg: native JPEG image object 101 (648 x 810).
+- ana-savory-detail.jpg: native JPEG image object 102 (1218 x 1522).
+Original embedded JPEG bytes are preserved. Display crops use CSS object-fit; no generative alteration. People and baking-process reference images are not used as Ana operational photography.
+
 Provided by the owner through https://drive.google.com/drive/folders/1RmgDVmUZDK0Kb9PslAsUIokfhQ_vlrRZ . Original compositions are preserved in optimized WebP copies.
 
 - ana-moment.webp: 892419149_17911180251581562_4924438198703844241_n.jpg

@@ -6,22 +6,22 @@ import { BRAND } from "@/lib/content";
 // This curated gallery does not claim to be a live Instagram feed.
 const photos = [
   {
-    image: "ana-moment",
-    alt: "Salt bread isi krim Ana disajikan di atas piring hitam",
+    image: "ana-coffee-detail.jpg",
+    alt: "Minuman Ana dengan cream dan taburan renyah dalam gelas hitam berlogo Ana",
   },
   {
-    image: "ana-chocolate",
+    image: "ana-cheddar-detail.jpg",
+    alt: "Detail salt bread Ana dengan topping cheddar kuning dan saus",
+  },
+  { image: "ana-cream-detail.jpg", alt: "Tekstur kulit salt bread Ana dengan isian krim putih" },
+  { image: "ana-savory-detail.jpg", alt: "Close-up saus creamy dan irisan daun bawang pada salt bread Ana" },
+  {
+    image: "ana-chocolate.webp",
     alt: "Pilihan salt bread Ana dengan lapisan cokelat",
   },
-  { image: "ana-savory", alt: "Salt bread Ana dengan saus dan taburan hijau" },
-  { image: "ana-cream", alt: "Salt bread Ana dengan isian krim putih" },
   {
-    image: "ana-crunch",
+    image: "ana-crunch.webp",
     alt: "Salt bread Ana dengan topping remah bertekstur",
-  },
-  {
-    image: "ana-assortment",
-    alt: "Ragam topping salt bread Ana di atas nampan kayu",
   },
 ];
 export default function InstagramGallery() {
@@ -55,11 +55,11 @@ export default function InstagramGallery() {
             aria-label={"Buka profil Instagram Ana — " + photo.alt}
           >
             <Image
-              src={"/images/" + photo.image + ".webp"}
+              src={"/images/" + photo.image}
               alt={photo.alt}
               width={1100}
               height={1375}
-              sizes="(max-width:720px) 45vw, (max-width:1200px) 30vw,370px"
+              sizes="(max-width:720px) 45vw, (max-width:1200px) 22vw,280px"
             />
             <span className="gallery-photo-label" aria-hidden="true">
               Lihat profil Ana

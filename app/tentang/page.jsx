@@ -25,10 +25,10 @@ export default function Page() {
       <section className="story-grid section">
         <figure>
           <Image
-            src="/images/ana-moment.webp"
-            alt="Salt bread Ana dengan isian krim"
-            width={1100}
-            height={1375}
+            src="/images/ana-cream-detail.jpg"
+            alt="Salt bread Ana dengan isian krim putih dan detail kulit roti keemasan"
+            width={648}
+            height={810}
             sizes="(max-width:720px) 90vw, 45vw"
           />
         </figure>
