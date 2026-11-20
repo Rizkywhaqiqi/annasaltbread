@@ -14,9 +14,9 @@
   transform-origin: 50% 90%;
 }
 .catalog-intro h1 {
-  font-family: Anton, Arial, sans-serif;
+  font-family: "Public Sans", Arial, sans-serif;
   font-size: clamp(48px, 6vw, 80px);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.08;
   text-transform: uppercase;
   letter-spacing: -0.015em;
@@ -56,10 +56,10 @@
 }
 .catalog-category > h2 {
   text-align: left;
-  font-family: Anton, Arial, sans-serif;
+  font-family: "Public Sans", Arial, sans-serif;
   text-transform: uppercase;
   font-size: clamp(30px, 3vw, 44px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.015em;
   color: #000000;
   margin-bottom: 42px;
@@ -134,9 +134,9 @@
   padding: 20px 0 0;
 }
 .catalog-grid .product-caption h3 {
-  font-family: Anton, Arial, sans-serif;
+  font-family: "Public Sans", Arial, sans-serif;
   font-size: clamp(24px, 2.1vw, 30px);
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -165,7 +165,7 @@
 }
 .catalog-order h2 {
   font:
-    400 clamp(32px, 3.5vw, 48px)/1.15 Anton,
+    700 clamp(32px, 3.5vw, 48px)/1.15 "Public Sans",
     Arial,
     sans-serif;
   text-transform: uppercase;
@@ -386,7 +386,7 @@
 }
 .drinks-heading h2 {
   font:
-    400 clamp(42px, 5vw, 68px)/1.1 Anton,
+    700 clamp(42px, 5vw, 68px)/1.1 "Public Sans",
     Arial,
     sans-serif;
   text-transform: uppercase;
@@ -413,8 +413,9 @@
 }
 .drinks-series h3 {
   font:
-    400 30px/1.2 Georgia,
-    serif;
+    700 30px/1.2 "Public Sans",
+    Arial,
+    sans-serif;
   margin: 0 0 18px;
 }
 .drink-row {

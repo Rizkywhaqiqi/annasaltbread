@@ -230,8 +230,9 @@
 }
 .nav-overlay-links a {
   font:
-    400 clamp(35px, 4.9vw, 73px) / 1.25 Georgia,
-    serif;
+    700 clamp(35px, 4.9vw, 73px) / 1.25 "Public Sans",
+    Arial,
+    sans-serif;
   letter-spacing: -0.045em;
   border-bottom: 1px solid var(--line);
   display: flex;
@@ -278,8 +279,9 @@
 }
 .nav-overlay-aside p {
   font:
-    28px Georgia,
-    serif;
+    700 28px "Public Sans",
+    Arial,
+    sans-serif;
   letter-spacing: -0.03em;
 }
 .nav-overlay-aside > span {

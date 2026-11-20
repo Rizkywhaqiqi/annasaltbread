@@ -2,6 +2,7 @@ import "./globals.css";
 import "./brand-motion.css";
 import "./navigation.css";
 import "./personality.css";
+import "./typography.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PageBloom from "@/components/page-bloom";

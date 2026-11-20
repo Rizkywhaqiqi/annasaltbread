@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Vavinx";
+  src: url("/fonts/Vavinx-BrandSubset.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+20, U+2C, U+2E, U+30-39, U+41-43, U+45, U+56, U+61-70, U+72-79;
+}
+/* Handwriting is reserved for short brand phrases; information stays in Arial. */
+.brand-hero-bottom .brand-handwritten,
+.story-grid h2.brand-handwritten {
+  font-family: "Vavinx", Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+.brand-hero-bottom .brand-handwritten {
+  font-size: 22px;
+}
+.story-grid h2.brand-handwritten {
+  font-size: clamp(32px, 3.1vw, 44px);
+}
+/* Keep the wider headline face readable without the previous condensed tracking. */
+h1, h2, h3 {
+  overflow-wrap: break-word;
+}
+.brand-heading h1 > em {
+  font-style: normal;
+  letter-spacing: -0.055em;
+}

@@ -5,7 +5,7 @@
   --line: #00000026;
   --soft: #fef3ea;
   --sans: Arial, Helvetica, sans-serif;
-  --display: Georgia, "Times New Roman", serif;
+  --display: "Public Sans", Arial, sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -34,7 +34,7 @@ h1,
 h2,
 h3 {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.14;
   letter-spacing: -0.035em;
 }

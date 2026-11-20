@@ -33,7 +33,7 @@ export default function Page() {
           />
         </figure>
         <div data-reveal>
-          <h2>Let your heart bloom.</h2>
+          <h2 className="brand-handwritten">Let your heart bloom.</h2>
           <p>Salt bread manis dan gurih di Sorrento Junction, Tangerang.</p>
           <p>
             Pemesanan melalui ESB Order. Informasi lainnya melalui

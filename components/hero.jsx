@@ -140,7 +140,7 @@ export default function Hero() {
       </div>
       <div className="brand-hero-bottom">
         <p>
-          We Start Blooming!
+          <span className="brand-handwritten">We Start Blooming!</span>
           <br />
           Salt bread manis dan gurih.
         </p>
