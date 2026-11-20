@@ -1,9 +1,9 @@
 :root {
-  --paper: #faf8f4;
-  --ink: #3f2a23;
-  --muted: #756a64;
-  --line: #dfd8d1;
-  --soft: #f2ede7;
+  --paper: #fef3ea;
+  --ink: #000000;
+  --muted: #000000a6;
+  --line: #00000026;
+  --soft: #fef3ea;
   --sans: Arial, Helvetica, sans-serif;
   --display: Georgia, "Times New Roman", serif;
 }
@@ -124,7 +124,7 @@ em {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
-  background: #faf8f4f5;
+  background: #fef3eaf5;
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
@@ -137,8 +137,7 @@ em {
   width: 150px;
   height: 68px;
   object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1019%)
-    hue-rotate(334deg) brightness(95%) contrast(92%);
+  filter: brightness(0);
 }
 .site-header > nav {
   display: flex;
@@ -176,7 +175,7 @@ em {
 }
 .header-order:hover,
 .dark:hover {
-  background: #62473b;
+  background: #000000cc;
 }
 .outline {
   background: transparent;
@@ -257,7 +256,7 @@ em {
   position: absolute;
   inset: 3% 2% 0 7%;
   border-radius: 50%;
-  background: #f0e9df;
+  background: #fef3ea;
 }
 .profile-bread {
   position: absolute;
@@ -269,7 +268,7 @@ em {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 14px 12px #3f2a2314);
+  filter: drop-shadow(0 14px 12px #00000014);
   transition: scale 0.35s;
 }
 .profile-bread:hover img {
@@ -341,7 +340,7 @@ em {
   scale: 1.03;
 }
 .cutout-product .product-image {
-  background: #f6f3ef;
+  background: #ffffff;
   aspect-ratio: 1.3;
   padding: 12px;
 }
@@ -360,7 +359,7 @@ em {
   justify-content: space-between;
   gap: 12px;
   padding: 8px 12px;
-  background: #faf8f4ed;
+  background: #fef3eaed;
   font-size: 10px;
   opacity: 0;
   transition: opacity 0.2s;
@@ -700,7 +699,7 @@ em {
 }
 .photo-dialog::backdrop,
 .mobile-nav::backdrop {
-  background: #20181399;
+  background: #00000099;
   backdrop-filter: blur(3px);
 }
 .photo-dialog-inner {

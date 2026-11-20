@@ -1,7 +1,7 @@
 .home-editorial {
   display: grid;
   grid-template-columns: 1fr 1.05fr;
-  background: #eab3c0;
+  background: #f19d90;
   overflow: hidden;
   min-height: 600px;
 }
@@ -47,7 +47,7 @@
 .home-order-feature {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: #3f2a23;
+  background: #000000;
   color: #fef3ea;
   min-height: 550px;
   overflow: hidden;
@@ -70,7 +70,7 @@
 }
 .home-order-copy .pink-button {
   color: #000000;
-  background: #eab3c0;
+  background: #f19d90;
 }
 .home-order-art {
   position: relative;
@@ -83,7 +83,7 @@
   height: auto;
   margin-left: -10%;
   position: relative;
-  filter: drop-shadow(0 24px 20px #160e0c55);
+  filter: drop-shadow(0 24px 20px #00000055);
   rotate: -12deg;
   animation: home-bread-float 8s ease-in-out infinite;
 }
@@ -110,7 +110,7 @@
 }
 .home-gallery {
   padding: 90px 6%;
-  background: #ded4c7;
+  background: #fef3ea;
 }
 .home-gallery-heading {
   text-align: center;
@@ -146,7 +146,7 @@
   display: block;
   aspect-ratio: 4/5;
   overflow: hidden;
-  background: #cbbbab;
+  background: #00000026;
 }
 .gallery-photo img {
   width: 100%;
@@ -165,7 +165,7 @@
   left: 15px;
   right: 15px;
   padding: 10px 15px;
-  background: #faf3e7;
+  background: #fef3ea;
   color: #000000;
   text-align: center;
   font-size: 14px;
@@ -284,7 +284,7 @@ html[data-motion="off"] .home-order-art > img:not(.brand-flower) {
   grid-template-columns: 1.15fr 1fr;
   gap: 9%;
   align-items: center;
-  background: #e8ecdf;
+  background: #ffffff;
   padding: 90px 8%;
 }
 .home-outlet-copy {
@@ -300,13 +300,13 @@ html[data-motion="off"] .home-order-art > img:not(.brand-flower) {
 .home-outlet-intro {
   font-size: 16px;
   line-height: 1.8;
-  color: #61584e;
+  color: #000000a6;
   max-width: 340px;
 }
 .home-outlet-address {
   padding-top: 26px;
   margin-top: 28px;
-  border-top: 1px solid #3f2a2326;
+  border-top: 1px solid #00000026;
 }
 .home-outlet address {
   font-style: normal;
@@ -337,7 +337,7 @@ html[data-motion="off"] .home-order-art > img:not(.brand-flower) {
 .home-outlet-photo figcaption {
   margin-top: 12px;
   font-size: 13px;
-  color: #61584e;
+  color: #000000a6;
 }
 .bread-photo-layer {
   display: block;

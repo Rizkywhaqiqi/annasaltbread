@@ -1,10 +1,10 @@
 .site-header.live-header {
-  --nav-ink: #3f2a23;
-  --nav-line: #3f2a2325;
-  --nav-marker: #eab3c0;
+  --nav-ink: #000000;
+  --nav-line: #00000025;
+  --nav-marker: #f19d90;
   --nav-capsule: #ffffff55;
-  --nav-button: #3f2a23;
-  --nav-button-ink: #faf3e7;
+  --nav-button: #000000;
+  --nav-button-ink: #fef3ea;
   width: 100%;
   margin-inline: auto;
   top: 0;
@@ -17,7 +17,7 @@
     background-color 0.45s,
     color 0.45s,
     border-color 0.45s;
-  background: var(--nav-surface, #faf3e7f7);
+  background: var(--nav-surface, #fef3eaf7);
   color: var(--nav-ink);
   border-color: var(--nav-line);
   isolation: isolate;
@@ -27,7 +27,7 @@
   top: 12px;
   border: 1px solid var(--nav-line);
   border-radius: 18px;
-  box-shadow: 0 12px 35px #3f2a2314;
+  box-shadow: 0 12px 35px #00000014;
   padding-inline: 4%;
 }
 .live-header .wordmark {
@@ -101,7 +101,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: #a4576e;
+  background: #f19d90;
   z-index: -1;
   translate: 0 101%;
   transition: translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -180,12 +180,12 @@
   overscroll-behavior: contain;
 }
 .nav-overlay::backdrop {
-  background: #3f2a2366;
+  background: #00000066;
   backdrop-filter: blur(9px);
 }
 .nav-overlay-panel {
   min-height: 100%;
-  background: #faf3e7;
+  background: #fef3ea;
   padding: 20px 6% 24px;
   display: flex;
   flex-direction: column;
@@ -211,7 +211,7 @@
 }
 .nav-overlay-top .menu-close:hover {
   rotate: 90deg;
-  background: #eab3c0;
+  background: #f19d90;
 }
 .nav-overlay-body {
   display: grid;
@@ -437,12 +437,12 @@
 
 /* Keep all controls legible when the navbar reaches the dark footer. */
 .live-header[data-tone="dark"] {
-  --nav-ink: #faf3e7;
-  --nav-line: #faf3e740;
-  --nav-marker: #775345;
+  --nav-ink: #fef3ea;
+  --nav-line: #fef3ea40;
+  --nav-marker: #f19d90;
   --nav-capsule: #ffffff0d;
-  --nav-button: #faf3e7;
-  --nav-button-ink: #3f2a23;
+  --nav-button: #fef3ea;
+  --nav-button-ink: #000000;
 }
 .live-header .ana-official-logo {
   transition: filter 0.45s;
@@ -485,7 +485,7 @@
   border-radius: 0;
   box-shadow: none;
   pointer-events: auto;
-  background: var(--nav-surface, #faf3e7);
+  background: var(--nav-surface, #fef3ea);
   transition:
     height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.45s,

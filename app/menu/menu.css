@@ -1,5 +1,5 @@
 .ana-catalog {
-  background: #fffdf9;
+  background: #ffffff;
 }
 .catalog-intro {
   position: relative;
@@ -78,7 +78,7 @@
 }
 .catalog-grid .product-image {
   aspect-ratio: 1;
-  background: #f0c7d4;
+  background: #f19d90;
   border-radius: 0;
   overflow: hidden;
   padding: 12px;
@@ -93,7 +93,7 @@
   transition:
     transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
     opacity 0.45s;
-  filter: drop-shadow(0 12px 11px #3f2a2312);
+  filter: drop-shadow(0 12px 11px #00000012);
 }
 .catalog-grid .product-image:has(.product-hover):hover .product-front,
 .catalog-grid .product-image:has(.product-hover):focus-visible .product-front {
@@ -123,7 +123,7 @@
   left: 16px;
   right: 16px;
   justify-content: center;
-  background: #fffdf9ed;
+  background: #ffffffed;
   font-size: 12px;
   gap: 0;
 }
@@ -161,7 +161,7 @@
   text-align: center;
   padding: 52px 6% 65px;
   border-top: 1px solid var(--line);
-  background: #f7f0e9;
+  background: #fef3ea;
 }
 .catalog-order h2 {
   font:
@@ -303,10 +303,10 @@
 }
 
 .catalog-grid .product-card[data-category="Gurih"] .product-image {
-  background: #dce2cc;
+  background: #fef3ea;
 }
 .catalog-grid .product-card:nth-child(2) .product-image {
-  background: #eab3c0;
+  background: #f19d90;
 }
 @media (max-width: 720px) {
   .catalog-category > h2 {
@@ -376,7 +376,7 @@
 
 .drinks-menu {
   padding: 72px 6% 84px;
-  background: #f3e8dc;
+  background: #fef3ea;
   scroll-margin-top: 100px;
 }
 .drinks-heading,
@@ -422,7 +422,7 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 24px;
-  border-bottom: 1px solid #3f2a2324;
+  border-bottom: 1px solid #00000024;
   padding: 14px 0;
   font-size: 15px;
   line-height: 1.5;

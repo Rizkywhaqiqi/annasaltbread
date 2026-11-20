@@ -24,7 +24,7 @@ export const metadata = {
   twitter: { card: "summary_large_image" },
   icons: { icon: "/favicon.svg" },
 };
-export const viewport = { themeColor: "#faf8f4" };
+export const viewport = { themeColor: "#FEF3EA" };
 export default function RootLayout({ children }) {
   return (
     <html lang="id" data-scroll-behavior="smooth">

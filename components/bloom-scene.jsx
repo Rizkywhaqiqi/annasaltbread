@@ -63,22 +63,22 @@ export default function BloomScene({ className = "" }) {
           const flower = new THREE.Group();
           flower.rotation.set(-0.18, 0.2, -0.15);
           scene.add(flower);
-          scene.add(new THREE.HemisphereLight(0xfff6e8, 0x594036, 2.4));
-          const light = new THREE.DirectionalLight(0xffe8da, 4);
+          scene.add(new THREE.HemisphereLight(0xfef3ea, 0x000000, 2.4));
+          const light = new THREE.DirectionalLight(0xffffff, 4);
           light.position.set(-3, 4, 6);
           scene.add(light);
           const sphere = new THREE.SphereGeometry(1, 24, 16);
           const pink = new THREE.MeshStandardMaterial({
-            color: 0xe6a1b5,
+            color: 0xf19d90,
             roughness: 0.3,
             metalness: 0.08,
           });
           const cream = new THREE.MeshStandardMaterial({
-            color: 0xf2d6a2,
+            color: 0xfef3ea,
             roughness: 0.45,
           });
           const green = new THREE.MeshStandardMaterial({
-            color: 0x8d9d71,
+            color: 0x000000,
             roughness: 0.5,
           });
           for (let i = 0; i < 9; i++) {
