@@ -31,20 +31,14 @@ h1, h2, h3 {
   letter-spacing: -0.055em;
 }
 .brand-heading h1 > .hero-brand-lockup {
-  display: flex;
-  align-items: center;
-  gap: clamp(18px, 2.4vw, 36px);
-  font-family: "Vavinx", Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: 0;
+  display: block;
+  line-height: 0;
 }
-.hero-brand-lockup .hero-title-flower {
-  width: clamp(64px, 8vw, 112px);
-  height: clamp(84px, 10vw, 144px);
-  flex-shrink: 0;
-  animation: brand-flower-sway 7s ease-in-out infinite;
-  transform-origin: 50% 90%;
+.hero-official-wordmark {
+  display: block;
+  width: clamp(260px, 31vw, 440px);
+  max-width: 82vw;
+  height: auto;
 }
 .brand-heading h1 > .hero-brand-tagline {
   font-size: clamp(25px, 3.3vw, 48px);
@@ -54,9 +48,6 @@ h1, h2, h3 {
   margin-top: 8px;
 }
 @media (max-width: 720px) {
-  .brand-heading h1 > .hero-brand-lockup {
-    font-size: clamp(90px, 22vw, 150px);
-  }
   .brand-heading h1 > .hero-brand-tagline {
     font-size: clamp(21px, 5vw, 34px);
   }

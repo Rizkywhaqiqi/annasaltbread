@@ -60,8 +60,15 @@ export default function Hero() {
       <div className="brand-heading">
         <h1>
           <span className="hero-brand-lockup">
-            <span>ana</span>
-            <BrandFlower className="hero-title-flower" />
+            <Image
+              src="/graphics/ana-wordmark.svg"
+              alt="Ana Salt Bread"
+              width={1330}
+              height={556}
+              className="hero-official-wordmark"
+              unoptimized
+              preload
+            />
           </span>
           <em className="hero-brand-tagline">Crisp. Buttery. Elevated.</em>
         </h1>
