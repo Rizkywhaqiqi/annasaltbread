@@ -41,12 +41,12 @@ export default function Page() {
       <section className="home-editorial" aria-label="Ana Salt Bread">
         <EditorialVideo />
         <div className="home-editorial-copy" data-reveal>
-          <span className="eyebrow home-section-kicker">ROTI HANGAT, UNTUK HARI INI</span>
+          <span className="eyebrow home-section-kicker">ARTISAN SALT BREAD · HANGAT SETIAP HARI</span>
           <h2 id="home-editorial-title" className="home-display-title">
             <span>Selalu ada</span>
             <span className="home-display-accent">yang hangat.</span>
           </h2>
-          <p className="home-editorial-description">Renyah di luar, lembut di dalam. Enak dinikmati saat santai atau di sela kesibukan.</p>
+          <p className="home-editorial-description">Renyah di gigitan pertama, lembut dan terasa buttery. Teman sederhana untuk sela-sela harimu.</p>
           <Link href="/menu" className="button dark">
             Jelajahi menu <Arrow />
           </Link>
@@ -61,7 +61,7 @@ export default function Page() {
             <span className="home-display-accent">Momen kecil.</span>
           </h2>
           <div className="brand-about-copy">
-            <p>Di Ana, kami percaya roti yang enak tak perlu rumit. Tekstur renyah, bagian dalam yang lembut, dan rasa yang pas untuk menemani harimu.</p>
+            <p>Dibuat dengan teliti, dipanggang untuk dinikmati sehari-hari. Dari kulit yang renyah sampai rasa mentega yang kaya, setiap gigitan punya kehangatannya sendiri.</p>
             <Link href="/tentang" className="text-link">
               Cerita Ana <Arrow />
             </Link>
@@ -96,7 +96,7 @@ export default function Page() {
             <span>Ingin makan</span>
             <span className="home-display-accent">salt bread?</span>
           </h2>
-          <p>Pilih rasa yang kamu suka, lalu pesan dengan mudah lewat ESB Order.</p>
+          <p>Lagi ingin yang renyah dan buttery? Pilih rasa favoritmu, lalu pesan lewat ESB Order.</p>
           <a
             href={BRAND.orderUrl}
             target="_blank"
