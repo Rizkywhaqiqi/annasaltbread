@@ -38,7 +38,7 @@ function ProductPhoto({ product, photo = 1, modal = false, catalog = false }) {
   );
 }
 function Products({ items, cutouts = false, catalog = false, categoryAnchors = false }) {
-  const ProductHeading = catalog ? "h3" : "h2";
+  const ProductHeading = catalog ? "h4" : "h2";
   const [selected, setSelected] = useState(null);
   const [activePhoto, setActivePhoto] = useState(1);
   const dialog = useRef(null);
@@ -313,16 +313,30 @@ export function MenuProducts() {
         className="catalog-products catalog-all-menu"
         aria-labelledby="catalog-products-title"
       >
-        <h2
-          id="catalog-products-title"
-          className="catalog-best-sellers-title"
-        >
+        <h2 id="catalog-products-title" className="catalog-best-sellers-title">
           Menu lengkap
         </h2>
         <p className="catalog-best-sellers-note">
-          Semua pilihan salt bread Ana.
+          Semua 14 pilihan salt bread Ana, dikelompokkan seperti katalog resmi.
         </p>
-        <Products items={completeMenu} cutouts catalog categoryAnchors />
+        {MENU_CATEGORIES.map((category) => (
+          <section
+            key={category.id}
+            id={"menu-" + category.id}
+            className="catalog-flavor-section"
+            aria-labelledby={"catalog-flavor-" + category.id}
+          >
+            <div className="catalog-flavor-heading" data-reveal>
+              <span className="eyebrow">FRESHLY BAKED · ANA</span>
+              <h3 id={"catalog-flavor-" + category.id}>{category.label}</h3>
+            </div>
+            <Products
+              items={completeMenu.filter((product) => product.group === category.id)}
+              cutouts
+              catalog
+            />
+          </section>
+        ))}
       </section>
       <p className="catalog-note">
         Harga mengikuti menu Ana yang ditampilkan dan dapat berubah. Cek harga
