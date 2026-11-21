@@ -5,11 +5,12 @@ import BreadCutout from "@/components/bread-cutout";
 import { PRODUCT_PHOTO_IDS, PRODUCT_SECOND_PHOTO_IDS, productPhotoUrl } from "@/lib/product-photos";
 import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
 function ProductPhoto({ product, photo = 1, modal = false }) {
-  const [failed, setFailed] = useState(false);
-  const src = productPhotoUrl(product.id, modal ? 1600 : 960, photo);
+  const [failureCount, setFailureCount] = useState(0);
+  const currentPhoto = photo === 2 && failureCount > 0 ? 1 : photo;
+  const src = productPhotoUrl(product.id, modal ? 1600 : 960, currentPhoto);
   // Each rendered photo is keyed by product and photo number, so failures
   // from a previous image never leak into the next product.
-  if (!src || failed) {
+  if (!src || failureCount >= (photo === 2 ? 2 : 1)) {
     return <BreadCutout index={product.sprite} alt={product.alt} />;
   }
   const extraCrop = modal && photo === 2 && !PRODUCT_SECOND_PHOTO_IDS[product.id];
@@ -19,7 +20,7 @@ function ProductPhoto({ product, photo = 1, modal = false }) {
         ? `product-photo-hd product-photo-hd-modal${extraCrop ? " alternate-crop" : ""}`
         : "product-photo-hd"}
       src={src}
-      srcSet={`${productPhotoUrl(product.id, 640, photo)} 640w, ${productPhotoUrl(product.id, 960, photo)} 960w, ${productPhotoUrl(product.id, 1600, photo)} 1600w`}
+      srcSet={`${productPhotoUrl(product.id, 640, currentPhoto)} 640w, ${productPhotoUrl(product.id, 960, currentPhoto)} 960w, ${productPhotoUrl(product.id, 1600, currentPhoto)} 1600w`}
       sizes={modal ? "(max-width: 720px) 92vw, 48vw" : "(max-width: 720px) 94vw, (max-width: 1100px) 46vw, 31vw"}
       alt={photo === 2 ? `${product.alt} — foto detail` : product.alt}
       width={1000}
@@ -27,7 +28,7 @@ function ProductPhoto({ product, photo = 1, modal = false }) {
       loading={modal ? "eager" : "lazy"}
       decoding="async"
       referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
+      onError={() => setFailureCount((count) => count + 1)}
     />
   );
 }
@@ -74,7 +75,7 @@ function Products({ items, cutouts = false, catalog = false }) {
             <button
               type="button"
               className="product-image"
-              aria-label={"Lihat foto lainnya dari " + p.name}
+              aria-label={(PRODUCT_SECOND_PHOTO_IDS[p.id] ? "Lihat foto lainnya dari " : "Lihat detail foto ") + p.name}
               onClick={(e) => {
                 trigger.current = e.currentTarget;
                 setActivePhoto(2);
@@ -86,7 +87,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                 {BEST_SELLERS.includes(p.id) && (
                   <span className="best-seller-badge">Best seller</span>
                 )}
-                {catalog && <span className="menu-photo-hint" aria-hidden="true">Lihat foto lainnya</span>}
+                {catalog && <span className="menu-photo-hint" aria-hidden="true">{PRODUCT_SECOND_PHOTO_IDS[p.id] ? "Lihat foto lainnya" : "Lihat detail foto"}</span>}
               </span>
             </button>
             <div className="product-caption">
