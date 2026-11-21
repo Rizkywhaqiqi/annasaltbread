@@ -52,12 +52,17 @@ function Products({ items, cutouts = false, catalog = false, categoryAnchors = f
       document.body.style.overflow = before;
     };
   }, [selected]);
+  const swipeStart = useRef(null);
+  function shiftPhoto(direction) {
+    setActivePhoto((current) => current === 1 ? 2 : 1);
+  }
   function close() {
     if (dialog.current?.open) dialog.current.close();
   }
   function closed() {
     setSelected(null);
-    setActivePhoto(2);
+    setActivePhoto(1);
+    swipeStart.current = null;
     if (trigger.current?.isConnected) trigger.current.focus({ preventScroll: true });
   }
   return (
@@ -121,7 +126,7 @@ function Products({ items, cutouts = false, catalog = false, categoryAnchors = f
       <dialog
         ref={dialog}
         className="photo-dialog"
-        aria-label="Foto pilihan Ana"
+        aria-label={selected ? `Detail produk ${selected.name}` : "Detail produk Ana"}
         onClose={closed}
         onClick={(e) => {
           if (e.target !== e.currentTarget) return;
@@ -145,8 +150,42 @@ function Products({ items, cutouts = false, catalog = false, categoryAnchors = f
         </button>
         {selected && (
           <div className="photo-dialog-inner">
-            <div className="photo-dialog-art">
-              <ProductPhoto key={selected.id + "-" + activePhoto} product={selected} photo={activePhoto} modal />
+            <div className="photo-dialog-gallery">
+              <div
+                className="photo-dialog-art"
+                role="group"
+                tabIndex={0}
+                aria-label={`Foto ${activePhoto} dari 2 untuk ${selected.name}. Geser atau gunakan tombol panah untuk foto lain.`}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    shiftPhoto(event.key === "ArrowRight" ? 1 : -1);
+                  }
+                }}
+                onTouchStart={(event) => {
+                  swipeStart.current = {
+                    x: event.touches[0].clientX,
+                    y: event.touches[0].clientY,
+                  };
+                }}
+                onTouchEnd={(event) => {
+                  const start = swipeStart.current;
+                  swipeStart.current = null;
+                  if (!start || !event.changedTouches.length) return;
+                  const dx = event.changedTouches[0].clientX - start.x;
+                  const dy = event.changedTouches[0].clientY - start.y;
+                  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+                    shiftPhoto(dx < 0 ? 1 : -1);
+                  }
+                }}
+              >
+                <ProductPhoto key={selected.id + "-" + activePhoto} product={selected} photo={activePhoto} modal />
+              </div>
+              <div className="photo-gallery-controls" aria-label="Navigasi foto">
+                <button type="button" onClick={() => shiftPhoto(-1)} aria-label="Foto sebelumnya">←</button>
+                <span aria-live="polite">{activePhoto} / 2</span>
+                <button type="button" onClick={() => shiftPhoto(1)} aria-label="Foto berikutnya">→</button>
+              </div>
             </div>
             <div>
               <div className="menu-photo-switcher" role="group" aria-label="Pilih foto produk">
