@@ -56,6 +56,7 @@ export default function Hero() {
     >
       <div className="brand-top">
         <span className="brand-handwritten">We Start Blooming!</span>
+        <span className="hero-edition" aria-hidden="true">THE LITTLE JOY OF EVERY DAY · ANA</span>
       </div>
       <div className="brand-heading">
         <h1>
@@ -71,7 +72,9 @@ export default function Hero() {
             />
           </span>
         </h1>
-        <em className="hero-brand-tagline">Crisp. Buttery. Elevated.</em>
+        <em className="hero-brand-tagline">
+          <span>Crisp.</span> <span>Buttery.</span> <span>Elevated.</span>
+        </em>
       </div>
       <div className="brand-stage">
         <span className="brand-outline" aria-hidden="true">
@@ -147,6 +150,7 @@ export default function Hero() {
         <BrandFlower className="stage-flower" />
       </div>
       <div className="brand-hero-bottom">
+        <p className="hero-bottom-note">A little crunch.<br />A lot of happiness.</p>
         <div className="brand-actions">
           <Link href="/menu" className="button dark">
             Lihat menu <Arrow />
