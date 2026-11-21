@@ -150,7 +150,7 @@ export default function Hero() {
         <BrandFlower className="stage-flower" />
       </div>
       <div className="brand-hero-bottom">
-        <p className="hero-bottom-note">A little crunch.<br />A lot of happiness.</p>
+        <p className="hero-bottom-note">Everyday moments.<br />A little better with Ana.</p>
         <div className="brand-actions">
           <Link href="/menu" className="button dark">
             Lihat menu <Arrow />
