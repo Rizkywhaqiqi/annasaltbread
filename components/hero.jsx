@@ -55,7 +55,7 @@ export default function Hero() {
       onPointerLeave={reset}
     >
       <div className="brand-top">
-        <span className="brand-handwritten">We Blooming Everyday</span>
+        <span className="brand-handwritten">We Bloom Every Day</span>
         <span className="hero-edition" aria-hidden="true">THE LITTLE JOY OF EVERY DAY · ANA</span>
       </div>
       <div className="brand-heading">
