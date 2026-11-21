@@ -12,7 +12,8 @@ export default function Hero() {
   useEffect(() => {
     let scrollFrame = 0;
     function update() {
-      if (!motionAllowed()) return;
+      // Scroll parallax is a desktop enhancement, not work required on touch devices.
+      if (!motionAllowed() || !window.matchMedia("(min-width: 901px) and (pointer: fine)").matches) return;
       cancelAnimationFrame(scrollFrame);
       scrollFrame = requestAnimationFrame(() => {
         if (!scene.current) return;
@@ -96,7 +97,7 @@ export default function Hero() {
                 height={600}
                 sizes="(max-width:720px) 60vw,35vw"
                 alt="Salt bread Ana dengan saus dan daun bawang"
-                loading="eager"
+                loading="lazy"
               />
             </Link>
           </div>
@@ -141,7 +142,7 @@ export default function Hero() {
                 height={600}
                 sizes="(max-width:720px) 55vw,33vw"
                 alt="Salt bread Ana berlapis cokelat"
-                loading="eager"
+                loading="lazy"
               />
             </Link>
           </div>
