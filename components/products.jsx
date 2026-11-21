@@ -13,17 +13,17 @@ function Products({ items, cutouts = false, catalog = false }) {
     if (!selected) return;
     const before = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    dialog.current.showModal();
+    if (dialog.current && !dialog.current.open) dialog.current.showModal();
     return () => {
       document.body.style.overflow = before;
     };
   }, [selected]);
   function close() {
-    dialog.current.close();
+    if (dialog.current?.open) dialog.current.close();
   }
   function closed() {
     setSelected(null);
-    trigger.current?.focus();
+    if (trigger.current?.isConnected) trigger.current.focus({ preventScroll: true });
   }
   return (
     <>
