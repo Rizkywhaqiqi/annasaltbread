@@ -14,7 +14,7 @@ import { ProductGrid } from "@/components/products";
 export const metadata = {
   title: "Ana Salt Bread — Menu dan lokasi outlet",
   description:
-    "Pilihan salt bread, informasi 5 cabang, dan pemesanan Ana Salt Bread.",
+    "Artisan salt bread yang renyah dan buttery untuk menemani harimu. Lihat menu, lokasi takeaway, dan cara pesan Ana Salt Bread.",
   alternates: { canonical: "/" },
 };
 function BrandRibbon() {
@@ -41,13 +41,14 @@ export default function Page() {
       <section className="home-editorial" aria-label="Ana Salt Bread">
         <EditorialVideo />
         <div className="home-editorial-copy" data-reveal>
-          <h2 id="home-editorial-title">
-            Now serving
-            <br />
-            warmth.
+          <span className="eyebrow home-section-kicker">ARTISAN SALT BREAD · UNTUK MOMEN SEHARI-HARI</span>
+          <h2 id="home-editorial-title" className="home-display-title">
+            <span>Selalu ada</span>
+            <span className="home-display-accent">yang hangat.</span>
           </h2>
+          <p className="home-editorial-description">Hari boleh sibuk. Nikmati sejenak roti yang renyah di luar, lembut di dalam, dan kaya rasa mentega.</p>
           <Link href="/menu" className="button dark">
-            Lihat menu
+            Jelajahi menu <Arrow />
           </Link>
           <BrandFlower className="editorial-flower" />
         </div>
@@ -55,14 +56,14 @@ export default function Page() {
       <section className="brand-about section">
         <span className="eyebrow">TENTANG ANA</span>
         <div data-reveal>
-          <h2>
-            Salt bread
-            <br />
+          <h2 className="home-about-title home-display-title">
+            <span>Roti hangat.</span>
+            <span className="home-display-accent">Momen kecil.</span>
           </h2>
           <div className="brand-about-copy">
-           
+            <p>Ana dibuat dengan perhatian pada bahan dan proses panggang. Salt bread yang renyah dan buttery, mudah dibawa pulang untuk menemani momen kecilmu.</p>
             <Link href="/tentang" className="text-link">
-              Tentang Ana <Arrow />
+              Cerita Ana <Arrow />
             </Link>
           </div>
         </div>
@@ -77,7 +78,7 @@ export default function Page() {
         <div className="profile-section-heading" data-reveal>
           <div>
             <span className="eyebrow">MENU</span>
-            <h2>Menu salt bread</h2>
+            <h2 className="home-menu-title home-display-title"><span>Pilih rasa</span><span className="home-display-accent">favoritmu.</span></h2>
           </div>
           <Link href="/menu" className="text-link">
             Lihat semua menu <Arrow />
@@ -90,13 +91,12 @@ export default function Page() {
         aria-labelledby="home-order-title"
       >
         <div className="home-order-copy" data-reveal>
-          <span className="eyebrow">PESAN ONLINE</span>
-          <h2 id="home-order-title">
-            Order
-            <br />
-            online.
+          <span className="eyebrow">TAKEAWAY & DELIVERY</span>
+          <h2 id="home-order-title" className="home-display-title">
+            <span>Ingin makan</span>
+            <span className="home-display-accent">salt bread?</span>
           </h2>
-          <p>Menu dan harga tersedia di ESB Order.</p>
+          <p>Lagi ingin yang renyah dan buttery? Pilih rasa favoritmu untuk dibawa pulang atau dipesan lewat ESB Order.</p>
           <a
             href={BRAND.orderUrl}
             target="_blank"
@@ -126,11 +126,12 @@ export default function Page() {
       <section className="home-outlet" aria-labelledby="home-outlet-title">
         <div className="home-outlet-copy" data-reveal>
           <span className="eyebrow">KUNJUNGI ANA</span>
-          <h2 id="home-outlet-title">
-            Temui Ana di 5
-            <br />
-            cabang.
+          <h2 id="home-outlet-title" className="home-display-title">
+            <span>Mampir ke</span>
+            <span className="home-display-accent">Ana, yuk.</span>
+            <span>Kami tunggu!</span>
           </h2>
+          <p className="home-outlet-intro">Ana hadir di lima cabang. Pilih lokasi terdekat untuk mengambil salt bread favoritmu.</p>
           <div className="home-outlet-address">
             <span className="eyebrow">CABANG</span>
             <address>{OUTLETS.map((o) => o.name).join(" · ")}</address>
