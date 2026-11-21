@@ -1396,3 +1396,76 @@ html[data-motion="off"] .menu-photo-hint {
   .photo-dialog p { line-height: 1.55; margin-bottom: 14px; }
   .menu-photo-switcher { gap: 8px; margin-bottom: 12px; }
 }
+
+
+/* Product gallery: swipeable image area and keyboard/touch-friendly arrows. */
+.photo-dialog-gallery {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fef3ea;
+}
+.photo-dialog-gallery .photo-dialog-art {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+  touch-action: pan-y;
+}
+.photo-dialog-gallery .photo-dialog-art:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: -4px;
+}
+.photo-gallery-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px 16px;
+  color: #000;
+  font: 700 13px/1.25 "Public Sans", Arial, sans-serif;
+}
+.photo-gallery-controls button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #00000045;
+  border-radius: 50%;
+  background: transparent;
+  color: #000;
+  font: 400 22px/1 Arial, sans-serif;
+  transition: background-color .2s, color .2s;
+}
+.photo-gallery-controls button:hover {
+  background: #000;
+  color: #fef3ea;
+}
+.photo-gallery-controls button:focus-visible {
+  outline: 3px solid #f19d90;
+  outline-offset: 3px;
+}
+.photo-gallery-controls span {
+  min-width: 40px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 720px) {
+  .photo-dialog-inner > .photo-dialog-gallery {
+    min-width: 0;
+    padding: 0;
+  }
+  .photo-dialog-gallery .photo-dialog-art {
+    padding: 12px 12px 0;
+  }
+  .photo-dialog-gallery .photo-dialog-art img.product-photo-hd-modal {
+    max-height: min(37dvh, 310px);
+    object-fit: contain;
+  }
+  .photo-gallery-controls { padding: 0 12px 7px; gap: 12px; }
+  .photo-dialog .button { width: 100%; min-height: 48px; justify-content: space-between; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .photo-gallery-controls button { transition: none; }
+}
+html[data-motion="off"] .photo-gallery-controls button { transition: none; }
