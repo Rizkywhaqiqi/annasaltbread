@@ -89,3 +89,92 @@ html[data-motion="off"] .catalog-intro > .brand-flower {
     rotate: none;
   }
 }
+
+
+/* Consistent editorial CTA buttons, inspired by the provided pill reference.
+   Only .button calls to action change; the navbar, filters, dialogs and other
+   functional controls retain their own layouts. */
+.button {
+  min-height: 48px;
+  gap: clamp(18px, 2vw, 32px);
+  padding: 12px 24px;
+  border: 1px solid #fef3ea;
+  border-radius: 999px;
+  background-color: #000;
+  color: #fef3ea;
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background-color 260ms ease,
+    color 260ms ease,
+    border-color 260ms ease,
+    translate 300ms ease;
+}
+/* The reference uses a straight right arrow rather than the diagonal
+   Arrow icon currently present in some CTA links. */
+.button .arrow-icon {
+  display: none;
+}
+.button::after {
+  content: "→";
+  display: inline-block;
+  flex: none;
+  font: 400 20px/1 Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: transform 250ms cubic-bezier(.2,.8,.2,1);
+}
+.button.pink-button,
+.home-order-copy .button.pink-button {
+  background-color: #f19d90;
+  color: #000;
+  border-color: #fef3ea;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover,
+  .button.dark:hover {
+    translate: 0 -2px;
+    background-color: #f19d90;
+    color: #000;
+    border-color: #000;
+  }
+  .button.pink-button:hover,
+  .home-order-copy .button.pink-button:hover {
+    background-color: #fef3ea;
+    color: #000;
+    border-color: #fef3ea;
+  }
+  .button:hover::after { transform: translateX(4px); }
+}
+.button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+@media (max-width: 720px) {
+  .button {
+    min-height: 44px;
+    padding: 12px 19px;
+    gap: 18px;
+    font-size: 11px;
+  }
+  .button::after { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .button,
+  html:not([data-motion="on"]) .button::after {
+    transition: none;
+    translate: none;
+    transform: none;
+  }
+}
+html[data-motion="off"] .button,
+html[data-motion="off"] .button::after {
+  transition: none;
+  translate: none;
+  transform: none;
+}
