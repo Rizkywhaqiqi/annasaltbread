@@ -41,12 +41,12 @@ export default function Page() {
       <section className="home-editorial" aria-label="Ana Salt Bread">
         <EditorialVideo />
         <div className="home-editorial-copy" data-reveal>
-          <span className="eyebrow home-section-kicker">FRESH FROM ANA · BAKED WITH LOVE</span>
+          <span className="eyebrow home-section-kicker">ROTI HANGAT, UNTUK HARI INI</span>
           <h2 id="home-editorial-title" className="home-display-title">
-            <span>Now serving</span>
-            <span className="home-display-accent">warmth.</span>
+            <span>Selalu ada</span>
+            <span className="home-display-accent">yang hangat.</span>
           </h2>
-          <p className="home-editorial-description">Renyah di luar, lembut di dalam. Satu gigitan untuk hari yang lebih hangat.</p>
+          <p className="home-editorial-description">Renyah di luar, lembut di dalam. Enak dinikmati saat santai atau di sela kesibukan.</p>
           <Link href="/menu" className="button dark">
             Jelajahi menu <Arrow />
           </Link>
@@ -57,11 +57,11 @@ export default function Page() {
         <span className="eyebrow">TENTANG ANA</span>
         <div data-reveal>
           <h2 className="home-about-title home-display-title">
-            <span>Small bread.</span>
-            <span className="home-display-accent">Big feelings.</span>
+            <span>Roti hangat.</span>
+            <span className="home-display-accent">Momen kecil.</span>
           </h2>
           <div className="brand-about-copy">
-            <p>Di balik setiap lapisan buttery dan kulit yang crisp, ada alasan kecil untuk tersenyum. Inilah cerita hangat dari Ana Salt Bread.</p>
+            <p>Di Ana, kami percaya roti yang enak tak perlu rumit. Tekstur renyah, bagian dalam yang lembut, dan rasa yang pas untuk menemani harimu.</p>
             <Link href="/tentang" className="text-link">
               Cerita Ana <Arrow />
             </Link>
@@ -78,7 +78,7 @@ export default function Page() {
         <div className="profile-section-heading" data-reveal>
           <div>
             <span className="eyebrow">MENU</span>
-            <h2 className="home-menu-title home-display-title"><span>Find your</span><span className="home-display-accent">favorite.</span></h2>
+            <h2 className="home-menu-title home-display-title"><span>Pilih rasa</span><span className="home-display-accent">favoritmu.</span></h2>
           </div>
           <Link href="/menu" className="text-link">
             Lihat semua menu <Arrow />
@@ -93,10 +93,10 @@ export default function Page() {
         <div className="home-order-copy" data-reveal>
           <span className="eyebrow">PESAN ONLINE</span>
           <h2 id="home-order-title" className="home-display-title">
-            <span>Good bread.</span>
-            <span className="home-display-accent">Good mood.</span>
+            <span>Ingin makan</span>
+            <span className="home-display-accent">salt bread?</span>
           </h2>
-          <p>Craving something buttery? Pilih favoritmu dan pesan langsung melalui ESB Order.</p>
+          <p>Pilih rasa yang kamu suka, lalu pesan dengan mudah lewat ESB Order.</p>
           <a
             href={BRAND.orderUrl}
             target="_blank"
@@ -127,11 +127,11 @@ export default function Page() {
         <div className="home-outlet-copy" data-reveal>
           <span className="eyebrow">KUNJUNGI ANA</span>
           <h2 id="home-outlet-title" className="home-display-title">
-            <span>Come for</span>
-            <span className="home-display-accent">the bread.</span>
-            <span>Stay for joy.</span>
+            <span>Mampir ke</span>
+            <span className="home-display-accent">Ana, yuk.</span>
+            <span>Kami tunggu!</span>
           </h2>
-          <p className="home-outlet-intro">Ada Ana di lima cabang. Pilih yang paling dekat dan nikmati salt bread favoritmu.</p>
+          <p className="home-outlet-intro">Ana ada di lima cabang. Cari yang paling dekat dan mampir kapan saja.</p>
           <div className="home-outlet-address">
             <span className="eyebrow">CABANG</span>
             <address>{OUTLETS.map((o) => o.name).join(" · ")}</address>
