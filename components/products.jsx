@@ -1,40 +1,29 @@
 "use client";
-import Image from "next/image";
 import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import BreadCutout from "@/components/bread-cutout";
-import { PRODUCT_PHOTO_IDS, productPhotoUrl } from "@/lib/product-photos";
+import { PRODUCT_PHOTO_IDS, PRODUCT_SECOND_PHOTO_IDS, productPhotoUrl } from "@/lib/product-photos";
 import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
-function ProductPhoto({ product, modal = false, cutouts = true, transparent = false }) {
-  // Transparent cutouts in menu cards; keep genuine HD photos in the detail dialog.
-  if (transparent && !modal) {
+function ProductPhoto({ product, photo = 1, modal = false }) {
+  const [failed, setFailed] = useState(false);
+  const src = productPhotoUrl(product.id, modal ? 1600 : 960, photo);
+  // Each rendered photo is keyed by product and photo number, so failures
+  // from a previous image never leak into the next product.
+  if (!src || failed) {
     return <BreadCutout index={product.sprite} alt={product.alt} />;
   }
-  const [failed, setFailed] = useState(false);
-  const url = productPhotoUrl(product.id);
-  if (!url || failed) {
-    return cutouts ? (
-      <BreadCutout index={product.sprite} alt={product.alt} />
-    ) : (
-      <Image
-        className="product-front"
-        src={"/graphics/" + product.id + "-cutout.png"}
-        alt={product.alt}
-        width={900}
-        height={600}
-        sizes="(max-width: 720px) 90vw, 30vw"
-      />
-    );
-  }
+  const extraCrop = modal && photo === 2 && !PRODUCT_SECOND_PHOTO_IDS[product.id];
   return (
     <img
-      className={modal ? "product-photo-hd product-photo-hd-modal" : "product-photo-hd"}
-      src={url}
-      srcSet={`${productPhotoUrl(product.id, 640)} 640w, ${productPhotoUrl(product.id, 960)} 960w, ${productPhotoUrl(product.id, 1600)} 1600w`}
-      sizes={modal ? "(max-width: 720px) 90vw, 45vw" : "(max-width: 720px) 88vw, 30vw"}
-      alt={product.alt}
-      width={900}
-      height={900}
+      className={modal
+        ? `product-photo-hd product-photo-hd-modal${extraCrop ? " alternate-crop" : ""}`
+        : "product-photo-hd"}
+      src={src}
+      srcSet={`${productPhotoUrl(product.id, 640, photo)} 640w, ${productPhotoUrl(product.id, 960, photo)} 960w, ${productPhotoUrl(product.id, 1600, photo)} 1600w`}
+      sizes={modal ? "(max-width: 720px) 92vw, 48vw" : "(max-width: 720px) 94vw, (max-width: 1100px) 46vw, 31vw"}
+      alt={photo === 2 ? `${product.alt} — foto detail` : product.alt}
+      width={1000}
+      height={1000}
       loading={modal ? "eager" : "lazy"}
       decoding="async"
       referrerPolicy="no-referrer"
@@ -45,6 +34,7 @@ function ProductPhoto({ product, modal = false, cutouts = true, transparent = fa
 function Products({ items, cutouts = false, catalog = false }) {
   const ProductHeading = catalog ? "h3" : "h2";
   const [selected, setSelected] = useState(null);
+  const [activePhoto, setActivePhoto] = useState(2);
   const dialog = useRef(null);
   const trigger = useRef(null);
   useEffect(() => {
@@ -61,6 +51,7 @@ function Products({ items, cutouts = false, catalog = false }) {
   }
   function closed() {
     setSelected(null);
+    setActivePhoto(2);
     if (trigger.current?.isConnected) trigger.current.focus({ preventScroll: true });
   }
   return (
@@ -75,7 +66,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                 ? "menu-" + p.group
                 : undefined
             }
-            className={cutouts ? "product-card cutout-product" : "product-card"}
+            className={catalog ? "product-card photo-menu-card" : cutouts ? "product-card cutout-product" : "product-card"}
             data-hd-photo={Boolean(PRODUCT_PHOTO_IDS[p.id])}
             data-category={p.category}
             data-best-seller={BEST_SELLERS.includes(p.id) || undefined}
@@ -83,23 +74,19 @@ function Products({ items, cutouts = false, catalog = false }) {
             <button
               type="button"
               className="product-image"
-              aria-label={"Lihat foto " + p.name}
+              aria-label={"Lihat foto lainnya dari " + p.name}
               onClick={(e) => {
                 trigger.current = e.currentTarget;
+                setActivePhoto(2);
                 setSelected(p);
               }}
             >
-              <span
-                className="bread-scroll-layer"
-                data-scroll-bread
-                data-bread-side={
-                  p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
-                }
-              >
-                <ProductPhoto product={p} cutouts={cutouts} transparent={catalog} />
+              <span className="bread-scroll-layer">
+                <ProductPhoto key={p.id} product={p} />
                 {BEST_SELLERS.includes(p.id) && (
                   <span className="best-seller-badge">Best seller</span>
                 )}
+                {catalog && <span className="menu-photo-hint" aria-hidden="true">Lihat foto lainnya</span>}
               </span>
             </button>
             <div className="product-caption">
@@ -143,9 +130,15 @@ function Products({ items, cutouts = false, catalog = false }) {
         {selected && (
           <div className="photo-dialog-inner">
             <div className="photo-dialog-art">
-              <ProductPhoto product={selected} modal />
+              <ProductPhoto key={selected.id + "-" + activePhoto} product={selected} photo={activePhoto} modal />
             </div>
             <div>
+              <div className="menu-photo-switcher" role="group" aria-label="Pilih foto produk">
+                <button type="button" aria-pressed={activePhoto === 1} onClick={() => setActivePhoto(1)}>Foto utama</button>
+                <button type="button" aria-pressed={activePhoto === 2} onClick={() => setActivePhoto(2)}>
+                  {PRODUCT_SECOND_PHOTO_IDS[selected.id] ? "Foto lainnya" : "Detail foto"}
+                </button>
+              </div>
               <span className="tiny">
                 {BEST_SELLERS.includes(selected.id)
                   ? "BEST SELLER · MENU ANA"
