@@ -56,6 +56,24 @@ export default function MotionStudio() {
                   clearProps: "opacity,transform",
                 },
               );
+              // Stagger only the homepage's editorial type after its section
+              // enters view. The original wordmark is never split or replaced.
+              const typeLines = el.querySelectorAll(".home-display-title > span");
+              if (typeLines.length) {
+                gsap.fromTo(
+                  typeLines,
+                  { opacity: 0, y: 18 },
+                  {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.13,
+                    delay: 0.12,
+                    ease: "power3.out",
+                    clearProps: "opacity,transform",
+                  },
+                );
+              }
             });
           };
           observer = new IntersectionObserver(
