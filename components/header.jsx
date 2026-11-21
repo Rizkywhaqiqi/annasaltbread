@@ -296,12 +296,10 @@ export default function Header() {
           setOpen(false);
           if (restoreFocus.current) {
             setCompact(false);
-            const focusTarget = compact
-              ? header.current?.querySelector(".compact-brand")
-              : matchMedia("(max-width:720px)").matches
-                ? toggle.current
-                : header.current?.querySelector(".wordmark");
-            focusTarget?.focus({ preventScroll: true });
+            // The compact trigger becomes inert when the header expands.
+            // Return focus to the persistent navigation toggle instead.
+            const focusTarget = toggle.current ?? header.current?.querySelector(".wordmark");
+            if (focusTarget?.isConnected) focusTarget.focus({ preventScroll: true });
           }
         }}
       >
