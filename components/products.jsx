@@ -3,7 +3,41 @@ import Image from "next/image";
 import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import BreadCutout from "@/components/bread-cutout";
+import { PRODUCT_PHOTO_IDS, productPhotoUrl } from "@/lib/product-photos";
 import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
+function ProductPhoto({ product, modal = false, cutouts = true }) {
+  const [failed, setFailed] = useState(false);
+  const url = productPhotoUrl(product.id);
+  if (!url || failed) {
+    return cutouts ? (
+      <BreadCutout index={product.sprite} alt={product.alt} />
+    ) : (
+      <Image
+        className="product-front"
+        src={"/graphics/" + product.id + "-cutout.png"}
+        alt={product.alt}
+        width={900}
+        height={600}
+        sizes="(max-width: 720px) 90vw, 30vw"
+      />
+    );
+  }
+  return (
+    <img
+      className={modal ? "product-photo-hd product-photo-hd-modal" : "product-photo-hd"}
+      src={url}
+      srcSet={`${productPhotoUrl(product.id, 640)} 640w, ${productPhotoUrl(product.id, 960)} 960w, ${productPhotoUrl(product.id, 1600)} 1600w`}
+      sizes={modal ? "(max-width: 720px) 90vw, 45vw" : "(max-width: 720px) 88vw, 30vw"}
+      alt={product.alt}
+      width={900}
+      height={900}
+      loading={modal ? "eager" : "lazy"}
+      decoding="async"
+      referrerPolicy="no-referrer"
+      onError={() => setFailed(true)}
+    />
+  );
+}
 function Products({ items, cutouts = false, catalog = false }) {
   const ProductHeading = catalog ? "h3" : "h2";
   const [selected, setSelected] = useState(null);
@@ -38,6 +72,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                 : undefined
             }
             className={cutouts ? "product-card cutout-product" : "product-card"}
+            data-hd-photo={Boolean(PRODUCT_PHOTO_IDS[p.id])}
             data-category={p.category}
             data-best-seller={BEST_SELLERS.includes(p.id) || undefined}
           >
@@ -57,18 +92,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                   p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
                 }
               >
-                {cutouts ? (
-                  <BreadCutout index={p.sprite} alt={p.alt} />
-                ) : (
-                  <Image
-                    className="product-front"
-                    src={"/graphics/" + p.id + "-cutout.png"}
-                    alt={p.alt}
-                    width={900}
-                    height={600}
-                    sizes="(max-width: 720px) 90vw, 30vw"
-                  />
-                )}
+                <ProductPhoto product={p} cutouts={cutouts} />
                 {BEST_SELLERS.includes(p.id) && (
                   <span className="best-seller-badge">Best seller</span>
                 )}
@@ -115,7 +139,7 @@ function Products({ items, cutouts = false, catalog = false }) {
         {selected && (
           <div className="photo-dialog-inner">
             <div className="photo-dialog-art">
-              <BreadCutout index={selected.sprite} alt={selected.alt} />
+              <ProductPhoto product={selected} modal />
             </div>
             <div>
               <span className="tiny">
