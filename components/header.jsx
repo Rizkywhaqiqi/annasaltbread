@@ -128,23 +128,23 @@ export default function Header() {
       collect();
       update();
     };
-    const ro = new ResizeObserver(update);
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
     const main = document.querySelector("#main");
-    if (main) ro.observe(main);
+    if (main) ro?.observe(main);
     window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", resize);
-      ro.disconnect();
+      ro?.disconnect();
     };
   }, [path]);
   function openMenu() {
-    if (dialog.current.open) return;
+    if (!dialog.current || dialog.current.open) return;
     animation.current?.kill();
     restoreFocus.current = true;
     setCompact(false);
-    dialog.current.showModal();
+    if (!dialog.current.open) dialog.current.showModal();
     setOpen(true);
     const panel = dialog.current.querySelector(".nav-overlay-panel");
     const links = dialog.current.querySelectorAll(".nav-overlay-links a");
