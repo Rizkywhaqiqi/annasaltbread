@@ -1,5 +1,5 @@
-import { MenuProducts } from "@/components/products";
-import { BRAND, MENU_CATEGORIES } from "@/lib/content";
+import { MenuProducts, MenuCategoryNav } from "@/components/products";
+import { BRAND } from "@/lib/content";
 import {
   BRAND_KEYWORDS,
   BRAND_SUPPORTING_LINE,
@@ -23,14 +23,7 @@ export default function Page() {
         <p className="catalog-tagline">
           <strong>{BRAND_TAGLINE}</strong> {BRAND_SUPPORTING_LINE}
         </p>
-        <nav aria-label="Kategori menu">
-          {MENU_CATEGORIES.map((category) => (
-            <a href={"#menu-" + category.id} key={category.id}>
-              {category.label}
-            </a>
-          ))}
-          <a href="#menu-minuman">Minuman</a>
-        </nav>
+        <MenuCategoryNav />  </nav>
       </header>
       <MenuProducts />
       <DrinksMenu />
