@@ -34,12 +34,18 @@ export default function MotionStudio() {
       observer,
       layoutObserver,
       refreshFrame = 0;
-    const listeners = [];
-    Promise.all([import("gsap"), import("gsap/ScrollTrigger")])
+    const useScrollParallax = window.matchMedia(
+      "(min-width: 901px) and (hover: hover) and (pointer: fine)",
+    ).matches;
+    // Only fetch ScrollTrigger on desktop devices that actually use parallax.
+    Promise.all([
+      import("gsap"),
+      useScrollParallax ? import("gsap/ScrollTrigger") : Promise.resolve(null),
+    ])
       .then(([m, p]) => {
         if (cancelled) return;
         const gsap = m.gsap;
-        gsap.registerPlugin(p.ScrollTrigger);
+        if (p) gsap.registerPlugin(p.ScrollTrigger);
         ctx = gsap.context(() => {
           const reveal = (el) => {
             if (seen.current.has(el)) return;
@@ -92,49 +98,33 @@ export default function MotionStudio() {
               "[data-reveal],.page-banner h1,.catalog-intro h1,.catalog-intro>p,.catalog-category>h2,.product-card,.story-grid>div,.location-grid>div,.contact-options>a,.faq details,.footer-top>div",
             )
             .forEach((el) => observer.observe(el));
-          document
-            .querySelectorAll(
-              ".profile-location figure,.story-grid figure,.location-grid figure,.contact-hero figure",
-            )
-            .forEach((el) => {
-              gsap.fromTo(
-                el,
-                { y: 18 },
-                {
-                  y: -18,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: el,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1,
+          // Scroll-scrub parallax is decorative: never run on small/touch screens.
+          // Pure CSS handles CTA hover so we do not create GSAP tweens per pointer event.
+          if (useScrollParallax) {
+            document
+              .querySelectorAll(".profile-location figure,.story-grid figure,.location-grid figure,.contact-hero figure")
+              .forEach((el) => {
+                gsap.fromTo(
+                  el,
+                  { y: 12 },
+                  {
+                    y: -12,
+                    ease: "none",
+                    scrollTrigger: {
+                      trigger: el,
+                      start: "top bottom",
+                      end: "bottom top",
+                      scrub: 1,
+                    },
                   },
-                },
-              );
-            });
-          // Product imagery stays in its card: no off-screen fly-in or scroll scrub.
-          document
-            .querySelectorAll(".button,.header-order,.contact-options>a")
-            .forEach((el) => {
-              const enter = () =>
-                ctx.add(() =>
-                  gsap.to(el, { y: -3, duration: 0.3, ease: "power2.out" }),
                 );
-              const leave = () =>
-                ctx.add(() =>
-                  gsap.to(el, { y: 0, duration: 0.35, ease: "power2.out" }),
-                );
-              el.addEventListener("pointerenter", enter);
-              el.addEventListener("pointerleave", leave);
-              listeners.push(() => {
-                el.removeEventListener("pointerenter", enter);
-                el.removeEventListener("pointerleave", leave);
               });
-            });
+          }
         });
         // Desktop fonts and responsive columns can settle after hydration.
         // Re-measure triggers after layout changes without requiring a window resize.
         const refresh = () => {
+          if (!p) return;
           cancelAnimationFrame(refreshFrame);
           refreshFrame = requestAnimationFrame(() => {
             if (!cancelled) p.ScrollTrigger.refresh();
@@ -163,7 +153,6 @@ export default function MotionStudio() {
       observer?.disconnect();
       layoutObserver?.disconnect();
       cancelAnimationFrame(refreshFrame);
-      listeners.forEach((fn) => fn());
       ctx?.revert();
     };
   }, [path, paused]);
