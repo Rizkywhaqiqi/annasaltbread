@@ -179,7 +179,7 @@
 .catalog-grid .product-caption {
   padding: 20px 0 0;
 }
-.catalog-grid .product-caption h3 {
+.catalog-grid .product-caption h4 {
   font-family: "Public Sans", Arial, sans-serif;
   font-size: clamp(24px, 2.1vw, 30px);
   font-weight: 700;
@@ -299,7 +299,7 @@
   .catalog-grid .product-caption {
     padding-top: 18px;
   }
-  .catalog-grid .product-caption h3 {
+  .catalog-grid .product-caption h4 {
     font-size: 26px;
   }
   .catalog-grid .product-caption p {
@@ -394,7 +394,7 @@
 .catalog-grid .product-caption .tiny {
   margin-top: 18px;
 }
-.catalog-grid .product-caption h3 {
+.catalog-grid .product-caption h4 {
   font-size: clamp(22px, 2.2vw, 30px);
   line-height: 1.15;
   margin-top: 4px;
@@ -420,84 +420,190 @@
   }
 }
 
+
+/* Official Ana flavour groupings, keeping the site's editorial card language. */
+.catalog-flavor-section {
+  padding-top: 48px;
+  scroll-margin-top: 140px;
+}
+.catalog-flavor-section + .catalog-flavor-section {
+  margin-top: 22px;
+  border-top: 1px solid #0000001c;
+}
+.catalog-flavor-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 30px;
+  margin-bottom: 22px;
+}
+.catalog-flavor-heading .eyebrow { flex-basis: 100%; color: #975f5b; }
+.catalog-flavor-heading h3 {
+  margin: 0;
+  font: 700 clamp(31px, 3.9vw, 56px)/1.1 "Public Sans", Arial, sans-serif;
+  letter-spacing: -.035em;
+  color: #000;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.catalog-flavor-section .catalog-grid { margin-top: 0; }
+.catalog-grid .product-caption h4 {
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #000;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  margin-top: 4px;
+}
+
+/* Drinks become the same photograph-first card experience as salt bread. */
 .drinks-menu {
-  padding: 72px 6% 84px;
+  padding: 74px 6% 84px;
   background: #fef3ea;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 110px;
 }
 .drinks-heading,
-.drinks-layout {
-  max-width: 1140px;
-  margin-inline: auto;
-}
+.drinks-catalog { max-width: 1240px; margin-inline: auto; }
 .drinks-heading h2 {
-  font:
-    700 clamp(42px, 5vw, 68px)/1.1 "Public Sans",
-    Arial,
-    sans-serif;
+  font: 700 clamp(42px, 5vw, 68px)/1.1 "Public Sans", Arial, sans-serif;
   text-transform: uppercase;
-  margin: 16px 0 40px;
-  color: #000000;
+  margin: 14px 0 18px;
+  color: #000;
 }
-.drinks-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
-  gap: 8%;
-  align-items: start;
+.drinks-heading > p {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 16px;
+  margin-bottom: 34px;
 }
-.drinks-poster {
-  display: block;
+.drinks-series {
+  scroll-margin-top: 110px;
+  padding-top: 22px;
+}
+.drinks-series + .drinks-series {
+  margin-top: 60px;
+  border-top: 1px solid #00000024;
+  padding-top: 42px;
+}
+.catalog-drink-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: baseline;
+  margin-bottom: 25px;
+}
+.catalog-drink-heading .eyebrow { flex-basis: 100%; }
+.catalog-drink-heading h3 {
+  font: 700 clamp(30px, 3.9vw, 52px)/1.1 "Public Sans", Arial, sans-serif;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+.drink-series-count { color: #6e5a54; font-size: 13px; }
+.drink-product-grid {
+  margin-top: 0;
+  gap: 42px 28px;
+  max-width: 1240px;
+}
+.drink-product-grid .drink-product-card {
+  min-width: 0;
+  width: auto;
+  max-width: none;
+  background: transparent;
+}
+.drink-product-grid .photo-menu-card .product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1.04;
+  padding: 0;
+  border-radius: 20px;
   overflow: hidden;
+  background: #ead1c5;
 }
-.drinks-poster img {
+.drink-product-grid .photo-menu-card .bread-scroll-layer {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.drink-product-grid .drink-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .5s cubic-bezier(.2,.75,.25,1);
+}
+@media (hover: hover) {
+  .drink-product-grid .product-image:hover .drink-photo {
+    transform: scale(1.04);
+  }
+}
+.drink-product-grid .product-caption h4 {
+  font: 700 clamp(21px,2.1vw,29px)/1.17 "Public Sans",Arial,sans-serif;
+  text-transform: uppercase;
+  color: #000;
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+.drink-photo-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  padding: 20px;
+  background: #f19d90;
+  text-align: center;
+  font: 700 24px/1.2 "Public Sans", Arial, sans-serif;
+}
+.drinks-note {
+  max-width: 1240px;
+  margin: 50px auto 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.drinks-official-poster-link { display: table; margin: 18px auto 0; }
+.drink-photo-dialog .photo-dialog-gallery .photo-dialog-art {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: 20px;
+}
+.drink-photo-dialog .photo-dialog-art .drink-photo {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 66dvh;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 16px;
 }
-.drinks-series + .drinks-series {
-  margin-top: 40px;
-}
-.drinks-series h3 {
-  font:
-    700 30px/1.2 "Public Sans",
-    Arial,
-    sans-serif;
-  margin: 0 0 18px;
-}
-.drink-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  border-bottom: 1px solid #00000024;
-  padding: 14px 0;
-  font-size: 15px;
-  line-height: 1.5;
-}
-.drink-row dt {
-  min-width: 0;
-}
-.drink-row dd {
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-  color: #000000;
+.drink-photo-dialog .drink-detail-copy > p:not(.product-price) {
+  line-height: 1.65;
 }
 @media (max-width: 720px) {
-  .drinks-menu {
-    padding: 48px 6%;
-  }
-  .drinks-layout {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-  .drinks-poster {
-    max-width: 420px;
-    margin: auto;
-  }
-  .drink-row {
-    font-size: 14px;
-  }
+  .drinks-menu { padding: 50px 6%; }
+  .drinks-series + .drinks-series { margin-top: 40px; padding-top: 32px; }
+  .catalog-drink-heading { margin-bottom: 16px; }
+  .drink-product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px 16px; }
+  .drink-product-grid .product-caption h4 { font-size: clamp(19px,4.8vw,24px); }
+  .catalog-flavor-section { padding-top: 35px; scroll-margin-top: 112px; }
+  .catalog-flavor-section + .catalog-flavor-section { margin-top: 14px; }
+  .catalog-flavor-heading h3 { font-size: clamp(28px,8vw,42px); }
+  .drink-photo-dialog .photo-dialog-art .drink-photo { max-height: min(38dvh, 330px); }
+  .drink-photo-dialog .drink-detail-copy { padding: 18px 18px 25px; }
 }
+@media (max-width: 390px) {
+  .drink-product-grid { grid-template-columns: minmax(0,1fr); }
+  .drink-product-grid .product-caption h4 { font-size: 25px; }
+  .catalog-drink-heading h3 { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .drink-product-grid .drink-photo { transition: none; transform: none; }
+}
+html[data-motion="off"] .drink-product-grid .drink-photo { transition: none; transform: none; }
 
 /* Small-phone catalogue: one comfortable column without changing tablet/desktop. */
 @media (max-width: 390px) {
@@ -519,7 +625,7 @@
     width: 100%;
     max-width: none;
   }
-  .catalog-grid .product-caption h3 {
+  .catalog-grid .product-caption h4 {
     font-size: clamp(23px, 6.3vw, 27px);
     overflow-wrap: anywhere;
   }
