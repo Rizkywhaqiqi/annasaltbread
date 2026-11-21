@@ -7,6 +7,7 @@ import InstagramGallery from "@/components/instagram-gallery";
 import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/hero";
+import EditorialVideo from "@/components/editorial-video";
 import BrandFlower from "@/components/brand-flower";
 import { Arrow } from "@/components/icons";
 import { ProductGrid } from "@/components/products";
@@ -38,18 +39,7 @@ export default function Page() {
       <Hero />
       <BrandRibbon />
       <section className="home-editorial" aria-label="Ana Salt Bread">
-        <div className="home-editorial-video-wrap" aria-hidden="true">
-          <video
-            className="home-editorial-video"
-            src="/video/ana.webm"
-            poster="/images/ana-assortment.webp"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        </div>
+        <EditorialVideo />
         <div className="home-editorial-copy" data-reveal>
           <h2 id="home-editorial-title">
             Now serving

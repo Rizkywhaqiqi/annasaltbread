@@ -128,23 +128,23 @@ export default function Header() {
       collect();
       update();
     };
-    const ro = new ResizeObserver(update);
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => { collect(); update(); }) : null;
     const main = document.querySelector("#main");
-    if (main) ro.observe(main);
+    if (main) ro?.observe(main);
     window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", resize);
-      ro.disconnect();
+      ro?.disconnect();
     };
   }, [path]);
   function openMenu() {
-    if (dialog.current.open) return;
+    if (!dialog.current || dialog.current.open) return;
     animation.current?.kill();
     restoreFocus.current = true;
     setCompact(false);
-    dialog.current.showModal();
+    if (!dialog.current.open) dialog.current.showModal();
     setOpen(true);
     const panel = dialog.current.querySelector(".nav-overlay-panel");
     const links = dialog.current.querySelectorAll(".nav-overlay-links a");
@@ -296,10 +296,10 @@ export default function Header() {
           setOpen(false);
           if (restoreFocus.current) {
             setCompact(false);
-            const focusTarget = matchMedia("(max-width:720px)").matches
-              ? toggle.current
-              : header.current?.querySelector(".wordmark");
-            focusTarget?.focus({ preventScroll: true });
+            // The compact trigger becomes inert when the header expands.
+            // Return focus to the persistent navigation toggle instead.
+            const focusTarget = toggle.current ?? header.current?.querySelector(".wordmark");
+            if (focusTarget?.isConnected) focusTarget.focus({ preventScroll: true });
           }
         }}
       >

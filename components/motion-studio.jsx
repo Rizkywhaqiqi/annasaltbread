@@ -162,22 +162,24 @@ export default function MotionStudio() {
             if (!cancelled) p.ScrollTrigger.refresh();
           });
         };
-        document.fonts.ready.then(refresh);
+        document.fonts?.ready.then(() => { if (!cancelled) refresh(); });
         const main = document.querySelector("#main");
         if (main) {
           let previous = "";
-          layoutObserver = new ResizeObserver(([entry]) => {
+          layoutObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(([entry]) => {
             const next = `${Math.round(entry.contentRect.width)}:${Math.round(entry.contentRect.height)}`;
             if (next !== previous) {
               previous = next;
               refresh();
             }
-          });
-          layoutObserver.observe(main);
+          }) : null;
+          layoutObserver?.observe(main);
         }
         refresh();
       })
-      .catch(() => {});
+      .catch((error) => {
+        if (process.env.NODE_ENV !== "production") console.error("Motion initialization failed", error);
+      });
     return () => {
       cancelled = true;
       observer?.disconnect();
