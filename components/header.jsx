@@ -220,6 +220,11 @@ export default function Header() {
   );
   return (
     <>
+      <div className="ana-announcement" role="note" aria-label="Pesan Ana Salt Bread">
+        <span className="ana-announcement-flower" aria-hidden="true">✿</span>
+        <span className="ana-announcement-text">We Bloom Every Day!</span>
+        <span className="ana-announcement-flower" aria-hidden="true">✿</span>
+      </div>
       <div className="nav-shell">
         <header
           ref={header}
