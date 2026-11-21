@@ -752,3 +752,9 @@ html[data-motion="off"] .drink-product-grid .drink-photo { transition: none; tra
   html:not([data-motion="on"]) .catalog-detail-link span { transition: none; }
 }
 html[data-motion="off"] .catalog-detail-link span { transition: none; }
+
+/* Ana brand coral applies to product names only, not section titles,
+   prices, descriptions, or navigation. */
+.ana-catalog .catalog-grid .product-caption h4 {
+  color: #F19D90;
+}
