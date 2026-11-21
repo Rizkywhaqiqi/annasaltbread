@@ -679,3 +679,74 @@
     column-gap: 30px;
   }
 }
+
+
+/* Ana brand announcement — premium, unobtrusive and distinct from navigation.
+   In normal document flow, it scrolls away while the existing navbar remains sticky. */
+.ana-announcement {
+  position: relative;
+  z-index: 31;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 33px;
+  padding: 7px 16px 6px;
+  background: #fef3ea;
+  color: #000;
+  border-top: 3px solid #f19d90;
+  border-bottom: 1px solid #00000018;
+  text-align: center;
+  overflow: hidden;
+}
+.ana-announcement-text {
+  display: inline-block;
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: clamp(10px, 0.92vw, 12px);
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: .085em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ana-announcement-flower {
+  font-size: 15px;
+  line-height: 1;
+  color: #e57883;
+  user-select: none;
+  flex: none;
+}
+@keyframes ana-announcement-appear {
+  from { opacity: 0; transform: translateY(-7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ana-announcement-sway {
+  0%, 100% { transform: rotate(-13deg) scale(.96); }
+  50% { transform: rotate(13deg) scale(1.04); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-motion="off"]) .ana-announcement-text {
+    animation: ana-announcement-appear .9s .12s both cubic-bezier(.22,1,.36,1);
+  }
+  html:not([data-motion="off"]) .ana-announcement-flower {
+    animation: ana-announcement-sway 6s ease-in-out infinite;
+  }
+  html:not([data-motion="off"]) .ana-announcement-flower:last-child {
+    animation-delay: -3s;
+  }
+}
+html[data-motion="off"] .ana-announcement-text,
+html[data-motion="off"] .ana-announcement-flower {
+  animation: none !important;
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 720px) {
+  .ana-announcement {
+    min-height: 30px;
+    gap: 8px;
+    padding: 6px 10px;
+  }
+  .ana-announcement-text { font-size: 10px; letter-spacing: .065em; }
+  .ana-announcement-flower { font-size: 12px; }
+}
