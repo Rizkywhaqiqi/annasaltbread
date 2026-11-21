@@ -290,7 +290,9 @@ export function MenuProducts() {
   const bestSellers = BEST_SELLERS.map((id) =>
     PRODUCTS.find((p) => p.id === id),
   ).filter(Boolean);
-  const rest = PRODUCTS.filter((p) => !BEST_SELLERS.includes(p.id));
+  // The featured shelf repeats within the complete menu so each category
+  // contains every matching flavour, including its best sellers.
+  const completeMenu = PRODUCTS;
   return (
     <div className="catalog-content">
       <section
@@ -320,7 +322,7 @@ export function MenuProducts() {
         <p className="catalog-best-sellers-note">
           Semua pilihan salt bread Ana.
         </p>
-        <Products items={rest} cutouts catalog categoryAnchors />
+        <Products items={completeMenu} cutouts catalog categoryAnchors />
       </section>
       <p className="catalog-note">
         Harga mengikuti menu Ana yang ditampilkan dan dapat berubah. Cek harga
