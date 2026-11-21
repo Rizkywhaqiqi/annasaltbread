@@ -37,38 +37,30 @@ export default function Page() {
     <>
       <Hero />
       <BrandRibbon />
-      <section
-        className="home-editorial"
-        aria-labelledby="home-editorial-title"
-      >
+      <section className="home-editorial" aria-label="Ana Salt Bread">
+        <div className="home-editorial-video-wrap" aria-hidden="true">
+          <video
+            className="home-editorial-video"
+            src="/video/ana.webm"
+            poster="/images/ana-assortment.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </div>
         <div className="home-editorial-copy" data-reveal>
-          <span className="eyebrow">SALT BREAD ANA</span>
           <h2 id="home-editorial-title">
             Now serving
             <br />
             warmth.
           </h2>
-          
           <Link href="/menu" className="button dark">
             Lihat menu
           </Link>
           <BrandFlower className="editorial-flower" />
         </div>
-        <figure>
-          <div
-            className="bread-photo-layer"
-            data-scroll-bread
-            data-bread-side="right"
-          >
-            <Image
-              src="/images/ana-assortment.webp"
-              alt="Aneka salt bread Ana dengan lapisan cokelat dan topping gurih di atas nampan kayu"
-              width={1100}
-              height={1375}
-              sizes="(max-width:720px) 100vw,55vw"
-            />
-          </div>
-        </figure>
       </section>
       <section className="brand-about section">
         <span className="eyebrow">TENTANG ANA</span>
@@ -78,7 +70,7 @@ export default function Page() {
             <br />
           </h2>
           <div className="brand-about-copy">
-            <p>Ana Salt Bread, Tangerang.</p>
+           
             <Link href="/tentang" className="text-link">
               Tentang Ana <Arrow />
             </Link>

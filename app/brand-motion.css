@@ -353,6 +353,19 @@
   transform: rotate(-8deg);
   transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+/* Home cards now use the sprite cutouts, so apply the same framing to them. */
+.brand-menu .cutout-product .product-image .bread-cutout {
+  width: 118%;
+  height: 100%;
+  max-width: none;
+  margin-left: -9%;
+  filter: drop-shadow(0 12px 8px #00000015);
+  rotate: -8deg;
+  transition: rotate 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.brand-menu .cutout-product:nth-child(2) .product-image .bread-cutout {
+  rotate: 8deg;
+}
 .brand-menu .cutout-product:nth-child(2) .product-image img {
   transform: rotate(8deg);
 }
@@ -673,6 +686,11 @@
     margin: auto;
     aspect-ratio: 1.55;
   }
+  /* Half-width phones can't fit the 441px sprite cell, so restore the intended framing. */
+  .brand-menu .cutout-product .product-image .bread-cutout {
+    width: 108%;
+    margin-left: -4%;
+  }
   .brand-menu .product-caption {
     padding-top: 24px;
   }
@@ -944,6 +962,10 @@ html[data-motion="off"] .brand-orbit {
 }
 #main section:has([data-scroll-bread]) {
   overflow: clip;
+}
+/* Cards animate the inner bread layer, so the caption stays readable. */
+#main section:has(.product-card [data-scroll-bread]) {
+  overflow: visible;
 }
 .product-image > .bread-scroll-layer {
   isolation: isolate;

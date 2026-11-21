@@ -6,11 +6,6 @@ import BreadCutout from "@/components/bread-cutout";
 import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
 function Products({ items, cutouts = false, catalog = false }) {
   const ProductHeading = catalog ? "h3" : "h2";
-  const cutoutFiles = {
-    cream: "cream",
-    chocolate: "chocolate",
-    savory: "savory",
-  };
   const [selected, setSelected] = useState(null);
   const dialog = useRef(null);
   const trigger = useRef(null);
@@ -62,12 +57,12 @@ function Products({ items, cutouts = false, catalog = false }) {
                   p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
                 }
               >
-                {catalog ? (
+                {cutouts ? (
                   <BreadCutout index={p.sprite} alt={p.alt} />
                 ) : (
                   <Image
                     className="product-front"
-                    src={"/graphics/" + cutoutFiles[p.id] + "-cutout.png"}
+                    src={"/graphics/" + p.id + "-cutout.png"}
                     alt={p.alt}
                     width={900}
                     height={600}
@@ -150,8 +145,8 @@ export function ProductGrid() {
   return (
     <div className="home-products">
       <Products
-        items={["cream", "chocolate", "savory"].map((id) =>
-          PRODUCTS.find((p) => p.id === id),
+        items={BEST_SELLERS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(
+          Boolean,
         )}
         cutouts
       />
