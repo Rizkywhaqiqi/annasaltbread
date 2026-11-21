@@ -47,11 +47,11 @@ export default function MotionStudio() {
             ctx.add(() => {
               gsap.fromTo(
                 el,
-                { opacity: 0, y: 24 },
+                { opacity: 0, y: el.matches(".product-card") ? 14 : 24 },
                 {
                   opacity: 1,
                   y: 0,
-                  duration: 0.85,
+                  duration: el.matches(".product-card") ? 0.65 : 0.85,
                   ease: "power3.out",
                   clearProps: "opacity,transform",
                 },
@@ -94,47 +94,7 @@ export default function MotionStudio() {
                 },
               );
             });
-          // Scrubbed, reversible entrance/exit: each bread has a separate transform layer.
-          // No pinning or wheel interception; normal scrolling stays intact.
-          gsap.utils.toArray("[data-scroll-bread]").forEach((el) => {
-            const card = el.closest(".product-card");
-            const section = card ?? el.closest("section");
-            if (!section) return;
-            const side = el.dataset.breadSide === "right" ? 1 : -1;
-            const distance = () =>
-              side *
-              (card ? el.offsetWidth + 64 : innerWidth * 0.65 + el.offsetWidth);
-            gsap
-              .timeline({
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 0.65,
-                  invalidateOnRefresh: true,
-                },
-              })
-              .fromTo(
-                el,
-                { x: distance, rotation: side * 12, opacity: 0 },
-                {
-                  x: 0,
-                  rotation: 0,
-                  opacity: 1,
-                  duration: 0.34,
-                  ease: "power1.inOut",
-                  immediateRender: false,
-                },
-              )
-              .to(el, { x: 0, opacity: 1, duration: 0.36, ease: "none" })
-              .to(el, {
-                x: () => -distance(),
-                rotation: -side * 10,
-                opacity: 0,
-                duration: 0.3,
-                ease: "power1.inOut",
-              });
-          });
+          // Product imagery stays in its card: no off-screen fly-in or scroll scrub.
           document
             .querySelectorAll(".button,.header-order,.contact-options>a")
             .forEach((el) => {
