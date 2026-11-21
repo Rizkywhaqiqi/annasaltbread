@@ -21,6 +21,7 @@ export default function Hero() {
         scene.current.style.setProperty("--scroll-shift", `${progress * 65}px`);
       });
     }
+    update();
     window.addEventListener("scroll", update, { passive: true });
     return () => {
       window.removeEventListener("scroll", update);
@@ -29,7 +30,7 @@ export default function Hero() {
     };
   }, []);
   function move(e) {
-    if (!matchMedia("(pointer:fine)").matches || !motionAllowed()) return;
+    if (!window.matchMedia("(pointer:fine)").matches || !motionAllowed()) return;
     const r = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
