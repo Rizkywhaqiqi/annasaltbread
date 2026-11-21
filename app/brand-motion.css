@@ -1379,3 +1379,43 @@ html[data-motion="off"] .menu-photo-hint {
   transition: none;
   transform: none;
 }
+
+/* Detail dialog: prevent the media column and the ordering CTA from
+   crowding each other on short viewports. */
+.photo-dialog {
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.photo-dialog-inner > .photo-dialog-art {
+  min-width: 0;
+  padding: 16px;
+}
+.photo-dialog-inner > div:last-child {
+  min-width: 0;
+}
+.photo-dialog .photo-close {
+  z-index: 3;
+  position: sticky;
+  float: right;
+  top: 10px;
+  right: 10px;
+  margin: 10px 10px -46px 0;
+}
+.menu-photo-switcher button {
+  min-height: 44px;
+}
+.photo-dialog .button {
+  white-space: normal;
+  text-align: center;
+}
+@media (max-width: 720px) {
+  .photo-dialog { width: min(100% - 16px, 520px); max-height: 92dvh; }
+  .photo-dialog-inner { grid-template-columns: minmax(0, 1fr); }
+  .photo-dialog-inner > .photo-dialog-art { padding: 12px 12px 0; }
+  .photo-dialog-art img.product-photo-hd-modal { max-height: min(37dvh, 310px); }
+  .photo-dialog-inner > div:last-child { padding: 18px 18px 25px; }
+  .photo-dialog .photo-dialog-inner h2 { font-size: clamp(24px, 6vw, 32px); margin-block: 10px; }
+  .photo-dialog .product-price { margin-block: 10px; }
+  .photo-dialog p { line-height: 1.55; margin-bottom: 14px; }
+  .menu-photo-switcher { gap: 8px; margin-bottom: 12px; }
+}
