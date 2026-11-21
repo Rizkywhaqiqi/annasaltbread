@@ -128,7 +128,7 @@ export default function Header() {
       collect();
       update();
     };
-    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => { collect(); update(); }) : null;
     const main = document.querySelector("#main");
     if (main) ro?.observe(main);
     window.addEventListener("resize", resize);
@@ -296,9 +296,11 @@ export default function Header() {
           setOpen(false);
           if (restoreFocus.current) {
             setCompact(false);
-            const focusTarget = matchMedia("(max-width:720px)").matches
-              ? toggle.current
-              : header.current?.querySelector(".wordmark");
+            const focusTarget = compact
+              ? header.current?.querySelector(".compact-brand")
+              : matchMedia("(max-width:720px)").matches
+                ? toggle.current
+                : header.current?.querySelector(".wordmark");
             focusTarget?.focus({ preventScroll: true });
           }
         }}
