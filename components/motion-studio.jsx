@@ -34,11 +34,18 @@ export default function MotionStudio() {
       observer,
       layoutObserver,
       refreshFrame = 0;
-    Promise.all([import("gsap"), import("gsap/ScrollTrigger")])
+    const useScrollParallax = window.matchMedia(
+      "(min-width: 901px) and (hover: hover) and (pointer: fine)",
+    ).matches;
+    // Only fetch ScrollTrigger on desktop devices that actually use parallax.
+    Promise.all([
+      import("gsap"),
+      useScrollParallax ? import("gsap/ScrollTrigger") : Promise.resolve(null),
+    ])
       .then(([m, p]) => {
         if (cancelled) return;
         const gsap = m.gsap;
-        gsap.registerPlugin(p.ScrollTrigger);
+        if (p) gsap.registerPlugin(p.ScrollTrigger);
         ctx = gsap.context(() => {
           const reveal = (el) => {
             if (seen.current.has(el)) return;
@@ -93,7 +100,7 @@ export default function MotionStudio() {
             .forEach((el) => observer.observe(el));
           // Scroll-scrub parallax is decorative: never run on small/touch screens.
           // Pure CSS handles CTA hover so we do not create GSAP tweens per pointer event.
-          if (window.matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches) {
+          if (useScrollParallax) {
             document
               .querySelectorAll(".profile-location figure,.story-grid figure,.location-grid figure,.contact-hero figure")
               .forEach((el) => {
@@ -117,6 +124,7 @@ export default function MotionStudio() {
         // Desktop fonts and responsive columns can settle after hydration.
         // Re-measure triggers after layout changes without requiring a window resize.
         const refresh = () => {
+          if (!p) return;
           cancelAnimationFrame(refreshFrame);
           refreshFrame = requestAnimationFrame(() => {
             if (!cancelled) p.ScrollTrigger.refresh();
