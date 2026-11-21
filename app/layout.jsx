@@ -24,7 +24,7 @@ export const metadata = {
     ],
   },
   twitter: { card: "summary_large_image" },
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: [{ url: "/graphics/ana-flower.svg", type: "image/svg+xml" }], shortcut: "/graphics/ana-flower.svg" },
 };
 export const viewport = { themeColor: "#FEF3EA" };
 export default function RootLayout({ children }) {
