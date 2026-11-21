@@ -223,7 +223,6 @@ function Products({ items, cutouts = false, catalog = false, categoryAnchors = f
 export function MenuCategoryNav() {
   const entries = [
     { id: "menu-best-sellers", label: "Best Seller" },
-    { id: "menu-all", label: "Semua" },
     ...MENU_CATEGORIES.map((category) => ({
       id: "menu-" + category.id,
       label: category.label,
@@ -308,17 +307,7 @@ export function MenuProducts() {
         </p>
         <Products items={bestSellers} cutouts catalog />
       </section>
-      <section
-        id="menu-all"
-        className="catalog-products catalog-all-menu"
-        aria-labelledby="catalog-products-title"
-      >
-        <h2 id="catalog-products-title" className="catalog-best-sellers-title">
-          Menu lengkap
-        </h2>
-        <p className="catalog-best-sellers-note">
-          Semua 14 pilihan salt bread Ana, dikelompokkan seperti katalog resmi.
-        </p>
+      <div className="catalog-products catalog-all-menu" aria-label="Pilihan salt bread berdasarkan kategori">
         {MENU_CATEGORIES.map((category) => (
           <section
             key={category.id}
@@ -337,7 +326,7 @@ export function MenuProducts() {
             />
           </section>
         ))}
-      </section>
+      </div>
       <p className="catalog-note">
         Harga mengikuti menu Ana yang ditampilkan dan dapat berubah. Cek harga
         akhir dan ketersediaan di ESB Order. Untuk informasi alergen, hubungi
