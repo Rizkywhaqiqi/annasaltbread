@@ -3,8 +3,8 @@ import { Arrow } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import BreadCutout from "@/components/bread-cutout";
 import { PRODUCT_PHOTO_IDS, PRODUCT_SECOND_PHOTO_IDS, productPhotoUrl } from "@/lib/product-photos";
-import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
-function ProductPhoto({ product, photo = 1, modal = false }) {
+import { BRAND, BEST_SELLERS, MENU_CATEGORIES, PRODUCTS, formatPrice } from "@/lib/content";
+function ProductPhoto({ product, photo = 1, modal = false, catalog = false }) {
   const [failureCount, setFailureCount] = useState(0);
   const currentPhoto = photo === 2 && failureCount > 0 ? 1 : photo;
   const src = productPhotoUrl(product.id, modal ? 1600 : 960, currentPhoto);
@@ -20,8 +20,13 @@ function ProductPhoto({ product, photo = 1, modal = false }) {
         ? `product-photo-hd product-photo-hd-modal${extraCrop ? " alternate-crop" : ""}`
         : "product-photo-hd"}
       src={src}
-      srcSet={`${productPhotoUrl(product.id, 640, currentPhoto)} 640w, ${productPhotoUrl(product.id, 960, currentPhoto)} 960w, ${productPhotoUrl(product.id, 1600, currentPhoto)} 1600w`}
-      sizes={modal ? "(max-width: 720px) 92vw, 48vw" : "(max-width: 720px) 94vw, (max-width: 1100px) 46vw, 31vw"}
+      srcSet={modal
+        ? `${productPhotoUrl(product.id, 640, currentPhoto)} 640w, ${productPhotoUrl(product.id, 960, currentPhoto)} 960w, ${productPhotoUrl(product.id, 1600, currentPhoto)} 1600w`
+        : `${productPhotoUrl(product.id, 640, currentPhoto)} 640w, ${productPhotoUrl(product.id, 960, currentPhoto)} 960w`}
+      fetchPriority={modal ? "high" : "low"}
+      sizes={modal ? "(max-width: 720px) 90vw, 48vw" : catalog
+        ? "(max-width: 390px) 88vw, (max-width: 720px) 44vw, (max-width: 1100px) 46vw, 31vw"
+        : "(max-width: 720px) 90vw, (max-width: 1100px) 46vw, 31vw"}
       alt={photo === 2 ? `${product.alt} — foto detail` : product.alt}
       width={1000}
       height={1000}
@@ -32,10 +37,10 @@ function ProductPhoto({ product, photo = 1, modal = false }) {
     />
   );
 }
-function Products({ items, cutouts = false, catalog = false }) {
+function Products({ items, cutouts = false, catalog = false, categoryAnchors = false }) {
   const ProductHeading = catalog ? "h3" : "h2";
   const [selected, setSelected] = useState(null);
-  const [activePhoto, setActivePhoto] = useState(2);
+  const [activePhoto, setActivePhoto] = useState(1);
   const dialog = useRef(null);
   const trigger = useRef(null);
   useEffect(() => {
@@ -62,7 +67,7 @@ function Products({ items, cutouts = false, catalog = false }) {
           <article
             key={p.id}
             id={
-              catalog &&
+              catalog && categoryAnchors &&
               items.findIndex((item) => item.group === p.group) === index
                 ? "menu-" + p.group
                 : undefined
@@ -75,19 +80,20 @@ function Products({ items, cutouts = false, catalog = false }) {
             <button
               type="button"
               className="product-image"
-              aria-label={(PRODUCT_SECOND_PHOTO_IDS[p.id] ? "Lihat foto lainnya dari " : "Lihat detail foto ") + p.name}
+              aria-label={"Lihat detail produk " + p.name}
               onClick={(e) => {
                 trigger.current = e.currentTarget;
-                setActivePhoto(2);
+                setActivePhoto(1);
                 setSelected(p);
               }}
             >
               <span className="bread-scroll-layer">
-                <ProductPhoto key={p.id} product={p} />
+                <ProductPhoto key={p.id} product={p} catalog={catalog} />
                 {BEST_SELLERS.includes(p.id) && (
                   <span className="best-seller-badge">Best seller</span>
                 )}
-                {catalog && <span className="menu-photo-hint" aria-hidden="true">{PRODUCT_SECOND_PHOTO_IDS[p.id] ? "Lihat foto lainnya" : "Lihat detail foto"}</span>}
+                {catalog && <span className="menu-photo-hint" aria-hidden="true">Lihat detail →</span>}
+                {catalog && <span className="menu-photo-count" aria-hidden="true">{PRODUCT_SECOND_PHOTO_IDS[p.id] ? "2 foto" : "Foto + detail"}</span>}
               </span>
             </button>
             <div className="product-caption">
@@ -99,6 +105,15 @@ function Products({ items, cutouts = false, catalog = false }) {
               <ProductHeading>{p.name}</ProductHeading>
               <span className="product-price">{formatPrice(p.price)}</span>
               <p>{p.description}</p>
+              {catalog && (
+                <button type="button" className="catalog-detail-link" onClick={(e) => {
+                  trigger.current = e.currentTarget;
+                  setActivePhoto(1);
+                  setSelected(p);
+                }}>
+                  Lihat detail <span aria-hidden="true">→</span>
+                </button>
+              )}
             </div>
           </article>
         ))}
@@ -207,7 +222,7 @@ export function MenuProducts() {
         <p className="catalog-best-sellers-note">
           Semua pilihan salt bread Ana.
         </p>
-        <Products items={rest} cutouts catalog />
+        <Products items={rest} cutouts catalog categoryAnchors />
       </section>
       <p className="catalog-note">
         Harga mengikuti menu Ana yang ditampilkan dan dapat berubah. Cek harga
