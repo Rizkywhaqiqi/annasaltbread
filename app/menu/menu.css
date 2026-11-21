@@ -532,3 +532,37 @@
     font-size: 14px;
   }
 }
+
+/* Small-phone catalogue: one comfortable column without changing tablet/desktop. */
+@media (max-width: 390px) {
+  .catalog-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .catalog-grid > .product-card {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+  .catalog-grid .photo-menu-card .product-image {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 1 / 1.03;
+  }
+  .catalog-grid .product-caption {
+    width: 100%;
+    max-width: none;
+  }
+  .catalog-grid .product-caption h3 {
+    font-size: clamp(23px, 6.3vw, 27px);
+    overflow-wrap: anywhere;
+  }
+}
+/* Keep anchor targets visible below the sticky, shrinking header. */
+.catalog-grid > .product-card[id^="menu-"] {
+  scroll-margin-top: 145px;
+}
+@media (max-width: 720px) {
+  .catalog-grid > .product-card[id^="menu-"] { scroll-margin-top: 112px; }
+  .catalog-intro nav a { min-height: 44px; display: inline-flex; align-items: center; }
+}
