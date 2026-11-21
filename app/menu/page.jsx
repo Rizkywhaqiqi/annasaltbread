@@ -23,7 +23,7 @@ export default function Page() {
         <p className="catalog-tagline">
           <strong>{BRAND_TAGLINE}</strong> {BRAND_SUPPORTING_LINE}
         </p>
-        <MenuCategoryNav />  </nav>
+        <MenuCategoryNav />
       </header>
       <MenuProducts />
       <DrinksMenu />
