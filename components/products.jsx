@@ -217,6 +217,63 @@ function Products({ items, cutouts = false, catalog = false, categoryAnchors = f
     </>
   );
 }
+
+// Navigation remains anchor based: all products are accessible without JS.
+// Current section highlighting is a progressive enhancement.
+export function MenuCategoryNav() {
+  const entries = [
+    { id: "menu-best-sellers", label: "Best Seller" },
+    { id: "menu-all", label: "Semua" },
+    ...MENU_CATEGORIES.map((category) => ({
+      id: "menu-" + category.id,
+      label: category.label,
+    })),
+    { id: "menu-minuman", label: "Minuman" },
+  ];
+  const [active, setActive] = useState("menu-best-sellers");
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        let current = entries[0].id;
+        // Sections activate shortly after crossing the sticky navbar.
+        for (const entry of entries) {
+          const target = document.getElementById(entry.id);
+          if (target && target.getBoundingClientRect().top <= 210) {
+            current = entry.id;
+          }
+        }
+        setActive(current);
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    window.addEventListener("hashchange", update);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      window.removeEventListener("hashchange", update);
+    };
+  }, []);
+  return (
+    <nav className="catalog-category-nav" aria-label="Kategori menu">
+      {entries.map((entry) => (
+        <a
+          key={entry.id}
+          href={"#" + entry.id}
+          aria-current={active === entry.id ? "location" : undefined}
+          onClick={() => setActive(entry.id)}
+        >
+          {entry.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
 export function ProductGrid() {
   return (
     <div className="home-products">
@@ -237,6 +294,7 @@ export function MenuProducts() {
   return (
     <div className="catalog-content">
       <section
+        id="menu-best-sellers"
         className="catalog-products catalog-best-sellers"
         aria-labelledby="catalog-best-sellers-title"
       >
@@ -249,6 +307,7 @@ export function MenuProducts() {
         <Products items={bestSellers} cutouts catalog />
       </section>
       <section
+        id="menu-all"
         className="catalog-products catalog-all-menu"
         aria-labelledby="catalog-products-title"
       >
