@@ -405,6 +405,7 @@ em {
   font: 700 9px/1 var(--sans);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
   pointer-events: none;
 }
 .best-seller-badge::before {
@@ -749,8 +750,8 @@ em {
 }
 .contact-options {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6%;
   padding-top: 20px;
 }
 .contact-options > a {

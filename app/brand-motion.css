@@ -27,13 +27,28 @@
   background: #fef3ea;
 }
 .brand-top {
+  position: relative;
+  z-index: 6;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 25px;
 }
 .brand-top .eyebrow {
   font-size: 9px;
+}
+.brand-top .brand-handwritten {
+  margin-left: auto;
+}
+/* Brand phrase sits here once; the hero footer keeps only the actions. */
+.brand-top .brand-handwritten {
+  display: block;
+  width: auto;
+  max-width: none;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1.15;
+  white-space: nowrap;
+  text-align: right;
 }
 .brand-heading {
   position: relative;
@@ -182,6 +197,9 @@
   border-top: 1px solid var(--line);
   padding: 24px 0 28px;
   z-index: 5;
+}
+.brand-hero-bottom:has(> .brand-actions:only-child) {
+  justify-content: flex-end;
 }
 .brand-hero-bottom > p {
   font-size: 12px;
@@ -494,6 +512,14 @@
     font-size: 7px;
     text-align: right;
     max-width: 110px;
+  }
+  .brand-top {
+    justify-content: flex-start;
+  }
+  .brand-top .brand-handwritten {
+    margin-left: 0;
+    font-size: 22px;
+    text-align: left;
   }
   .brand-heading {
     margin-top: 25px;

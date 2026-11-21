@@ -16,7 +16,7 @@ export default function Page() {
           <h1>Kontak</h1>
           <p>
             Pesan melalui ESB Order. Untuk pertanyaan dan informasi lainnya,
-            hubungi Instagram resmi Ana.
+            hubungi WhatsApp atau Instagram resmi Ana.
           </p>
           <div className="contact-hero-actions">
             <a
@@ -26,6 +26,14 @@ export default function Page() {
               rel="noopener noreferrer"
             >
               Pesan salt bread <Arrow />
+            </a>
+            <a
+              className="text-link"
+              href={BRAND.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp {BRAND.phone} <Arrow />
             </a>
             <a
               className="text-link"
@@ -60,6 +68,12 @@ export default function Page() {
           <p>5 cabang</p>
           <Arrow />
         </Link>
+        <a href={BRAND.whatsapp} target="_blank" rel="noopener noreferrer">
+          <span className="eyebrow">WHATSAPP</span>
+          <h2>WhatsApp Ana</h2>
+          <p>{BRAND.phone}</p>
+          <Arrow />
+        </a>
       </section>
     </>
   );

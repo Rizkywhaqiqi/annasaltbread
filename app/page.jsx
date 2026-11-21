@@ -48,7 +48,7 @@ export default function Page() {
             <br />
             warmth.
           </h2>
-          <p>Salt bread dengan isian manis dan topping gurih.</p>
+          
           <Link href="/menu" className="button dark">
             Lihat menu
           </Link>
@@ -76,7 +76,6 @@ export default function Page() {
           <h2>
             Salt bread
             <br />
-            manis dan gurih.
           </h2>
           <div className="brand-about-copy">
             <p>Ana Salt Bread, Tangerang.</p>

@@ -50,6 +50,13 @@ export default function Footer() {
             <a href={BRAND.orderUrl} target="_blank" rel="noopener noreferrer">
               Pesan online
             </a>
+            <a
+              href={BRAND.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
             <p>
               {OUTLETS.length} cabang di Tangerang, Jakarta, Pontianak, dan
               Balikpapan. Alamat lengkap ada di halaman lokasi.

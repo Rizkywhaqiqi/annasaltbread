@@ -54,7 +54,7 @@ export default function Hero() {
       onPointerLeave={reset}
     >
       <div className="brand-top">
-        <span className="eyebrow">MENU · LOKASI · PEMESANAN</span>
+        <span className="brand-handwritten">We Start Blooming!</span>
       </div>
       <div className="brand-heading">
         <h1>
@@ -69,8 +69,8 @@ export default function Hero() {
               preload
             />
           </span>
-          <em className="hero-brand-tagline">Crisp. Buttery. Elevated.</em>
         </h1>
+        <em className="hero-brand-tagline">Crisp. Buttery. Elevated.</em>
       </div>
       <div className="brand-stage">
         <span className="brand-outline" aria-hidden="true">
@@ -146,11 +146,6 @@ export default function Hero() {
         <BrandFlower className="stage-flower" />
       </div>
       <div className="brand-hero-bottom">
-        <p>
-          <span className="brand-handwritten">We Start Blooming!</span>
-          <br />
-          Salt bread manis dan gurih.
-        </p>
         <div className="brand-actions">
           <Link href="/menu" className="button dark">
             Lihat menu <Arrow />

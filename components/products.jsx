@@ -62,9 +62,6 @@ function Products({ items, cutouts = false, catalog = false }) {
                   p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
                 }
               >
-                {BEST_SELLERS.includes(p.id) && (
-                  <span className="best-seller-badge">Best seller</span>
-                )}
                 {catalog ? (
                   <BreadCutout index={p.sprite} alt={p.alt} />
                 ) : (
@@ -76,6 +73,9 @@ function Products({ items, cutouts = false, catalog = false }) {
                     height={600}
                     sizes="(max-width: 720px) 90vw, 30vw"
                   />
+                )}
+                {BEST_SELLERS.includes(p.id) && (
+                  <span className="best-seller-badge">Best seller</span>
                 )}
               </span>
             </button>
@@ -159,10 +159,9 @@ export function ProductGrid() {
   );
 }
 export function MenuProducts() {
-  const ordered = [...PRODUCTS].sort(
-    (a, b) => BEST_SELLERS.indexOf(a.id) - BEST_SELLERS.indexOf(b.id),
-  );
-  const bestSellers = ordered.slice(0, BEST_SELLERS.length);
+  const bestSellers = BEST_SELLERS.map((id) =>
+    PRODUCTS.find((p) => p.id === id),
+  ).filter(Boolean);
   const rest = PRODUCTS.filter((p) => !BEST_SELLERS.includes(p.id));
   return (
     <div className="catalog-content">

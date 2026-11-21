@@ -41,7 +41,12 @@ export default function Page() {
           ))}
         </ul>
         <p className="outlet-phone">
-          Semua cabang · <a href="tel:+6281156002122">{BRAND.phone}</a>
+          Semua cabang ·{" "}
+          <a href={BRAND.whatsapp} target="_blank" rel="noopener noreferrer">
+            WhatsApp {BRAND.phone}
+          </a>
+          {" · "}
+          <a href="tel:+6281156002122">{BRAND.phone}</a>
         </p>
       </section>
       <section className="location-grid section">
@@ -75,6 +80,17 @@ export default function Page() {
               </a>
               . Jam dapat berubah pada hari libur.
             </p>
+            <a
+              className="text-link"
+              href={BRAND.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {"Tanya Ana via WhatsApp"}
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
             <a
               className="text-link"
               href="https://www.instagram.com/anasaltbread/"

@@ -7,6 +7,7 @@
   unicode-range: U+20, U+2C, U+2E, U+30-39, U+41-43, U+45, U+56, U+61-70, U+72-79;
 }
 /* Handwriting is reserved for short brand phrases; information stays in Arial. */
+.brand-top .brand-handwritten,
 .brand-hero-bottom .brand-handwritten,
 .story-grid h2.brand-handwritten {
   font-family: "Vavinx", Arial, sans-serif;
@@ -16,6 +17,7 @@
   letter-spacing: 0;
   line-height: 1.5;
 }
+.brand-top .brand-handwritten,
 .brand-hero-bottom .brand-handwritten {
   font-size: 22px;
 }
@@ -40,15 +42,16 @@ h1, h2, h3 {
   max-width: 82vw;
   height: auto;
 }
-.brand-heading h1 > .hero-brand-tagline {
-  font-size: clamp(25px, 3.3vw, 48px);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.025em;
-  margin-top: 8px;
+/* The tagline now sits beside the <h1>, not inside it, so target it directly. */
+.hero-brand-tagline {
+  display: block;
+  font: 700 clamp(25px, 3.3vw, 48px) / 1.2 var(--display);
+  letter-spacing: -0.03em;
+  margin-top: 10px;
+  text-wrap: balance;
 }
 @media (max-width: 720px) {
-  .brand-heading h1 > .hero-brand-tagline {
+  .hero-brand-tagline {
     font-size: clamp(21px, 5vw, 34px);
   }
 }
