@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import BreadCutout from "@/components/bread-cutout";
 import { PRODUCT_PHOTO_IDS, productPhotoUrl } from "@/lib/product-photos";
 import { BRAND, BEST_SELLERS, PRODUCTS, formatPrice } from "@/lib/content";
-function ProductPhoto({ product, modal = false, cutouts = true }) {
+function ProductPhoto({ product, modal = false, cutouts = true, transparent = false }) {
+  // Transparent cutouts in menu cards; keep genuine HD photos in the detail dialog.
+  if (transparent && !modal) {
+    return <BreadCutout index={product.sprite} alt={product.alt} />;
+  }
   const [failed, setFailed] = useState(false);
   const url = productPhotoUrl(product.id);
   if (!url || failed) {
@@ -92,7 +96,7 @@ function Products({ items, cutouts = false, catalog = false }) {
                   p.id === "chocolate" || p.id === "crunch" ? "right" : "left"
                 }
               >
-                <ProductPhoto product={p} cutouts={cutouts} />
+                <ProductPhoto product={p} cutouts={cutouts} transparent={catalog} />
                 {BEST_SELLERS.includes(p.id) && (
                   <span className="best-seller-badge">Best seller</span>
                 )}
